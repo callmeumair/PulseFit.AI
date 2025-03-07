@@ -2424,3 +2424,547 @@ section {
     background: radial-gradient(circle at top right, rgba(0, 123, 255, 0.1), transparent);
     pointer-events: none;
 }
+
+/* Performance Optimizations */
+* {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform, opacity;
+}
+
+/* Optimize Images */
+img {
+    max-width: 100%;
+    height: auto;
+    image-rendering: -webkit-optimize-contrast;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* Lazy Loading */
+.lazy-image {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.lazy-image.loaded {
+    opacity: 1;
+}
+
+/* Loading Placeholders */
+.loading-placeholder {
+    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+    background-size: 200% 100%;
+    animation: loadingShimmer 1.5s infinite;
+}
+
+@keyframes loadingShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Hardware Acceleration */
+.hardware-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* Optimize Animations */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+.animation-optimized {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Content Visibility */
+.offscreen {
+    content-visibility: auto;
+    contain: layout style paint;
+}
+
+/* Memory Optimization */
+.memory-efficient {
+    contain: content;
+    content-visibility: auto;
+}
+
+/* Touch Optimization */
+@media (hover: none) {
+    .touch-target {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 12px;
+        touch-action: manipulation;
+    }
+}
+
+/* Reduce Paint Operations */
+.reduce-paint {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+/* Optimize Layout Shifts */
+.content-wrapper {
+    contain: layout style;
+    content-visibility: auto;
+}
+
+/* Efficient Grid Layouts */
+.grid-optimized {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    contain: layout style;
+}
+
+/* Optimize Font Loading */
+@font-face {
+    font-family: 'Primary Font';
+    font-display: swap;
+    src: local('Arial'), local('Helvetica');
+}
+
+/* Optimize Shadows */
+.optimized-shadow {
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    will-change: transform;
+    transform: translateZ(0);
+}
+
+/* Efficient Transitions */
+.efficient-transition {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+}
+
+/* Optimize Background Images */
+.bg-optimized {
+    background-size: cover;
+    background-position: center;
+    transform: translateZ(0);
+    will-change: transform;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+/* Reduce Reflows */
+.prevent-reflow {
+    contain: layout style;
+    min-height: 0;
+    transform: translateZ(0);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+    .mobile-optimized {
+        will-change: transform;
+        transform: translateZ(0);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .touch-scroll {
+        -webkit-overflow-scrolling: touch;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+}
+
+/* High DPI Screen Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .high-dpi {
+        image-rendering: -webkit-optimize-contrast;
+        transform: translateZ(0);
+    }
+}
+
+/* Reduce Memory Usage */
+.memory-efficient {
+    contain: content;
+    content-visibility: auto;
+    will-change: auto;
+}
+
+/* Optimize Lists */
+.list-optimized {
+    contain: content;
+    content-visibility: auto;
+    will-change: contents;
+}
+
+/* Efficient Hover States */
+@media (hover: hover) {
+    .hover-optimized {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+    }
+}
+
+/* Optimize Fixed Elements */
+.fixed-optimized {
+    position: fixed;
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+/* Reduce Paint Area */
+.paint-optimized {
+    transform: translateZ(0);
+    will-change: transform;
+    contain: paint;
+}
+
+/* Optimize Scrolling */
+.scroll-optimized {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    scroll-behavior: smooth;
+    will-change: transform;
+}
+
+/* Efficient Animations */
+.animation-optimized {
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+    transform: translateZ(0);
+}
+
+/* Loading States */
+.loading-state {
+    transition: opacity 0.3s ease;
+    will-change: opacity;
+    contain: layout style;
+}
+
+/* Optimize Forms */
+.form-optimized {
+    contain: content;
+    will-change: contents;
+    transform: translateZ(0);
+}
+
+/* Efficient Modals */
+.modal-optimized {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    contain: layout paint style;
+}
+
+/* Optimize Charts */
+.chart-optimized {
+    transform: translateZ(0);
+    will-change: transform;
+    contain: layout style;
+}
+
+/* Efficient Cards */
+.card-optimized {
+    transform: translateZ(0);
+    will-change: transform;
+    contain: layout style;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Optimize Navigation */
+.nav-optimized {
+    transform: translateZ(0);
+    will-change: transform;
+    contain: layout style;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Contact & Social Section Styles */
+.contact-section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(0, 123, 255, 0.1), transparent);
+    pointer-events: none;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.contact-card i {
+    font-size: 2.5rem;
+    color: #007BFF;
+    margin-bottom: 1rem;
+}
+
+.contact-card h3 {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.contact-card p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}
+
+.contact-form {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-form textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #007BFF;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 1rem;
+    background: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.contact-form button:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+.social-links {
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.social-links h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+    background: #007BFF;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* Contact Section Responsive Styles */
+@media (max-width: 1024px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-info {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .social-icons {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-section {
+        padding: 3rem 0;
+    }
+
+    .contact-card {
+        padding: 1.5rem;
+    }
+
+    .social-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+}
+
+/* Loading Animation for Form Submission */
+@keyframes submitLoading {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.form-loading {
+    position: relative;
+    pointer-events: none;
+}
+
+.form-loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #fff;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: submitLoading 0.8s linear infinite;
+}
+
+/* Form Success/Error States */
+.form-success input,
+.form-success textarea {
+    border-color: #00ff88;
+}
+
+.form-error input,
+.form-error textarea {
+    border-color: #ff4444;
+}
+
+.form-message {
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.form-message.success {
+    background: rgba(0, 255, 136, 0.1);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    display: block;
+}
+
+.form-message.error {
+    background: rgba(255, 68, 68, 0.1);
+    color: #ff4444;
+    border: 1px solid rgba(255, 68, 68, 0.2);
+    display: block;
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) {
+    .contact-card,
+    .social-icon {
+        transform: none !important;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+}
