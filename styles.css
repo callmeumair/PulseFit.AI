@@ -893,6 +893,317 @@ body {
     }
 }
 
+/* Additional Mobile Optimizations */
+@media (max-width: 480px) {
+    /* General Layout */
+    .container {
+        width: 100%;
+        padding: 0 0.5rem;
+    }
+
+    .section {
+        padding: 2rem 1rem;
+        margin: 1rem 0;
+        border-radius: 10px;
+    }
+
+    /* Typography */
+    h1 { font-size: 1.8rem !important; }
+    h2 { font-size: 1.5rem !important; }
+    h3 { font-size: 1.3rem !important; }
+    p { font-size: 0.9rem !important; }
+
+    /* Navigation */
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(18, 18, 18, 0.95);
+        padding: 1rem;
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+    }
+
+    /* Hero Section */
+    .hero {
+        height: auto;
+        min-height: 100vh;
+        padding: 4rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem !important;
+        white-space: normal;
+        border-right: none;
+        animation: none;
+    }
+
+    .hero p {
+        font-size: 1rem !important;
+        padding: 0;
+    }
+
+    .hero .btn {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    /* Forms */
+    .form {
+        padding: 1rem;
+        margin: 0;
+    }
+
+    .form input,
+    .form select,
+    .form button {
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+
+    /* Workout Section */
+    .workout-container,
+    .nutrition-container,
+    .progress-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .workout-setup,
+    .nutrition-setup {
+        padding: 1rem;
+    }
+
+    .equipment-grid,
+    .restrictions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workout-preview,
+    .nutrition-preview {
+        padding: 1rem;
+    }
+
+    .workout-stats {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+
+    /* Meal Cards */
+    .meal-card {
+        padding: 1rem;
+    }
+
+    .meal-content {
+        flex-direction: column;
+    }
+
+    .meal-image {
+        width: 100%;
+        height: 180px;
+        margin-bottom: 1rem;
+    }
+
+    /* Progress Section */
+    .progress-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .progress-charts {
+        grid-template-columns: 1fr;
+    }
+
+    .chart-container {
+        height: 250px;
+    }
+
+    /* App Showcase */
+    .app-showcase {
+        padding: 2rem 1rem;
+    }
+
+    .iphone-mockup {
+        width: 280px;
+        height: 600px;
+        border-radius: 35px;
+    }
+
+    .app-features-screen {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+    }
+
+    .feature-icon {
+        padding: 1rem;
+    }
+
+    /* Bottom Navigation */
+    .tab-bar {
+        height: 70px;
+        padding-bottom: 15px;
+    }
+
+    .tab-item i {
+        font-size: 1.2rem;
+    }
+
+    .tab-item span {
+        font-size: 0.65rem;
+    }
+
+    /* Touch Interactions */
+    .btn,
+    .form button,
+    .equipment-item,
+    .restriction-item,
+    .meal-card,
+    .workout-item,
+    .achievement-item {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Improved Touch Targets */
+    .nav-links a,
+    .btn,
+    .form button,
+    .equipment-item,
+    .restriction-item {
+        min-height: 44px;
+        padding: 12px;
+    }
+
+    /* Loading States */
+    .lazy-load {
+        min-height: 200px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+    }
+
+    /* Scrolling */
+    .workout-exercises,
+    .meal-schedule,
+    .achievement-list {
+        max-height: 400px;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+    }
+
+    /* Performance Optimizations */
+    * {
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+
+    .animation-reduce {
+        animation: none !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* Tablet Optimizations */
+@media (min-width: 481px) and (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    .workout-container,
+    .nutrition-container,
+    .progress-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .equipment-grid,
+    .restrictions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .workout-stats,
+    .progress-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .meal-schedule {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .app-features-screen {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Landscape Mode Optimizations */
+@media (max-height: 480px) and (orientation: landscape) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem !important;
+    }
+
+    .nav-links {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .workout-container,
+    .nutrition-container,
+    .progress-container {
+        margin-top: 1rem;
+    }
+
+    .iphone-mockup {
+        transform: scale(0.8);
+    }
+}
+
+/* High-DPI Screen Optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .app-logo,
+    .feature-icon i,
+    .workout-icon {
+        transform: translateZ(0);
+    }
+
+    img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
 /* Workout Section Styles */
 .workout-container {
     display: grid;
