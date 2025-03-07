@@ -2218,3 +2218,209 @@ section {
         padding: 1rem;
     }
 }
+
+/* Plan Section Banners */
+.plan-banner {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 2rem;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.plan-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 123, 255, 0.3), rgba(0, 255, 136, 0.3));
+    animation: gradientShift 8s ease infinite;
+}
+
+.plan-banner-content {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.plan-banner h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #fff 0%, #007BFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.plan-banner p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.plan-banner-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: url('assets/images/pattern.png') repeat;
+    opacity: 0.1;
+    animation: slide 20s linear infinite;
+}
+
+.plan-banner-icon {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.1);
+    transform: rotate(-15deg);
+}
+
+/* Specific Plan Banners */
+.workout-banner {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%),
+                url('assets/images/workout-pattern.png');
+    background-blend-mode: overlay;
+}
+
+.nutrition-banner {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%),
+                url('assets/images/nutrition-pattern.png');
+    background-blend-mode: overlay;
+}
+
+.progress-banner {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%),
+                url('assets/images/progress-pattern.png');
+    background-blend-mode: overlay;
+}
+
+/* Banner Animations */
+@keyframes gradientShift {
+    0% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.02); }
+    100% { opacity: 0.5; transform: scale(1); }
+}
+
+@keyframes slide {
+    from { transform: translateX(0); }
+    to { transform: translateX(100%); }
+}
+
+/* Banner Hover Effects */
+.plan-banner:hover::before {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.plan-banner:hover .plan-banner-icon {
+    transform: rotate(0deg) scale(1.1);
+    color: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Banner Styles */
+@media (max-width: 768px) {
+    .plan-banner {
+        height: 180px;
+    }
+
+    .plan-banner h2 {
+        font-size: 2rem;
+    }
+
+    .plan-banner p {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+
+    .plan-banner-icon {
+        font-size: 3rem;
+        right: 1rem;
+        bottom: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .plan-banner {
+        height: 160px;
+    }
+
+    .plan-banner h2 {
+        font-size: 1.8rem;
+    }
+
+    .plan-banner p {
+        font-size: 0.9rem;
+    }
+
+    .plan-banner-content {
+        padding: 1.5rem;
+    }
+
+    .plan-banner-icon {
+        font-size: 2.5rem;
+    }
+}
+
+/* Enhanced Section Headers */
+.section-header {
+    position: relative;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #007BFF, #00ff88);
+    border-radius: 3px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #fff 0%, #007BFF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-header p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Section Transitions */
+.section {
+    position: relative;
+    overflow: hidden;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(0, 123, 255, 0.1), transparent);
+    pointer-events: none;
+}
