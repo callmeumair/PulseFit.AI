@@ -1,0 +1,1820 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #fff;
+    background: #121212;
+    transition: background-color 0.3s ease;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 1s ease-in;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(0, 123, 255, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); }
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink {
+    50% { border-color: transparent }
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(18, 18, 18, 0.95);
+    color: #fff;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    animation: slideIn 0.5s ease-out;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    animation: float 3s ease-in-out infinite;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+}
+
+.nav-links a:nth-child(1) { animation-delay: 0.1s; }
+.nav-links a:nth-child(2) { animation-delay: 0.2s; }
+.nav-links a:nth-child(3) { animation-delay: 0.3s; }
+.nav-links a:nth-child(4) { animation-delay: 0.4s; }
+.nav-links a:nth-child(5) { animation-delay: 0.5s; }
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #007BFF;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    background: url('https://via.placeholder.com/1920x1080?text=Fitness+Background') no-repeat center center/cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    animation: fadeIn 1s ease-in;
+}
+
+.hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 1.5s ease-in;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    animation: pulse 2s infinite;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid #007BFF;
+    animation: typing 3.5s steps(40, end), blink .75s step-end infinite;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    animation: slideInRight 1s ease-out;
+}
+
+.hero .btn {
+    background: #007BFF;
+    color: #fff;
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    border: 2px solid transparent;
+    animation: float 3s ease-in-out infinite;
+}
+
+.hero .btn:hover {
+    background: transparent;
+    border-color: #007BFF;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* Hero Video Background */
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.hero-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Exercise Video Styles */
+.exercise-video {
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.exercise-video video {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.exercise-video video:hover {
+    transform: scale(1.02);
+}
+
+/* Workout Thumbnail Styles */
+.workout-thumbnail {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 1rem;
+}
+
+.workout-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.workout-thumbnail:hover img {
+    transform: scale(1.1);
+}
+
+/* Meal Image Styles */
+.meal-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.meal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.meal-image:hover img {
+    transform: scale(1.05);
+}
+
+/* Sections */
+.section {
+    padding: 4rem 0;
+    background: #1a1a1a;
+    margin: 2rem 0;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.8s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #fff;
+    animation: pulse 2s infinite;
+}
+
+.form {
+    background: #242424;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+    animation: slideInRight 0.8s ease-out;
+}
+
+.form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+.form label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #fff;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.form input, .form select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid #333;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background: #333;
+    color: #fff;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.form input:focus, .form select:focus {
+    border-color: #007BFF;
+    outline: none;
+    animation: glow 2s infinite;
+}
+
+.form button {
+    background: #007BFF;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-weight: bold;
+    animation: float 3s ease-in-out infinite;
+}
+
+.form button:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+    animation: glow 2s infinite;
+}
+
+/* Background Images for Sections */
+.workout-section, .nutrition-section, .progress-section {
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s ease-out;
+}
+
+.workout-section::before, .nutrition-section::before, .progress-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease;
+}
+
+.workout-section:hover::before, .nutrition-section:hover::before, .progress-section:hover::before {
+    background: rgba(0, 0, 0, 0.7);
+    animation: glow 2s infinite;
+}
+
+/* Footer */
+.footer {
+    background: #1a1a1a;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1s ease-out;
+}
+
+/* App Showcase Section */
+.app-showcase {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    margin: 2rem 0;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.iphone-mockup {
+    position: relative;
+    width: 430px;
+    height: 932px;
+    background: #1a1a1a;
+    border-radius: 55px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    padding: 12px;
+    margin: 0 auto;
+    animation: float 6s ease-in-out infinite;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: visible;
+}
+
+.iphone-screen {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 45px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Dynamic Island */
+.dynamic-island {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 126px;
+    height: 37px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.dynamic-island-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.dynamic-island-content i {
+    font-size: 1rem;
+}
+
+/* iOS Status Bar */
+.status-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    color: #fff;
+    font-size: 0.8rem;
+    z-index: 1;
+}
+
+.status-bar-left {
+    display: flex;
+    gap: 4px;
+}
+
+.status-bar-right {
+    display: flex;
+    gap: 4px;
+}
+
+/* App Content Layout */
+.app-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    overflow-y: auto;
+}
+
+/* iOS Navigation Bar */
+.nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    z-index: 10;
+}
+
+.nav-bar-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.nav-bar-right {
+    display: flex;
+    gap: 16px;
+}
+
+/* App Logo and Slogan */
+.app-logo {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #007BFF 0%, #00ff88 100%);
+    border-radius: 30px;
+    margin: 60px auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: white;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 30px rgba(0, 123, 255, 0.3);
+}
+
+.app-slogan {
+    text-align: center;
+    margin: 20px 0;
+    padding: 0 20px;
+    animation: fadeIn 1s ease-out;
+}
+
+.app-slogan h3 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #007BFF 0%, #00ff88 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glow 2s infinite;
+}
+
+.app-slogan p {
+    font-size: 1.1rem;
+    color: #888;
+    line-height: 1.6;
+    animation: slideInRight 1s ease-out;
+}
+
+/* iOS-style Feature Grid */
+.app-features-screen {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 2rem;
+    padding: 0 16px;
+    width: 100%;
+}
+
+.feature-icon {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-out forwards;
+    opacity: 0;
+    backdrop-filter: blur(10px);
+}
+
+.feature-icon:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+}
+
+.feature-icon i {
+    font-size: 2rem;
+    color: #007BFF;
+    margin-bottom: 0.8rem;
+}
+
+.feature-icon span {
+    font-size: 0.9rem;
+    color: #fff;
+    display: block;
+    font-weight: 500;
+}
+
+/* iOS-style Bottom Tab Bar */
+.tab-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 83px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 20px;
+    z-index: 10;
+    margin-bottom: 8px;
+}
+
+.tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #888;
+    transition: all 0.3s ease;
+}
+
+.tab-item.active {
+    color: #007BFF;
+}
+
+.tab-item i {
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.tab-item span {
+    font-size: 0.7rem;
+}
+
+/* iOS-style Notifications */
+.notification {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px;
+    margin: 8px 0;
+    backdrop-filter: blur(10px);
+    animation: slideInRight 0.3s ease-out;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.notification-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #007BFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.notification-title {
+    font-weight: 600;
+    color: #fff;
+}
+
+.notification-text {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* iPhone Physical Buttons */
+.iphone-mockup::before {
+    content: '';
+    position: absolute;
+    right: -3px;
+    top: 100px;
+    width: 3px;
+    height: 100px;
+    background: #1a1a1a;
+    border-radius: 0 3px 3px 0;
+}
+
+.iphone-mockup::after {
+    content: '';
+    position: absolute;
+    right: -3px;
+    top: 250px;
+    width: 3px;
+    height: 60px;
+    background: #1a1a1a;
+    border-radius: 0 3px 3px 0;
+}
+
+.volume-button {
+    position: absolute;
+    right: -3px;
+    width: 3px;
+    height: 40px;
+    background: #1a1a1a;
+    border-radius: 0 3px 3px 0;
+}
+
+.volume-button.up {
+    top: 100px;
+}
+
+.volume-button.down {
+    top: 150px;
+}
+
+.action-button {
+    position: absolute;
+    right: -3px;
+    top: 250px;
+    width: 3px;
+    height: 60px;
+    background: #1a1a1a;
+    border-radius: 0 3px 3px 0;
+}
+
+/* Home Indicator */
+.home-indicator {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 135px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    z-index: 11;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+        padding: 0 1rem;
+        animation: none;
+        border-right: none;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        padding: 0 1rem;
+    }
+
+    .section {
+        padding: 2rem 0;
+        margin: 1rem 0;
+    }
+
+    .form {
+        margin: 0 1rem;
+        padding: 1.5rem;
+    }
+
+    .app-showcase {
+        flex-direction: column;
+        padding: 2rem 0;
+    }
+
+    .iphone-mockup {
+        width: 350px;
+        height: 758px;
+        border-radius: 45px;
+    }
+
+    .iphone-screen {
+        border-radius: 35px;
+    }
+
+    .app-logo {
+        width: 100px;
+        height: 100px;
+        font-size: 2rem;
+        margin: 50px auto 15px;
+    }
+
+    .app-slogan h3 {
+        font-size: 1.8rem;
+    }
+
+    .feature-icon {
+        padding: 15px;
+    }
+
+    .feature-icon i {
+        font-size: 1.8rem;
+    }
+
+    .volume-button {
+        height: 35px;
+    }
+
+    .volume-button.up {
+        top: 80px;
+    }
+
+    .volume-button.down {
+        top: 125px;
+    }
+
+    .action-button {
+        top: 200px;
+        height: 50px;
+    }
+
+    .home-indicator {
+        width: 120px;
+    }
+
+    .workout-thumbnail {
+        width: 80px;
+        height: 80px;
+        margin: 1rem 0;
+    }
+
+    .meal-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .exercise-video {
+        margin: 0.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .section h2 {
+        font-size: 2rem;
+    }
+
+    .form {
+        padding: 1rem;
+    }
+
+    .iphone-mockup {
+        width: 300px;
+        height: 650px;
+        border-radius: 40px;
+    }
+
+    .iphone-screen {
+        border-radius: 30px;
+    }
+
+    .app-logo {
+        width: 80px;
+        height: 80px;
+        font-size: 1.8rem;
+        margin: 40px auto 10px;
+    }
+
+    .app-slogan h3 {
+        font-size: 1.5rem;
+    }
+
+    .feature-icon {
+        padding: 12px;
+    }
+
+    .feature-icon i {
+        font-size: 1.5rem;
+    }
+
+    .volume-button {
+        height: 30px;
+    }
+
+    .volume-button.up {
+        top: 70px;
+    }
+
+    .volume-button.down {
+        top: 110px;
+    }
+
+    .action-button {
+        top: 180px;
+        height: 45px;
+    }
+
+    .home-indicator {
+        width: 100px;
+    }
+}
+
+/* Workout Section Styles */
+.workout-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.workout-setup {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    animation: slideIn 0.5s ease-out;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.equipment-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.equipment-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.equipment-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.equipment-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #007BFF;
+}
+
+.workout-preview {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    animation: slideInRight 0.5s ease-out;
+}
+
+.preview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.preview-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.workout-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.stat-item i {
+    font-size: 1.5rem;
+    color: #007BFF;
+}
+
+.workout-exercises {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.exercise-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.exercise-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.exercise-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.exercise-header h4 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.duration {
+    background: rgba(0, 123, 255, 0.2);
+    color: #007BFF;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.exercise-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.exercise-list li {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.exercise-list li:last-child {
+    border-bottom: none;
+}
+
+.progress-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.progress-chart {
+    height: 200px;
+    margin: 1rem 0;
+}
+
+.progress-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.metric {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.metric:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.metric .label {
+    display: block;
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.metric .value {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Responsive Design for Workout Section */
+@media (max-width: 1024px) {
+    .workout-container {
+        grid-template-columns: 1fr;
+    }
+
+    .workout-preview {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .workout-stats,
+    .progress-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .equipment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .preview-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .preview-actions {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .workout-stats,
+    .progress-metrics {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-item,
+    .metric {
+        padding: 0.75rem;
+    }
+}
+
+/* Nutrition Section Styles */
+.nutrition-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.nutrition-setup {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    animation: slideIn 0.5s ease-out;
+}
+
+.restrictions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.restriction-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.restriction-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.restriction-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #007BFF;
+}
+
+.calorie-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.calorie-input input {
+    flex: 1;
+}
+
+.calorie-unit {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.macro-sliders {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.macro-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.macro-item label {
+    min-width: 60px;
+}
+
+.macro-item input[type="range"] {
+    flex: 1;
+    height: 6px;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    outline: none;
+}
+
+.macro-item input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #007BFF;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.macro-item input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.macro-value {
+    min-width: 45px;
+    text-align: right;
+    color: #007BFF;
+}
+
+.nutrition-preview {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    animation: slideInRight 0.5s ease-out;
+}
+
+.meal-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.meal-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.meal-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.meal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.meal-header h4 {
+    color: #fff;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.calories {
+    background: rgba(0, 123, 255, 0.2);
+    color: #007BFF;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.meal-content {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.meal-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.meal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.meal-card:hover .meal-image img {
+    transform: scale(1.05);
+}
+
+.meal-details {
+    flex: 1;
+}
+
+.meal-details h5 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.meal-details p {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0 0 1rem 0;
+}
+
+.macro-breakdown {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.nutrition-insights {
+    margin-top: 2rem;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.insight-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.insight-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.insight-card i {
+    font-size: 2rem;
+    color: #007BFF;
+    margin-bottom: 1rem;
+}
+
+.insight-card h4 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.insight-card p {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* Responsive Design for Nutrition Section */
+@media (max-width: 1024px) {
+    .nutrition-container {
+        grid-template-columns: 1fr;
+    }
+
+    .nutrition-preview {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .restrictions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .meal-content {
+        flex-direction: column;
+    }
+
+    .meal-image {
+        width: 100%;
+        height: 200px;
+    }
+
+    .insights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .macro-breakdown {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+/* Progress Tracker Section Styles */
+.progress-container {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.progress-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.progress-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.stat-card i {
+    font-size: 2rem;
+    color: #007BFF;
+}
+
+.stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.body-metrics {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.body-metrics h3 {
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.metric-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.metric-label {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.metric-value {
+    color: #fff;
+    font-weight: 600;
+}
+
+.achievements {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.achievements h3 {
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.achievement-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.achievement-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.achievement-item:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.achievement-item i {
+    color: #007BFF;
+    font-size: 1.2rem;
+}
+
+.progress-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.progress-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.time-filter {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.time-filter button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.time-filter button.active {
+    background: #007BFF;
+}
+
+.progress-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.progress-charts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.chart-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    height: 300px;
+}
+
+.recent-workouts {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.workout-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.workout-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.workout-item:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.workout-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 123, 255, 0.2);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #007BFF;
+}
+
+.workout-details {
+    flex: 1;
+}
+
+.workout-details h4 {
+    margin: 0;
+    color: #fff;
+}
+
+.workout-details p {
+    margin: 0;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+.workout-stats {
+    display: flex;
+    gap: 1rem;
+}
+
+.workout-stats .stat {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.health-insights {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.insight-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.insight-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.insight-card i {
+    font-size: 2rem;
+    color: #007BFF;
+    margin-bottom: 1rem;
+}
+
+.insight-card h4 {
+    color: #fff;
+    margin: 0 0 0.5rem 0;
+}
+
+.insight-card p {
+    color: #888;
+    margin: 0 0 1rem 0;
+}
+
+.trend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.trend.positive {
+    color: #00ff88;
+}
+
+.trend.negative {
+    color: #ff4444;
+}
+
+/* Responsive Design for Progress Section */
+@media (max-width: 1200px) {
+    .progress-container {
+        grid-template-columns: 1fr;
+    }
+
+    .progress-sidebar {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .progress-sidebar {
+        grid-template-columns: 1fr;
+    }
+
+    .progress-charts {
+        grid-template-columns: 1fr;
+    }
+
+    .insights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .progress-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .progress-actions {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .workout-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .workout-item {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .workout-stats {
+        width: 100%;
+        justify-content: center;
+    }
+}
