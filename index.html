@@ -340,7 +340,11 @@
               </div>
               <div class="meal-content">
                 <div class="meal-image">
-                  <img src="assets/images/breakfast.jpg" alt="Protein Overnight Oats">
+                  <img class="lazy" 
+                       src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                       data-src="assets/images/breakfast.jpg"
+                       data-srcset="assets/images/breakfast.jpg 1x, assets/images/breakfast@2x.jpg 2x"
+                       alt="Protein Overnight Oats">
                 </div>
                 <div class="meal-details">
                   <h5>Protein Overnight Oats</h5>
@@ -539,7 +543,11 @@
                                 <span class="stat">60 kg</span>
                             </div>
                             <div class="workout-thumbnail">
-                                <img src="assets/images/upper-body-workout.jpg" alt="Upper Body Strength">
+                                <img class="lazy"
+                                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                     data-src="assets/images/upper-body-workout.jpg"
+                                     data-srcset="assets/images/upper-body-workout.jpg 1x, assets/images/upper-body-workout@2x.jpg 2x"
+                                     alt="Upper Body Strength">
                             </div>
                         </div>
                         <div class="workout-item">
@@ -599,10 +607,137 @@
     </div>
   </section>
 
+  <!-- Pricing Section -->
+  <section id="pricing" class="section">
+    <div class="container">
+      <h2>Choose Your Plan</h2>
+      <p class="section-subtitle">Select the perfect plan for your fitness journey</p>
+      
+      <div class="pricing-container">
+        <!-- Basic Plan -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Basic Plan</h3>
+            <div class="price">
+              <span class="currency">$</span>
+              <span class="amount">5</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <div class="pricing-features">
+            <ul>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Workout Logs</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Workout Reminders</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Basic Progress Tracking</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Community Access</span>
+              </li>
+            </ul>
+          </div>
+          <button class="btn pricing-btn">Get Started</button>
+        </div>
+
+        <!-- Pro Plan -->
+        <div class="pricing-card popular">
+          <div class="popular-badge">Most Popular</div>
+          <div class="pricing-header">
+            <h3>Pro Plan</h3>
+            <div class="price">
+              <span class="currency">$</span>
+              <span class="amount">15</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <div class="pricing-features">
+            <ul>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>All Basic Features</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>AI-Generated Workout Routines</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Personalized Insights</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Nutrition Tracking</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Advanced Analytics</span>
+              </li>
+            </ul>
+          </div>
+          <button class="btn pricing-btn popular-btn">Get Started</button>
+        </div>
+
+        <!-- Premium Plan -->
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3>Premium Plan</h3>
+            <div class="price">
+              <span class="currency">$</span>
+              <span class="amount">30</span>
+              <span class="period">/month</span>
+            </div>
+          </div>
+          <div class="pricing-features">
+            <ul>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>All Pro Features</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Full Access to AI Trainers</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Real-Time Feedback</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Ad-Free Experience</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Priority Support</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i>
+                <span>Custom Workout Creation</span>
+              </li>
+            </ul>
+          </div>
+          <button class="btn pricing-btn">Get Started</button>
+        </div>
+      </div>
+
+      <div class="pricing-note">
+        <i class="fas fa-shield-alt"></i>
+        <p>Secure payment • Cancel anytime • 14-day money-back guarantee</p>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2023 PulseFit AI. All rights reserved.</p>
+      <p>&copy; 2025 PulseFit AI. All rights reserved.</p>
     </div>
   </footer>
   <section class="app-showcase">
@@ -728,5 +863,31 @@
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+      let lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+      if ("IntersectionObserver" in window) {
+          let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+              entries.forEach(function(entry) {
+                  if (entry.isIntersecting) {
+                      let lazyImage = entry.target;
+                      if (lazyImage.dataset.srcset) {
+                          lazyImage.srcset = lazyImage.dataset.srcset;
+                      }
+                      lazyImage.src = lazyImage.dataset.src;
+                      lazyImage.classList.remove("lazy");
+                      lazyImage.classList.add("loaded");
+                      lazyImageObserver.unobserve(lazyImage);
+                  }
+              });
+          });
+
+          lazyImages.forEach(function(lazyImage) {
+              lazyImageObserver.observe(lazyImage);
+          });
+      }
+  });
+  </script>
 </body>
 </html>
