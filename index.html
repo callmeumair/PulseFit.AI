@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseFit AI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">PulseFit AI</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#workout">Workout Plan</a></li>
+        <li><a href="#nutrition">Nutrition Plan</a></li>
+        <li><a href="#progress">Progress Tracker</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <h1>Welcome to PulseFit AI</h1>
+      <p>Your AI-powered fitness companion.</p>
+      <a href="#workout" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Workout Plan Section -->
+  <section id="workout" class="section">
+    <div class="container">
+      <h2>Workout Plan</h2>
+      <form id="workoutForm" class="form">
+        <label for="workoutType">Workout Type</label>
+        <select id="workoutType" name="workoutType">
+          <option value="cardio">Cardio</option>
+          <option value="strength">Strength Training</option>
+          <option value="flexibility">Flexibility</option>
+        </select>
+        <label for="duration">Duration (minutes)</label>
+        <input type="number" id="duration" name="duration" required>
+        <button type="submit" class="btn">Save Workout Plan</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Nutrition Plan Section -->
+  <section id="nutrition" class="section">
+    <div class="container">
+      <h2>Nutrition Plan</h2>
+      <form id="nutritionForm" class="form">
+        <label for="mealType">Meal Type</label>
+        <select id="mealType" name="mealType">
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="snack">Snack</option>
+        </select>
+        <label for="calories">Calories</label>
+        <input type="number" id="calories" name="calories" required>
+        <button type="submit" class="btn">Save Nutrition Plan</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Progress Tracker Section -->
+  <section id="progress" class="section">
+    <div class="container">
+      <h2>Progress Tracker</h2>
+      <canvas id="progressChart"></canvas>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2023 PulseFit AI. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PulseFit AI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">PulseFit AI</a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#workout">Workout Plan</a></li>
+        <li><a href="#nutrition">Nutrition Plan</a></li>
+        <li><a href="#progress">Progress Tracker</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <h1>Welcome to PulseFit AI</h1>
+      <p>Your AI-powered fitness companion.</p>
+      <a href="#workout" class="btn">Get Started</a>
+    </div>
+  </section>
+
+  <!-- Workout Plan Section -->
+  <section id="workout" class="section">
+    <div class="container">
+      <h2>Workout Plan</h2>
+      <form id="workoutForm" class="form">
+        <label for="workoutType">Workout Type</label>
+        <select id="workoutType" name="workoutType">
+          <option value="cardio">Cardio</option>
+          <option value="strength">Strength Training</option>
+          <option value="flexibility">Flexibility</option>
+        </select>
+        <label for="duration">Duration (minutes)</label>
+        <input type="number" id="duration" name="duration" required>
+        <button type="submit" class="btn">Save Workout Plan</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Nutrition Plan Section -->
+  <section id="nutrition" class="section">
+    <div class="container">
+      <h2>Nutrition Plan</h2>
+      <form id="nutritionForm" class="form">
+        <label for="mealType">Meal Type</label>
+        <select id="mealType" name="mealType">
+          <option value="breakfast">Breakfast</option>
+          <option value="lunch">Lunch</option>
+          <option value="dinner">Dinner</option>
+          <option value="snack">Snack</option>
+        </select>
+        <label for="calories">Calories</label>
+        <input type="number" id="calories" name="calories" required>
+        <button type="submit" class="btn">Save Nutrition Plan</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Progress Tracker Section -->
+  <section id="progress" class="section">
+    <div class="container">
+      <h2>Progress Tracker</h2>
+      <canvas id="progressChart"></canvas>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2023 PulseFit AI. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
