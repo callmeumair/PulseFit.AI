@@ -1041,50 +1041,169 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// User Profile and Logout Functionality
+// User Profile and Customization
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle logout
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function() {
-            localStorage.removeItem('isAuthenticated');
-            localStorage.removeItem('userName');
-            showNotification('Successfully logged out', 'success');
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1500);
-        });
+    // Get user data from localStorage
+    function getUserData() {
+        return {
+            name: localStorage.getItem('userName') || 'User',
+            fitnessLevel: localStorage.getItem('fitnessLevel') || 'beginner',
+            goal: localStorage.getItem('fitnessGoal') || 'weight-loss',
+            joinDate: localStorage.getItem('joinDate') || new Date().toISOString(),
+            progress: JSON.parse(localStorage.getItem('userProgress') || '{}')
+        };
     }
 
-    // Update user display
+    // Update user display with personalized data
     function updateUserDisplay() {
-        const userName = localStorage.getItem('userName') || 'User';
+        const userData = getUserData();
         const userNameElements = document.querySelectorAll('#userName, #displayName');
         userNameElements.forEach(element => {
-            element.textContent = userName;
+            element.textContent = userData.name;
+        });
+
+        // Update welcome message
+        const welcomeMessage = document.querySelector('.user-welcome p');
+        if (welcomeMessage) {
+            const joinDate = new Date(userData.joinDate);
+            const monthsSinceJoin = Math.floor((new Date() - joinDate) / (1000 * 60 * 60 * 24 * 30));
+            welcomeMessage.textContent = `You've been with us for ${monthsSinceJoin} months. Let's continue your fitness journey!`;
+        }
+
+        // Update workout form with user's preferences
+        const workoutGoal = document.getElementById('workout-goal');
+        const workoutLevel = document.getElementById('workout-level');
+        if (workoutGoal && workoutLevel) {
+            workoutGoal.value = userData.goal;
+            workoutLevel.value = userData.fitnessLevel;
+        }
+
+        // Update progress chart with user's data
+        updateProgressChart(userData.progress);
+    }
+
+    // Update progress chart with user's data
+    function updateProgressChart(progress) {
+        const ctx = document.getElementById('progressChart');
+        if (ctx && progress) {
+            const labels = Object.keys(progress).slice(-4); // Get last 4 weeks
+            const data = labels.map(week => progress[week].score || 0);
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Progress',
+                        data: data,
+                        borderColor: '#00ff88',
+                        tension: 0.4,
+                        fill: true,
+                        backgroundColor: 'rgba(0, 255, 136, 0.1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ffffff'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ffffff'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
+
+    // Handle workout form submission
+    const workoutForm = document.querySelector('.workout-form');
+    if (workoutForm) {
+        workoutForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const goal = document.getElementById('workout-goal').value;
+            const level = document.getElementById('workout-level').value;
+
+            // Save user preferences
+            localStorage.setItem('fitnessGoal', goal);
+            localStorage.setItem('fitnessLevel', level);
+
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+
+            // Simulate AI generating workout plan
+            setTimeout(() => {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+                showNotification('Your personalized workout plan has been generated!', 'success');
+            }, 2000);
         });
     }
 
-    // Update auth form submission handlers
-    if (signupForm) {
-        signupForm.addEventListener('submit', function(e) {
+    // Handle nutrition form submission
+    const nutritionForm = document.querySelector('.nutrition-form');
+    if (nutritionForm) {
+        nutritionForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            const userName = this.querySelector('input[type="text"]').value;
-            localStorage.setItem('userName', userName);
-            handleSuccessfulAuth();
-            closeAuthModal();
+            const mealData = {
+                type: document.getElementById('meal-type').value,
+                food: document.getElementById('food-item').value,
+                calories: document.getElementById('calories').value,
+                macros: {
+                    protein: document.getElementById('protein').value,
+                    carbs: document.getElementById('carbs').value,
+                    fat: document.getElementById('fat').value
+                }
+            };
+
+            // Save meal data
+            const meals = JSON.parse(localStorage.getItem('userMeals') || '[]');
+            meals.push(mealData);
+            localStorage.setItem('userMeals', JSON.stringify(meals));
+
+            // Show success message
+            showNotification('Meal added successfully!', 'success');
+            this.reset();
         });
     }
 
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const userName = this.querySelector('input[type="text"]').value;
-            localStorage.setItem('userName', userName);
-            handleSuccessfulAuth();
-            closeAuthModal();
+    // Handle community and support buttons
+    const communityButtons = document.querySelectorAll('.community-features button, .support-features button');
+    communityButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const action = this.textContent.trim();
+            showNotification(`Connecting you to ${action}...`, 'info');
         });
-    }
+    });
+
+    // Handle app download buttons
+    const appButtons = document.querySelectorAll('.app-features button');
+    appButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const platform = this.textContent.includes('iOS') ? 'iOS' : 'Android';
+            showNotification(`Redirecting to ${platform} App Store...`, 'info');
+        });
+    });
 
     // Update user display on page load
     updateUserDisplay();

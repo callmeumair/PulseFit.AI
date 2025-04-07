@@ -1294,6 +1294,7 @@ body {
     padding: 2rem;
     background: rgba(0, 255, 136, 0.1);
     border-radius: 15px;
+    animation: fadeIn 1s ease;
 }
 
 .user-welcome h2 {
@@ -1391,35 +1392,36 @@ body {
     padding: 15px;
     border-radius: 10px;
     text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
 }
 
 .stat-value {
-    display: block;
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
     color: #00ff88;
-    margin-bottom: 5px;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
 }
 
 .stat-label {
-    font-size: 0.9rem;
     color: #ccc;
+    font-size: 0.9rem;
 }
 
 /* Macro Inputs Styles */
 .macro-inputs {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 1rem;
 }
 
 .macro-inputs input {
-    width: 100%;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+    text-align: center;
+    font-weight: bold;
 }
 
 /* Community and Support Features */
@@ -1427,16 +1429,27 @@ body {
 .support-features,
 .app-features {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 10px;
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
 }
 
 .community-features button,
 .support-features button,
 .app-features button {
-    padding: 10px;
-    font-size: 0.9rem;
+    padding: 0.8rem;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    color: #fff;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.community-features button:hover,
+.support-features button:hover,
+.app-features button:hover {
+    background: rgba(0, 255, 136, 0.2);
+    transform: translateY(-2px);
 }
 
 /* Responsive Styles */
@@ -1455,6 +1468,179 @@ body {
 
     .analytics-stats {
         grid-template-columns: 1fr;
+    }
+
+    .macro-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .community-features,
+    .support-features,
+    .app-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Personalized User Experience Styles */
+.user-welcome {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(0, 255, 136, 0.1);
+    border-radius: 15px;
+    animation: fadeIn 1s ease;
+}
+
+.user-welcome h2 {
+    color: #00ff88;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.user-welcome p {
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+/* Progress Stats Animation */
+.stat-item {
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #00ff88;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.stat-label {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+/* Form Personalization */
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #00ff88;
+    box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
+}
+
+/* Macro Inputs Enhancement */
+.macro-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.macro-inputs input {
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Community and Support Features Enhancement */
+.community-features,
+.support-features,
+.app-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.community-features button,
+.support-features button,
+.app-features button {
+    padding: 0.8rem;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    color: #fff;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.community-features button:hover,
+.support-features button:hover,
+.app-features button:hover {
+    background: rgba(0, 255, 136, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Loading State Enhancement */
+.btn.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.btn.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .user-welcome {
+        padding: 1.5rem;
+    }
+
+    .user-welcome h2 {
+        font-size: 1.5rem;
     }
 
     .macro-inputs {
