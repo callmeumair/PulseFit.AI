@@ -918,4 +918,327 @@ chatInput.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
     sendUserMessage();
   }
+});
+
+// Free Plan Button Click Handler
+document.addEventListener('DOMContentLoaded', function() {
+    const freePlanButton = document.querySelector('.pricing-card.free .btn');
+    if (freePlanButton) {
+        freePlanButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Check if user is authenticated
+            const isAuthenticated = checkAuthentication();
+            
+            if (isAuthenticated) {
+                // User is logged in, redirect to free plan
+                window.location.href = 'free-plan.html';
+            } else {
+                // User is not logged in, show auth modal
+                openAuthModal('signup');
+                showNotification('Please sign up or log in to access the free plan', 'info');
+            }
+        });
+    }
+
+    // Authentication check function
+    function checkAuthentication() {
+        // In a real application, this would check for a valid session/token
+        // For demo purposes, we'll use localStorage
+        return localStorage.getItem('isAuthenticated') === 'true';
+    }
+
+    // Handle successful authentication
+    function handleSuccessfulAuth() {
+        localStorage.setItem('isAuthenticated', 'true');
+        showNotification('Successfully authenticated! Redirecting to free plan...', 'success');
+        setTimeout(() => {
+            window.location.href = 'free-plan.html';
+        }, 1500);
+    }
+
+    // Update auth form submission handlers
+    const signupForm = document.getElementById('signup');
+    const loginForm = document.getElementById('login');
+
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your signup logic here
+            handleSuccessfulAuth();
+            closeAuthModal();
+        });
+    }
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your login logic here
+            handleSuccessfulAuth();
+            closeAuthModal();
+        });
+    }
+
+    // Check authentication on free plan page load
+    if (window.location.pathname.includes('free-plan.html')) {
+        if (!checkAuthentication()) {
+            showNotification('Please sign up or log in to access this page', 'error');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+    }
+
+    // Handle form submissions on free plan page
+    const nutritionForm = document.querySelector('.nutrition-form');
+    const progressForm = document.querySelector('.progress-form');
+
+    if (nutritionForm) {
+        nutritionForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add meal to tracking
+            const mealType = document.getElementById('meal-type').value;
+            const foodItem = document.getElementById('food-item').value;
+            const calories = document.getElementById('calories').value;
+            
+            // Here you would typically send this data to your backend
+            console.log('Meal added:', { mealType, foodItem, calories });
+            
+            // Show success message
+            showNotification('Meal added successfully!', 'success');
+            
+            // Reset form
+            nutritionForm.reset();
+        });
+    }
+
+    if (progressForm) {
+        progressForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Update progress
+            const weight = document.getElementById('weight').value;
+            const chest = document.getElementById('chest').value;
+            const waist = document.getElementById('waist').value;
+            const hips = document.getElementById('hips').value;
+            
+            // Here you would typically send this data to your backend
+            console.log('Progress updated:', { weight, chest, waist, hips });
+            
+            // Show success message
+            showNotification('Progress updated successfully!', 'success');
+            
+            // Reset form
+            progressForm.reset();
+        });
+    }
+
+    // Handle community and support buttons
+    const communityButtons = document.querySelectorAll('.community-features button, .support-features button');
+    communityButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            showNotification('This feature is available in the Pro plan. Upgrade to access!', 'info');
+        });
+    });
+});
+
+// User Profile and Logout Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle logout
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function() {
+            localStorage.removeItem('isAuthenticated');
+            localStorage.removeItem('userName');
+            showNotification('Successfully logged out', 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1500);
+        });
+    }
+
+    // Update user display
+    function updateUserDisplay() {
+        const userName = localStorage.getItem('userName') || 'User';
+        const userNameElements = document.querySelectorAll('#userName, #displayName');
+        userNameElements.forEach(element => {
+            element.textContent = userName;
+        });
+    }
+
+    // Update auth form submission handlers
+    if (signupForm) {
+        signupForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userName = this.querySelector('input[type="text"]').value;
+            localStorage.setItem('userName', userName);
+            handleSuccessfulAuth();
+            closeAuthModal();
+        });
+    }
+
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userName = this.querySelector('input[type="text"]').value;
+            localStorage.setItem('userName', userName);
+            handleSuccessfulAuth();
+            closeAuthModal();
+        });
+    }
+
+    // Update user display on page load
+    updateUserDisplay();
+});
+
+// Pro Plan Access and Payment Verification
+document.addEventListener('DOMContentLoaded', function() {
+    // Check if user has paid for pro plan
+    function checkProPlanAccess() {
+        const hasPaid = localStorage.getItem('hasPaidForPro') === 'true';
+        return hasPaid;
+    }
+
+    // Handle pro plan button click
+    const proPlanButton = document.querySelector('.pricing-card.pro .btn');
+    if (proPlanButton) {
+        proPlanButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Check if user is authenticated
+            const isAuthenticated = checkAuthentication();
+            
+            if (isAuthenticated) {
+                // Check if user has paid
+                if (checkProPlanAccess()) {
+                    // User has paid, redirect to pro plan
+                    window.location.href = 'pro-plan.html';
+                } else {
+                    // User hasn't paid, show payment modal
+                    showPaymentModal();
+                }
+            } else {
+                // User is not logged in, show auth modal
+                openAuthModal('signup');
+                showNotification('Please sign up or log in to access the pro plan', 'info');
+            }
+        });
+    }
+
+    // Payment Modal
+    function showPaymentModal() {
+        const modal = document.createElement('div');
+        modal.className = 'payment-modal';
+        modal.innerHTML = `
+            <div class="payment-modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Upgrade to Pro Plan</h2>
+                <p>Complete your payment to access all pro features</p>
+                <div class="payment-form">
+                    <div class="form-group">
+                        <label for="card-number">Card Number</label>
+                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="expiry">Expiry Date</label>
+                        <input type="text" id="expiry" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" placeholder="123" required>
+                    </div>
+                    <button class="btn" id="processPayment">Process Payment</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Close modal
+        const closeModal = modal.querySelector('.close-modal');
+        closeModal.addEventListener('click', () => {
+            modal.remove();
+        });
+
+        // Process payment
+        const processPaymentBtn = modal.querySelector('#processPayment');
+        processPaymentBtn.addEventListener('click', () => {
+            // Simulate payment processing
+            processPaymentBtn.classList.add('loading');
+            processPaymentBtn.disabled = true;
+
+            setTimeout(() => {
+                // Simulate successful payment
+                localStorage.setItem('hasPaidForPro', 'true');
+                showNotification('Payment successful! Redirecting to pro plan...', 'success');
+                modal.remove();
+                setTimeout(() => {
+                    window.location.href = 'pro-plan.html';
+                }, 1500);
+            }, 2000);
+        });
+    }
+
+    // Check pro plan access on pro plan page load
+    if (window.location.pathname.includes('pro-plan.html')) {
+        if (!checkAuthentication()) {
+            showNotification('Please sign up or log in to access this page', 'error');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        } else if (!checkProPlanAccess()) {
+            showNotification('Please upgrade to pro plan to access this page', 'error');
+            setTimeout(() => {
+                window.location.href = 'index.html#pricing';
+            }, 2000);
+        }
+    }
+
+    // Initialize analytics chart on pro plan page
+    if (window.location.pathname.includes('pro-plan.html')) {
+        const ctx = document.getElementById('progressChart');
+        if (ctx) {
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                    datasets: [{
+                        label: 'Progress',
+                        data: [0, 0, 0, 0],
+                        borderColor: '#00ff88',
+                        tension: 0.4,
+                        fill: true,
+                        backgroundColor: 'rgba(0, 255, 136, 0.1)'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ffffff'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.1)'
+                            },
+                            ticks: {
+                                color: '#ffffff'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    }
 }); 

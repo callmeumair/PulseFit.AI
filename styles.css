@@ -1119,3 +1119,351 @@ body {
 .chatbot-messages::-webkit-scrollbar-thumb:hover {
   background: #444;
 }
+
+/* Free Plan Section Styles */
+.free-plan-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    color: #fff;
+}
+
+.free-plan-section h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    color: #00ff88;
+}
+
+.plan-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: #00ff88;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.feature-card p {
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+}
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+.measurement-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.community-features,
+.support-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.community-features button,
+.support-features button {
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.upgrade-cta {
+    text-align: center;
+    padding: 40px;
+    background: rgba(0, 255, 136, 0.1);
+    border-radius: 15px;
+    margin-top: 50px;
+}
+
+.upgrade-cta h2 {
+    color: #00ff88;
+    margin-bottom: 15px;
+}
+
+.upgrade-cta p {
+    color: #ccc;
+    margin-bottom: 25px;
+}
+
+.btn-primary {
+    background: #00ff88;
+    color: #000;
+    font-weight: bold;
+    padding: 12px 30px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #00cc6a;
+    transform: translateY(-2px);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .free-plan-section {
+        padding: 40px 0;
+    }
+
+    .free-plan-section h1 {
+        font-size: 2rem;
+    }
+
+    .plan-features {
+        grid-template-columns: 1fr;
+    }
+
+    .measurement-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .community-features,
+    .support-features {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* User Profile Styles */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: auto;
+}
+
+.user-profile span {
+    color: #fff;
+    font-weight: 500;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.user-welcome {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(0, 255, 136, 0.1);
+    border-radius: 15px;
+}
+
+.user-welcome h2 {
+    color: #00ff88;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.user-welcome p {
+    color: #ccc;
+    font-size: 1.1rem;
+}
+
+/* Responsive Styles for User Profile */
+@media (max-width: 768px) {
+    .user-profile {
+        margin: 1rem 0;
+        justify-content: center;
+    }
+
+    .user-welcome h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Pro Plan Section Styles */
+.pro-plan-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    color: #fff;
+}
+
+.pro-plan-section h1 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    color: #00ff88;
+}
+
+.plan-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.feature-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 30px;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: #00ff88;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.feature-card p {
+    color: #ccc;
+    margin-bottom: 20px;
+}
+
+/* Analytics Dashboard Styles */
+.analytics-dashboard {
+    margin-top: 20px;
+}
+
+.analytics-chart {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.analytics-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.stat-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00ff88;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* Macro Inputs Styles */
+.macro-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.macro-inputs input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* Community and Support Features */
+.community-features,
+.support-features,
+.app-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.community-features button,
+.support-features button,
+.app-features button {
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .pro-plan-section {
+        padding: 40px 0;
+    }
+
+    .pro-plan-section h1 {
+        font-size: 2rem;
+    }
+
+    .plan-features {
+        grid-template-columns: 1fr;
+    }
+
+    .analytics-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .macro-inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .community-features,
+    .support-features,
+    .app-features {
+        grid-template-columns: 1fr;
+    }
+}

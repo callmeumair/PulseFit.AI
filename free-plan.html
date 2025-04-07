@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseFit AI - Free Plan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/image.png" alt="PulseFit AI Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#nutrition">Nutrition Plan</a></li>
+                <li><a href="#progress">Progress Tracker</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li class="user-profile">
+                    <span id="userName">User</span>
+                    <button id="logoutBtn" class="btn btn-small">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="free-plan-section">
+        <div class="container">
+            <div class="user-welcome">
+                <h2>Welcome to your Free Plan, <span id="displayName">User</span>!</h2>
+                <p>Start tracking your fitness journey with our basic features</p>
+            </div>
+
+            <h1>Free Plan Features</h1>
+            <div class="plan-features">
+                <div class="feature-card">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Basic Nutrition Tracking</h3>
+                    <p>Track your daily meals and basic nutritional information</p>
+                    <form class="nutrition-form">
+                        <div class="form-group">
+                            <label for="meal-type">Meal Type</label>
+                            <select id="meal-type" required>
+                                <option value="">Select meal type</option>
+                                <option value="breakfast">Breakfast</option>
+                                <option value="lunch">Lunch</option>
+                                <option value="dinner">Dinner</option>
+                                <option value="snack">Snack</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="food-item">Food Item</label>
+                            <input type="text" id="food-item" placeholder="Enter food item" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="calories">Calories</label>
+                            <input type="number" id="calories" placeholder="Enter calories" required>
+                        </div>
+                        <button type="submit" class="btn">Add Meal</button>
+                    </form>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Weekly Progress Reports</h3>
+                    <p>Track your weekly progress with basic analytics</p>
+                    <form class="progress-form">
+                        <div class="form-group">
+                            <label for="weight">Current Weight (kg)</label>
+                            <input type="number" id="weight" placeholder="Enter weight" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="measurements">Body Measurements (cm)</label>
+                            <div class="measurement-inputs">
+                                <input type="number" id="chest" placeholder="Chest" required>
+                                <input type="number" id="waist" placeholder="Waist" required>
+                                <input type="number" id="hips" placeholder="Hips" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn">Update Progress</button>
+                    </form>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Community Access</h3>
+                    <p>Connect with other fitness enthusiasts</p>
+                    <div class="community-features">
+                        <button class="btn">Join Community</button>
+                        <button class="btn">View Forums</button>
+                        <button class="btn">Share Progress</button>
+                    </div>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>Basic Support</h3>
+                    <p>Access our basic support resources</p>
+                    <div class="support-features">
+                        <button class="btn">FAQ</button>
+                        <button class="btn">Contact Support</button>
+                        <button class="btn">Knowledge Base</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="upgrade-cta">
+                <h2>Ready for More?</h2>
+                <p>Upgrade to our Pro plan to unlock advanced features and personalized support!</p>
+                <a href="index.html#pricing" class="btn btn-primary">Upgrade Now</a>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html> 
