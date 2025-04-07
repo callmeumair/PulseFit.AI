@@ -1218,13 +1218,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Handle pro plan button click
-    const proPlanButton = document.querySelector('.pricing-card.pro .btn');
+    const proPlanButton = document.querySelector('.pricing-card.pro .pricing-btn');
     if (proPlanButton) {
         proPlanButton.addEventListener('click', function(e) {
             e.preventDefault();
             
             // Check if user is authenticated
-            const isAuthenticated = checkAuthentication();
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
             
             if (isAuthenticated) {
                 if (checkProPlanAccess()) {
