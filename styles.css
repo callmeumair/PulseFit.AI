@@ -1653,3 +1653,156 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* Pro and Free User Experience Styles */
+.pro-feature {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.pro-feature.disabled {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.pro-feature.disabled::after {
+    content: 'PRO';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 255, 136, 0.2);
+    color: #00ff88;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.pro-feature.enabled {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.upgrade-prompt {
+    display: none;
+    text-align: center;
+    padding: 1rem;
+    margin: 1rem 0;
+    background: rgba(0, 255, 136, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.upgrade-prompt h3 {
+    color: #00ff88;
+    margin-bottom: 0.5rem;
+}
+
+.upgrade-prompt p {
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+/* Pro Features Enhancement */
+.pro-feature .feature-icon {
+    color: #00ff88;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.pro-feature .feature-content {
+    padding: 1.5rem;
+}
+
+.pro-feature .feature-title {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.pro-feature .feature-description {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+/* Basic Features Styling */
+.basic-feature {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.basic-feature .feature-title {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.basic-feature .feature-description {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+/* Analytics Dashboard Enhancement */
+.analytics-dashboard {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}
+
+.analytics-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.analytics-title {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.analytics-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.analytics-controls button {
+    padding: 0.5rem 1rem;
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.analytics-controls button:hover {
+    background: rgba(0, 255, 136, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .pro-feature.disabled::after {
+        top: 5px;
+        right: 5px;
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+
+    .analytics-dashboard {
+        padding: 1rem;
+    }
+
+    .analytics-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .analytics-controls {
+        width: 100%;
+        justify-content: center;
+    }
+}

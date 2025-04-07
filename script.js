@@ -1360,4 +1360,261 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+});
+
+// User Plan Customization
+function customizeUserExperience() {
+    const userData = getUserData();
+    const isProUser = checkProPlanAccess();
+    
+    // Update user display
+    updateUserDisplay();
+    
+    // Customize based on plan type
+    if (isProUser) {
+        customizeProExperience();
+    } else {
+        customizeFreeExperience();
+    }
+}
+
+function customizeProExperience() {
+    // Enable all pro features
+    document.querySelectorAll('.pro-feature').forEach(feature => {
+        feature.classList.remove('disabled');
+        feature.classList.add('enabled');
+    });
+
+    // Initialize advanced analytics
+    initializeAdvancedAnalytics();
+    
+    // Enable AI workout generation
+    const workoutForm = document.querySelector('.workout-form');
+    if (workoutForm) {
+        workoutForm.addEventListener('submit', handleProWorkoutGeneration);
+    }
+
+    // Enable advanced nutrition tracking
+    const nutritionForm = document.querySelector('.nutrition-form');
+    if (nutritionForm) {
+        nutritionForm.addEventListener('submit', handleProNutritionTracking);
+    }
+
+    // Enable community features
+    document.querySelectorAll('.community-features button').forEach(button => {
+        button.addEventListener('click', handleProCommunityAction);
+    });
+
+    // Enable priority support
+    document.querySelectorAll('.support-features button').forEach(button => {
+        button.addEventListener('click', handleProSupportAction);
+    });
+}
+
+function customizeFreeExperience() {
+    // Disable pro features
+    document.querySelectorAll('.pro-feature').forEach(feature => {
+        feature.classList.add('disabled');
+        feature.classList.remove('enabled');
+    });
+
+    // Show upgrade prompts
+    document.querySelectorAll('.upgrade-prompt').forEach(prompt => {
+        prompt.style.display = 'block';
+    });
+
+    // Handle basic workout tracking
+    const workoutForm = document.querySelector('.workout-form');
+    if (workoutForm) {
+        workoutForm.addEventListener('submit', handleBasicWorkoutTracking);
+    }
+
+    // Handle basic nutrition tracking
+    const nutritionForm = document.querySelector('.nutrition-form');
+    if (nutritionForm) {
+        nutritionForm.addEventListener('submit', handleBasicNutritionTracking);
+    }
+
+    // Handle basic community access
+    document.querySelectorAll('.community-features button').forEach(button => {
+        button.addEventListener('click', handleBasicCommunityAction);
+    });
+
+    // Handle basic support
+    document.querySelectorAll('.support-features button').forEach(button => {
+        button.addEventListener('click', handleBasicSupportAction);
+    });
+}
+
+// Pro Feature Handlers
+function handleProWorkoutGeneration(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const workoutData = {
+        goal: formData.get('workout-goal'),
+        level: formData.get('workout-level'),
+        duration: formData.get('workout-duration'),
+        equipment: formData.get('equipment')
+    };
+
+    // Show loading state
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+
+    // Simulate AI workout generation
+    setTimeout(() => {
+        submitBtn.classList.remove('loading');
+        submitBtn.disabled = false;
+        showNotification('Your AI-powered workout plan has been generated!', 'success');
+        // Here you would typically update the UI with the generated workout
+    }, 2000);
+}
+
+function handleProNutritionTracking(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const nutritionData = {
+        mealType: formData.get('meal-type'),
+        food: formData.get('food-item'),
+        calories: formData.get('calories'),
+        macros: {
+            protein: formData.get('protein'),
+            carbs: formData.get('carbs'),
+            fat: formData.get('fat')
+        }
+    };
+
+    // Save meal data with advanced tracking
+    const meals = JSON.parse(localStorage.getItem('userMeals') || '[]');
+    meals.push({
+        ...nutritionData,
+        timestamp: new Date().toISOString(),
+        aiAnalysis: 'Analyzing meal composition...'
+    });
+    localStorage.setItem('userMeals', JSON.stringify(meals));
+
+    showNotification('Meal added with advanced tracking!', 'success');
+    e.target.reset();
+}
+
+function handleProCommunityAction(e) {
+    const action = e.target.textContent.trim();
+    showNotification(`Accessing premium ${action} features...`, 'info');
+    // Here you would typically implement the pro community features
+}
+
+function handleProSupportAction(e) {
+    const action = e.target.textContent.trim();
+    showNotification(`Connecting to priority ${action} support...`, 'info');
+    // Here you would typically implement the pro support features
+}
+
+// Basic Feature Handlers
+function handleBasicWorkoutTracking(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const workoutData = {
+        goal: formData.get('workout-goal'),
+        level: formData.get('workout-level')
+    };
+
+    // Save basic workout data
+    const workouts = JSON.parse(localStorage.getItem('userWorkouts') || '[]');
+    workouts.push({
+        ...workoutData,
+        timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('userWorkouts', JSON.stringify(workouts));
+
+    showNotification('Workout logged successfully!', 'success');
+    e.target.reset();
+}
+
+function handleBasicNutritionTracking(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const nutritionData = {
+        mealType: formData.get('meal-type'),
+        food: formData.get('food-item'),
+        calories: formData.get('calories')
+    };
+
+    // Save basic meal data
+    const meals = JSON.parse(localStorage.getItem('userMeals') || '[]');
+    meals.push({
+        ...nutritionData,
+        timestamp: new Date().toISOString()
+    });
+    localStorage.setItem('userMeals', JSON.stringify(meals));
+
+    showNotification('Meal added successfully!', 'success');
+    e.target.reset();
+}
+
+function handleBasicCommunityAction(e) {
+    const action = e.target.textContent.trim();
+    showNotification(`This feature is available in the Pro plan. Upgrade to access ${action}!`, 'info');
+}
+
+function handleBasicSupportAction(e) {
+    const action = e.target.textContent.trim();
+    showNotification(`This feature is available in the Pro plan. Upgrade to access ${action}!`, 'info');
+}
+
+// Initialize advanced analytics for pro users
+function initializeAdvancedAnalytics() {
+    const ctx = document.getElementById('progressChart');
+    if (ctx) {
+        const userData = getUserData();
+        const progress = userData.progress || {};
+        
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Object.keys(progress).slice(-4),
+                datasets: [{
+                    label: 'Progress',
+                    data: Object.values(progress).map(p => p.score || 0),
+                    borderColor: '#00ff88',
+                    tension: 0.4,
+                    fill: true,
+                    backgroundColor: 'rgba(0, 255, 136, 0.1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#ffffff'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#ffffff'
+                        }
+                    }
+                }
+            }
+        });
+    }
+}
+
+// Initialize user experience on page load
+document.addEventListener('DOMContentLoaded', function() {
+    customizeUserExperience();
 }); 
