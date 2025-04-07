@@ -590,8 +590,21 @@ body {
   padding: 80px 0;
 }
 
+.social-section .section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
 .social-section .section-subtitle {
+  text-align: center;
   color: #ccc;
+  margin-bottom: 3rem;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .social-grid {
