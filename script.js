@@ -177,6 +177,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (generateShoppingListBtn) {
         generateShoppingListBtn.addEventListener('click', handleGenerateShoppingList);
     }
+
+    // Initialize components
+    initializeComponents();
+    
+    // Add scroll animations
+    addScrollAnimations();
+    
+    // Add form validation
+    initializeFormValidation();
+    
+    // Add mobile menu functionality
+    initializeMobileMenu();
 });
 
 // Chart Initialization
@@ -553,33 +565,101 @@ if (!('scrollBehavior' in document.documentElement.style)) {
     });
 }
 
-// Initialize any third-party libraries or custom components
+// Initialize components
 function initializeComponents() {
-    // Add any component initialization here
+    // Add loading animation to buttons
+    document.querySelectorAll('.btn').forEach(button => {
+        button.addEventListener('click', function() {
+            this.classList.add('loading');
+            setTimeout(() => {
+                this.classList.remove('loading');
+            }, 1500);
+        });
+    });
+
+    // Add hover effect to cards
+    document.querySelectorAll('.pricing-card, .social-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+        });
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+        });
+    });
 }
 
-// Call initialization function
-initializeComponents();
+// Scroll Animations
+function addScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    document.querySelectorAll('.section, .card, .form').forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// Form Validation
+function initializeFormValidation() {
+    const forms = document.querySelectorAll('form');
+    
+    forms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Add loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            submitButton.classList.add('loading');
+            
+            // Simulate form submission
+            setTimeout(() => {
+                submitButton.classList.remove('loading');
+                showNotification('Form submitted successfully!', 'success');
+            }, 1500);
+        });
+    });
+}
+
+// Mobile Menu
+function initializeMobileMenu() {
+    const menuToggle = document.createElement('button');
+    menuToggle.className = 'menu-toggle';
+    menuToggle.innerHTML = '<span></span><span></span><span></span>';
+    
+    const nav = document.querySelector('.navbar .container');
+    nav.appendChild(menuToggle);
+    
+    menuToggle.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+}
 
 // FAQ Section Interactivity
 document.addEventListener('DOMContentLoaded', function() {
-  const faqItems = document.querySelectorAll('.faq-item');
-  
-  faqItems.forEach(item => {
-    const question = item.querySelector('.faq-question');
+    const faqItems = document.querySelectorAll('.faq-item');
     
-    question.addEventListener('click', () => {
-      // Close all other items
-      faqItems.forEach(otherItem => {
-        if (otherItem !== item) {
-          otherItem.classList.remove('active');
-        }
-      });
-      
-      // Toggle current item
-      item.classList.toggle('active');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Close all other items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Toggle current item
+            item.classList.toggle('active');
+        });
     });
-  });
 });
 
 // Auth Modal Functionality
@@ -589,50 +669,50 @@ const signupForm = document.getElementById('signupForm');
 const loginForm = document.getElementById('loginForm');
 
 function openAuthModal(formType) {
-  authModal.style.display = 'block';
-  if (formType === 'signup') {
-    signupForm.style.display = 'block';
-    loginForm.style.display = 'none';
-  } else {
-    signupForm.style.display = 'none';
-    loginForm.style.display = 'block';
-  }
+    authModal.style.display = 'block';
+    if (formType === 'signup') {
+        signupForm.style.display = 'block';
+        loginForm.style.display = 'none';
+    } else {
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+    }
 }
 
 function closeAuthModal() {
-  authModal.style.display = 'none';
+    authModal.style.display = 'none';
 }
 
 function switchAuthForm(formType) {
-  if (formType === 'signup') {
-    signupForm.style.display = 'block';
-    loginForm.style.display = 'none';
-  } else {
-    signupForm.style.display = 'none';
-    loginForm.style.display = 'block';
-  }
+    if (formType === 'signup') {
+        signupForm.style.display = 'block';
+        loginForm.style.display = 'none';
+    } else {
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+    }
 }
 
 // Close modal when clicking outside
 window.addEventListener('click', (event) => {
-  if (event.target === authModal) {
-    closeAuthModal();
-  }
+    if (event.target === authModal) {
+        closeAuthModal();
+    }
 });
 
 closeModal.addEventListener('click', closeAuthModal);
 
 // Form submission handlers
 document.getElementById('signup').addEventListener('submit', (e) => {
-  e.preventDefault();
-  // Add your signup logic here
-  alert('Sign up successful!');
-  closeAuthModal();
+    e.preventDefault();
+    // Add your signup logic here
+    alert('Sign up successful!');
+    closeAuthModal();
 });
 
 document.getElementById('login').addEventListener('submit', (e) => {
-  e.preventDefault();
-  // Add your login logic here
-  alert('Login successful!');
-  closeAuthModal();
+    e.preventDefault();
+    // Add your login logic here
+    alert('Login successful!');
+    closeAuthModal();
 }); 

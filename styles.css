@@ -1,7 +1,7 @@
 /* Modern CSS Reset and Base Styles */
 :root {
-    --primary-color: #007BFF;
-    --secondary-color: #6c757d;
+    --primary-color: #00ff88;
+    --secondary-color: #00b4d8;
     --success-color: #28a745;
     --background-dark: #121212;
     --text-light: #ffffff;
@@ -9,6 +9,8 @@
     --border-radius: 12px;
     --transition-speed: 0.3s;
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --gradient-primary: linear-gradient(135deg, #00ff88 0%, #00b4d8 100%);
+    --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #121212 100%);
 }
 
 * {
@@ -170,8 +172,9 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: #fff;
+    color: var(--text-light);
     overflow: hidden;
+    background: var(--gradient-dark);
 }
 
 .hero-video {
@@ -207,17 +210,24 @@ body {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    animation: fadeInUp 1s ease;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 8s ease infinite;
 }
 
 .hero p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    animation: fadeInUp 1s ease 0.2s;
-    opacity: 0;
-    animation-fill-mode: forwards;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
 }
 
 .hero-buttons {
