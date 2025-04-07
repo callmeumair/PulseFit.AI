@@ -423,13 +423,14 @@ body {
 
 /* Pricing Section Styles */
 .pricing-section {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  padding: 5rem 0;
+  background: #000;
+  color: #fff;
+  padding: 80px 0;
 }
 
 .pricing-section .section-subtitle {
   text-align: center;
-  color: #6c757d;
+  color: #ccc;
   margin-bottom: 3rem;
   font-size: 1.2rem;
 }
@@ -443,24 +444,26 @@ body {
 }
 
 .pricing-card {
-  background: white;
+  background: #1a1a1a;
   border-radius: var(--border-radius);
   padding: 2rem;
   box-shadow: var(--box-shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+  border: 1px solid #333;
+  color: #fff;
 }
 
 .pricing-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .pricing-card.featured {
   transform: scale(1.05);
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 2px solid var(--primary-color);
+  background: #1a1a1a;
+  border: 2px solid #4CAF50;
 }
 
 .pricing-card.featured:hover {
@@ -520,7 +523,7 @@ body {
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
-  color: var(--text-color);
+  color: #fff;
 }
 
 .pricing-features i {
@@ -553,7 +556,7 @@ body {
 .pricing-note {
   text-align: center;
   margin-top: 3rem;
-  color: #6c757d;
+  color: #ccc;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -637,8 +640,13 @@ body {
 
 /* FAQ Section Styles */
 .faq-section {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  padding: 5rem 0;
+  background: #000;
+  color: #fff;
+  padding: 80px 0;
+}
+
+.faq-section .section-subtitle {
+  color: #ccc;
 }
 
 .faq-container {
@@ -647,11 +655,12 @@ body {
 }
 
 .faq-item {
-  background: white;
+  background: #1a1a1a;
   border-radius: var(--border-radius);
   margin-bottom: 1rem;
   overflow: hidden;
   box-shadow: var(--box-shadow);
+  border: 1px solid #333;
 }
 
 .faq-question {
@@ -661,10 +670,11 @@ body {
   align-items: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  color: #fff;
 }
 
 .faq-question:hover {
-  background-color: #f8f9fa;
+  background-color: #1a1a1a;
 }
 
 .faq-question h3 {
@@ -683,6 +693,7 @@ body {
   max-height: 0;
   overflow: hidden;
   transition: all 0.3s ease;
+  color: #ccc;
 }
 
 .faq-answer p {
