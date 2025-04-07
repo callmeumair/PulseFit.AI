@@ -762,22 +762,153 @@ function addMessage(text, sender) {
 // Get bot response (replace with actual AI integration)
 function getBotResponse(message) {
   const responses = {
-    'hello': 'Hello! How can I help you with your fitness journey today?',
-    'hi': 'Hi there! What can I do for you?',
-    'help': 'I can help you with:\n- Fitness advice\n- Nutrition tips\n- Workout plans\n- Progress tracking\nWhat would you like to know?',
-    'workout': 'I can help you create a personalized workout plan. What are your fitness goals?',
-    'nutrition': 'I can provide nutrition advice and meal plans. What specific information are you looking for?',
-    'progress': 'I can help you track your fitness progress. Would you like to log your current stats?'
+    // Pricing related responses
+    'price': 'We offer three subscription plans:\n\n' +
+             '1. Free Plan ($0/month):\n' +
+             '   - Basic Nutrition Tracking\n' +
+             '   - Weekly Progress Reports\n' +
+             '   - Community Access\n' +
+             '   - Basic Support\n\n' +
+             '2. Pro Plan ($20/month):\n' +
+             '   - Everything in Free\n' +
+             '   - Advanced Nutrition Analysis\n' +
+             '   - Daily Progress Tracking\n' +
+             '   - Custom Meal Plans\n' +
+             '   - Priority Support\n' +
+             '   - Progress Analytics\n\n' +
+             '3. Customizable Plan ($40/month):\n' +
+             '   - Everything in Pro\n' +
+             '   - Custom AI Training\n' +
+             '   - 1-on-1 Support\n' +
+             '   - Advanced Analytics\n' +
+             '   - Custom Integrations\n' +
+             '   - API Access\n\n' +
+             'All plans come with a 14-day money-back guarantee!',
+    
+    'subscription': 'You can subscribe to any of our plans through our website. We accept all major credit cards and PayPal. You can cancel your subscription anytime, and we offer a 14-day money-back guarantee if you\'re not satisfied with our service.',
+    
+    'cancel': 'You can cancel your subscription at any time through your account settings. There are no cancellation fees, and you\'ll continue to have access to your plan until the end of your current billing period.',
+    
+    'refund': 'We offer a 14-day money-back guarantee on all our plans. If you\'re not satisfied with our service, you can request a full refund within 14 days of your initial subscription.',
+    
+    // Workout plan related responses
+    'workout': 'Our AI-powered workout plans are personalized based on:\n\n' +
+              '1. Your fitness goals (weight loss, muscle gain, endurance, etc.)\n' +
+              '2. Your current fitness level\n' +
+              '3. Available equipment\n' +
+              '4. Time commitment\n' +
+              '5. Previous workout history\n\n' +
+              'The AI continuously adapts your plan based on your progress and feedback.',
+    
+    'personalized': 'Our workout plans are completely personalized using advanced AI algorithms that consider:\n\n' +
+                   '- Your fitness goals and preferences\n' +
+                   '- Your current fitness level and limitations\n' +
+                   '- Available equipment and space\n' +
+                   '- Time availability\n' +
+                   '- Progress tracking data\n' +
+                   '- Previous workout performance\n\n' +
+                   'The AI adjusts your plan in real-time based on your performance and feedback.',
+    
+    'equipment': 'Our workout plans can be customized for any equipment setup:\n\n' +
+                '- No equipment (bodyweight exercises)\n' +
+                '- Basic home equipment (dumbbells, resistance bands)\n' +
+                '- Full gym equipment\n' +
+                '- Specialized equipment\n\n' +
+                'Just let us know what equipment you have access to, and our AI will create the perfect plan for you.',
+    
+    // AI integration related responses
+    'ai': 'Our AI integration works through several advanced technologies:\n\n' +
+          '1. Machine Learning Algorithms:\n' +
+          '   - Analyze your fitness data\n' +
+          '   - Predict optimal workout patterns\n' +
+          '   - Adapt to your progress\n\n' +
+          '2. Natural Language Processing:\n' +
+          '   - Understand your goals and preferences\n' +
+          '   - Provide personalized recommendations\n' +
+          '   - Answer your questions\n\n' +
+          '3. Computer Vision:\n' +
+          '   - Track exercise form\n' +
+          '   - Monitor progress\n' +
+          '   - Provide real-time feedback\n\n' +
+          '4. Predictive Analytics:\n' +
+          '   - Forecast progress\n' +
+          '   - Suggest optimal workout timing\n' +
+          '   - Prevent plateaus',
+    
+    'how it works': 'PulseFit AI works through a combination of advanced technologies:\n\n' +
+                   '1. Data Collection:\n' +
+                   '   - Your fitness goals\n' +
+                   '   - Current fitness level\n' +
+                   '   - Available equipment\n' +
+                   '   - Time availability\n\n' +
+                   '2. AI Analysis:\n' +
+                   '   - Processes your data\n' +
+                   '   - Creates personalized plans\n' +
+                   '   - Adapts to your progress\n\n' +
+                   '3. Real-time Adjustments:\n' +
+                   '   - Monitors your performance\n' +
+                   '   - Provides instant feedback\n' +
+                   '   - Updates your plan automatically\n\n' +
+                   '4. Progress Tracking:\n' +
+                   '   - Tracks your achievements\n' +
+                   '   - Identifies patterns\n' +
+                   '   - Suggests improvements',
+    
+    // General responses
+    'hello': 'Hello! I\'m your PulseFit AI assistant. How can I help you with your fitness journey today?',
+    'hi': 'Hi there! I\'m here to help you with your fitness goals. What would you like to know?',
+    'help': 'I can help you with:\n' +
+            '- Pricing and subscription information\n' +
+            '- Workout plan details\n' +
+            '- AI integration and features\n' +
+            '- Progress tracking\n' +
+            '- Nutrition planning\n' +
+            '- Technical support\n\n' +
+            'What would you like to know more about?',
+    
+    // Default response
+    'default': "I'm here to help with your fitness journey. You can ask me about:\n" +
+               "- Subscription plans and pricing\n" +
+               "- How our AI-powered workout plans work\n" +
+               "- Equipment requirements\n" +
+               "- Progress tracking\n" +
+               "- Nutrition planning\n" +
+               "- Technical support\n\n" +
+               "What would you like to know?"
   };
 
   const lowerMessage = message.toLowerCase();
-  for (const [key, value] of Object.entries(responses)) {
-    if (lowerMessage.includes(key)) {
-      return value;
-    }
+  
+  // Check for specific keywords
+  if (lowerMessage.includes('price') || lowerMessage.includes('cost') || lowerMessage.includes('subscription')) {
+    return responses['price'];
+  }
+  if (lowerMessage.includes('cancel') || lowerMessage.includes('refund')) {
+    return responses['cancel'];
+  }
+  if (lowerMessage.includes('workout') || lowerMessage.includes('exercise')) {
+    return responses['workout'];
+  }
+  if (lowerMessage.includes('personalized') || lowerMessage.includes('custom')) {
+    return responses['personalized'];
+  }
+  if (lowerMessage.includes('equipment') || lowerMessage.includes('gear')) {
+    return responses['equipment'];
+  }
+  if (lowerMessage.includes('ai') || lowerMessage.includes('artificial intelligence')) {
+    return responses['ai'];
+  }
+  if (lowerMessage.includes('how') && lowerMessage.includes('work')) {
+    return responses['how it works'];
+  }
+  if (lowerMessage.includes('hello') || lowerMessage.includes('hi')) {
+    return responses['hello'];
+  }
+  if (lowerMessage.includes('help')) {
+    return responses['help'];
   }
 
-  return "I'm here to help with your fitness journey. You can ask me about workouts, nutrition, or progress tracking. What would you like to know?";
+  return responses['default'];
 }
 
 // Event listeners for sending messages
