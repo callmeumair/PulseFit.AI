@@ -1227,73 +1227,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const isAuthenticated = checkAuthentication();
             
             if (isAuthenticated) {
-                // Check if user has paid
                 if (checkProPlanAccess()) {
-                    // User has paid, redirect to pro plan
                     window.location.href = 'pro-plan.html';
                 } else {
-                    // User hasn't paid, show payment modal
-                    showPaymentModal();
+                    // Redirect to PayPal.me
+                    window.location.href = 'https://paypal.me/Umer844?country.x=IN&locale.x=en_GB';
                 }
             } else {
                 // User is not logged in, show auth modal
                 openAuthModal('signup');
                 showNotification('Please sign up or log in to access the pro plan', 'info');
             }
-        });
-    }
-
-    // Payment Modal
-    function showPaymentModal() {
-        const modal = document.createElement('div');
-        modal.className = 'payment-modal';
-        modal.innerHTML = `
-            <div class="payment-modal-content">
-                <span class="close-modal">&times;</span>
-                <h2>Upgrade to Pro Plan</h2>
-                <p>Complete your payment to access all pro features</p>
-                <div class="payment-form">
-                    <div class="form-group">
-                        <label for="card-number">Card Number</label>
-                        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="expiry">Expiry Date</label>
-                        <input type="text" id="expiry" placeholder="MM/YY" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cvv">CVV</label>
-                        <input type="text" id="cvv" placeholder="123" required>
-                    </div>
-                    <button class="btn" id="processPayment">Process Payment</button>
-                </div>
-            </div>
-        `;
-
-        document.body.appendChild(modal);
-
-        // Close modal
-        const closeModal = modal.querySelector('.close-modal');
-        closeModal.addEventListener('click', () => {
-            modal.remove();
-        });
-
-        // Process payment
-        const processPaymentBtn = modal.querySelector('#processPayment');
-        processPaymentBtn.addEventListener('click', () => {
-            // Simulate payment processing
-            processPaymentBtn.classList.add('loading');
-            processPaymentBtn.disabled = true;
-
-            setTimeout(() => {
-                // Simulate successful payment
-                localStorage.setItem('hasPaidForPro', 'true');
-                showNotification('Payment successful! Redirecting to pro plan...', 'success');
-                modal.remove();
-                setTimeout(() => {
-                    window.location.href = 'pro-plan.html';
-                }, 1500);
-            }, 2000);
         });
     }
 
