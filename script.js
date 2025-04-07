@@ -580,4 +580,59 @@ document.addEventListener('DOMContentLoaded', function() {
       item.classList.toggle('active');
     });
   });
+});
+
+// Auth Modal Functionality
+const authModal = document.getElementById('authModal');
+const closeModal = document.querySelector('.close-modal');
+const signupForm = document.getElementById('signupForm');
+const loginForm = document.getElementById('loginForm');
+
+function openAuthModal(formType) {
+  authModal.style.display = 'block';
+  if (formType === 'signup') {
+    signupForm.style.display = 'block';
+    loginForm.style.display = 'none';
+  } else {
+    signupForm.style.display = 'none';
+    loginForm.style.display = 'block';
+  }
+}
+
+function closeAuthModal() {
+  authModal.style.display = 'none';
+}
+
+function switchAuthForm(formType) {
+  if (formType === 'signup') {
+    signupForm.style.display = 'block';
+    loginForm.style.display = 'none';
+  } else {
+    signupForm.style.display = 'none';
+    loginForm.style.display = 'block';
+  }
+}
+
+// Close modal when clicking outside
+window.addEventListener('click', (event) => {
+  if (event.target === authModal) {
+    closeAuthModal();
+  }
+});
+
+closeModal.addEventListener('click', closeAuthModal);
+
+// Form submission handlers
+document.getElementById('signup').addEventListener('submit', (e) => {
+  e.preventDefault();
+  // Add your signup logic here
+  alert('Sign up successful!');
+  closeAuthModal();
+});
+
+document.getElementById('login').addEventListener('submit', (e) => {
+  e.preventDefault();
+  // Add your login logic here
+  alert('Login successful!');
+  closeAuthModal();
 }); 
