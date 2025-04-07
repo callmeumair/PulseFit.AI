@@ -1231,7 +1231,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.location.href = 'pro-plan.html';
                 } else {
                     // Redirect to PayPal.me
-                    window.location.href = 'https://paypal.me/Umer844?country.x=IN&locale.x=en_GB';
+                    window.location.href = 'https://paypal.me/Umer844';
                 }
             } else {
                 // User is not logged in, show auth modal
