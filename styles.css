@@ -39,22 +39,21 @@ body {
 
 /* Enhanced Navbar */
 .navbar {
-    background: rgba(18, 18, 18, 0.98);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background-color: #1a1a1a;
     padding: 1rem 0;
     position: fixed;
-    width: 100%;
     top: 0;
+    width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    transition: all var(--transition-speed) ease;
 }
 
 .navbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .logo {
@@ -76,32 +75,26 @@ body {
 
 .nav-links {
     display: flex;
+    align-items: center;
     gap: 2rem;
     list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0;
 }
 
 .nav-links a {
-    color: var(--text-light);
+    color: #fff;
     text-decoration: none;
     font-weight: 500;
-    position: relative;
-    padding: 0.5rem 0;
-    transition: color var(--transition-speed) ease;
+    transition: color 0.3s ease;
 }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary-color);
-    transition: width var(--transition-speed) ease;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
+.nav-links a:hover {
+    color: #4CAF50;
 }
 
 /* Mobile Menu Styles */
@@ -126,6 +119,18 @@ body {
 @media (max-width: 768px) {
     .menu-toggle {
         display: block;
+    }
+
+    .navbar .container {
+        padding: 0 1rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
+    .user-profile {
+        gap: 0.5rem;
     }
 
     .nav-links {
@@ -1284,8 +1289,18 @@ body {
 }
 
 .btn-small {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
     padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
     font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-small:hover {
+    background-color: #45a049;
 }
 
 .user-welcome {
