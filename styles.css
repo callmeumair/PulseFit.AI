@@ -1,144 +1,185 @@
-/* General Styles */
+/* Modern CSS Reset and Base Styles */
+:root {
+    --primary-color: #007BFF;
+    --secondary-color: #6c757d;
+    --success-color: #28a745;
+    --background-dark: #121212;
+    --text-light: #ffffff;
+    --text-dark: #333333;
+    --border-radius: 12px;
+    --transition-speed: 0.3s;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    color: #fff;
-    background: #121212;
-    transition: background-color 0.3s ease;
+    color: var(--text-light);
+    background: var(--background-dark);
+    overflow-x: hidden;
 }
 
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 1rem;
     animation: fadeIn 1s ease-in;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideIn {
-    from { transform: translateX(-100%); }
-    to { transform: translateX(0); }
-}
-
-@keyframes slideInRight {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-@keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0px); }
-}
-
-@keyframes glow {
-    0% { box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); }
-    50% { box-shadow: 0 0 20px rgba(0, 123, 255, 0.8); }
-    100% { box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); }
-}
-
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-@keyframes blink {
-    50% { border-color: transparent }
-}
-
-/* Navbar */
+/* Enhanced Navbar */
 .navbar {
-    background: rgba(18, 18, 18, 0.95);
-    color: #fff;
+    background: rgba(18, 18, 18, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 1rem 0;
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    animation: slideIn 0.5s ease-out;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-speed) ease;
 }
 
-.navbar .logo {
-    text-decoration: none;
-    transition: all 0.3s ease;
-    animation: float 3s ease-in-out infinite;
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
     display: flex;
     align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: var(--text-light);
+    font-weight: 600;
+    font-size: 1.5rem;
 }
 
 .logo-img {
     width: 40px;
     height: 40px;
     object-fit: contain;
-    transition: transform 0.3s ease;
-}
-
-.logo:hover .logo-img {
-    transform: scale(1.1);
+    transition: transform var(--transition-speed) ease;
 }
 
 .nav-links {
-    list-style: none;
-    padding: 0;
     display: flex;
-    gap: 1.5rem;
+    gap: 2rem;
+    list-style: none;
 }
 
 .nav-links a {
-    color: #fff;
+    color: var(--text-light);
     text-decoration: none;
-    transition: all 0.3s ease;
+    font-weight: 500;
     position: relative;
-    animation: fadeIn 0.5s ease-out forwards;
-    opacity: 0;
+    padding: 0.5rem 0;
+    transition: color var(--transition-speed) ease;
 }
-
-.nav-links a:nth-child(1) { animation-delay: 0.1s; }
-.nav-links a:nth-child(2) { animation-delay: 0.2s; }
-.nav-links a:nth-child(3) { animation-delay: 0.3s; }
-.nav-links a:nth-child(4) { animation-delay: 0.4s; }
-.nav-links a:nth-child(5) { animation-delay: 0.5s; }
 
 .nav-links a::after {
     content: '';
     position: absolute;
+    bottom: 0;
+    left: 0;
     width: 0;
     height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: #007BFF;
-    transition: width 0.3s ease;
+    background: var(--primary-color);
+    transition: width var(--transition-speed) ease;
 }
 
 .nav-links a:hover::after {
     width: 100%;
 }
 
-/* Hero Section */
+/* Mobile Menu Styles */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1000;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: var(--text-light);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        padding: 1rem;
+        background: rgba(18, 18, 18, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+        transform: translateY(-100%);
+        opacity: 0;
+        transition: all var(--transition-speed) ease;
+        pointer-events: none;
+    }
+
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+
+/* Enhanced Hero Section */
 .hero {
-    background: url('https://via.placeholder.com/1920x1080?text=Fitness+Background') no-repeat center center/cover;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
     position: relative;
-    animation: fadeIn 1s ease-in;
+    padding: 6rem 0;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
 }
 
 .hero .overlay {
@@ -147,2834 +188,235 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    animation: fadeIn 1.5s ease-in;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.8),
+        rgba(0, 0, 0, 0.6)
+    );
+    z-index: 0;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
 }
 
 .hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 1;
-    animation: pulse 2s infinite;
-    overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid #007BFF;
-    animation: typing 3.5s steps(40, end), blink .75s step-end infinite;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    background: linear-gradient(45deg, #fff, #007BFF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 8s ease infinite;
 }
 
 .hero p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    position: relative;
-    z-index: 1;
-    animation: slideInRight 1s ease-out;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
 }
 
-.hero .btn {
-    background: #007BFF;
-    color: #fff;
-    padding: 1rem 2rem;
+/* Enhanced Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
     text-decoration: none;
-    border-radius: 30px;
-    transition: all 0.3s ease;
+    color: var(--text-light);
+    background: linear-gradient(135deg, var(--primary-color), #0056b3);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
     position: relative;
-    z-index: 1;
-    border: 2px solid transparent;
-    animation: float 3s ease-in-out infinite;
+    overflow: hidden;
 }
 
-.hero .btn:hover {
-    background: transparent;
-    border-color: #007BFF;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-    animation: glow 2s ease-in-out infinite;
-}
-
-/* Hero Video Background */
-.hero-video {
+.btn::before {
+    content: '';
     position: absolute;
     top: 0;
-    left: 0;
+    left: -100%;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    z-index: -1;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: all 0.6s ease;
 }
 
-.hero-video video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.btn:hover::before {
+    left: 100%;
 }
 
-/* Exercise Video Styles */
-.exercise-video {
-    width: 100%;
-    margin: 1rem 0;
-    border-radius: 10px;
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.2);
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+    background: linear-gradient(135deg, #0056b3, var(--primary-color));
 }
 
-.exercise-video video {
-    width: 100%;
-    border-radius: 10px;
-    transition: transform 0.3s ease;
-}
-
-.exercise-video video:hover {
-    transform: scale(1.02);
-}
-
-/* Workout Thumbnail Styles */
-.workout-thumbnail {
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-left: 1rem;
-}
-
-.workout-thumbnail img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.workout-thumbnail:hover img {
-    transform: scale(1.1);
-}
-
-/* Meal Image Styles */
-.meal-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.meal-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.meal-image:hover img {
-    transform: scale(1.05);
-}
-
-/* Sections */
-.section {
-    padding: 4rem 0;
-    background: #1a1a1a;
-    margin: 2rem 0;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    display: block;
-    width: 100%;
-}
-
-.section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-    color: #fff;
-}
-
+/* Enhanced Form Styles */
 .form {
-    background: #242424;
+    background: rgba(255, 255, 255, 0.05);
     padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
-    margin: 0 auto;
-    transition: all 0.3s ease;
-    animation: slideInRight 0.8s ease-out;
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-speed) ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .form:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
-.form label {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    display: block;
-    color: #fff;
-    animation: fadeIn 0.5s ease-out;
-}
-
-.form input, .form select {
+.form input,
+.form select,
+.form textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #333;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    background: #333;
-    color: #fff;
-    transition: all 0.3s ease;
-    animation: fadeIn 0.5s ease-out;
-}
-
-.form input:focus, .form select:focus {
-    border-color: #007BFF;
-    outline: none;
-    animation: glow 2s infinite;
-}
-
-.form button {
-    background: #007BFF;
-    color: #fff;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    font-weight: bold;
-    animation: float 3s ease-in-out infinite;
-}
-
-.form button:hover {
-    background: #0056b3;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-    animation: glow 2s infinite;
-}
-
-/* Background Images for Sections */
-.workout-section, .nutrition-section, .progress-section {
-    position: relative;
-    overflow: hidden;
-    animation: fadeIn 1s ease-out;
-}
-
-.workout-section::before, .nutrition-section::before, .progress-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    transition: all 0.3s ease;
-}
-
-.workout-section:hover::before, .nutrition-section:hover::before, .progress-section:hover::before {
-    background: rgba(0, 0, 0, 0.7);
-    animation: glow 2s infinite;
-}
-
-/* Footer */
-.footer {
-    background: #1a1a1a;
-    color: #fff;
-    text-align: center;
-    padding: 2rem 0;
-    margin-top: 2rem;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 1s ease-out;
-}
-
-/* App Showcase Section */
-.app-showcase {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4rem 0;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-    margin: 2rem 0;
-    border-radius: 20px;
-    overflow: hidden;
-    position: relative;
-}
-
-.iphone-mockup {
-    position: relative;
-    width: 430px;
-    height: 932px;
-    background: #1a1a1a;
-    border-radius: 55px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    padding: 12px;
-    margin: 0 auto;
-    animation: float 6s ease-in-out infinite;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    overflow: visible;
-}
-
-.iphone-screen {
-    width: 100%;
-    height: 100%;
-    background: #000;
-    border-radius: 45px;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Dynamic Island */
-.dynamic-island {
-    position: absolute;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 126px;
-    height: 37px;
-    background: #000;
-    border-radius: 20px;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-.dynamic-island-content {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #fff;
-    font-size: 0.8rem;
-}
-
-.dynamic-island-content i {
-    font-size: 1rem;
-}
-
-/* iOS Status Bar */
-.status-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 44px;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    color: #fff;
-    font-size: 0.8rem;
-    z-index: 1;
-}
-
-.status-bar-left {
-    display: flex;
-    gap: 4px;
-}
-
-.status-bar-right {
-    display: flex;
-    gap: 4px;
-}
-
-/* App Content Layout */
-.app-content {
-    position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-    overflow-y: auto;
-}
-
-/* iOS Navigation Bar */
-.nav-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 44px;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 16px;
-    z-index: 10;
-}
-
-.nav-bar-title {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #fff;
-}
-
-.nav-bar-right {
-    display: flex;
-    gap: 16px;
-}
-
-/* App Logo and Slogan */
-.app-logo {
-    width: 120px;
-    height: 120px;
-    background: linear-gradient(135deg, #007BFF 0%, #00ff88 100%);
-    border-radius: 30px;
-    margin: 60px auto 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    color: white;
-    font-weight: bold;
-    animation: pulse 2s infinite;
-    box-shadow: 0 0 30px rgba(0, 123, 255, 0.3);
-}
-
-.app-slogan {
-    text-align: center;
-    margin: 20px 0;
-    padding: 0 20px;
-    animation: fadeIn 1s ease-out;
-}
-
-.app-slogan h3 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, #007BFF 0%, #00ff88 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glow 2s infinite;
-}
-
-.app-slogan p {
-    font-size: 1.1rem;
-    color: #888;
-    line-height: 1.6;
-    animation: slideInRight 1s ease-out;
-}
-
-/* iOS-style Feature Grid */
-.app-features-screen {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 2rem;
-    padding: 0 16px;
-    width: 100%;
-}
-
-.feature-icon {
+    padding: 1rem;
     background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-    border-radius: 16px;
-    text-align: center;
-    transition: all 0.3s ease;
-    animation: fadeIn 0.5s ease-out forwards;
-    opacity: 0;
-    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: all var(--transition-speed) ease;
 }
 
-.feature-icon:hover {
-    transform: translateY(-5px);
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
     background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
 }
 
-.feature-icon i {
-    font-size: 2rem;
-    color: #007BFF;
-    margin-bottom: 0.8rem;
+/* Enhanced Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
-.feature-icon span {
-    font-size: 0.9rem;
-    color: #fff;
-    display: block;
-    font-weight: 500;
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-/* iOS-style Bottom Tab Bar */
-.tab-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 83px;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding-bottom: 20px;
-    z-index: 10;
-    margin-bottom: 8px;
-}
-
-.tab-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #888;
-    transition: all 0.3s ease;
-}
-
-.tab-item.active {
-    color: #007BFF;
-}
-
-.tab-item i {
-    font-size: 1.5rem;
-    margin-bottom: 4px;
-}
-
-.tab-item span {
-    font-size: 0.7rem;
-}
-
-/* iOS-style Notifications */
-.notification {
+::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 12px;
-    margin: 8px 0;
-    backdrop-filter: blur(10px);
-    animation: slideInRight 0.3s ease-out;
 }
 
-.notification-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 4px;
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
 }
 
-.notification-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 8px;
-    background: #007BFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
+::-webkit-scrollbar-thumb:hover {
+    background: #0056b3;
 }
 
-.notification-title {
-    font-weight: 600;
-    color: #fff;
+/* Loading Skeleton Animation */
+.skeleton {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.05) 25%,
+        rgba(255, 255, 255, 0.1) 37%,
+        rgba(255, 255, 255, 0.05) 63%
+    );
+    background-size: 400% 100%;
+    animation: skeleton-loading 1.4s ease infinite;
 }
 
-.notification-text {
-    font-size: 0.9rem;
-    color: #888;
+@keyframes skeleton-loading {
+    0% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
 }
 
-/* iPhone Physical Buttons */
-.iphone-mockup::before {
-    content: '';
-    position: absolute;
-    right: -3px;
-    top: 100px;
-    width: 3px;
-    height: 100px;
-    background: #1a1a1a;
-    border-radius: 0 3px 3px 0;
-}
-
-.iphone-mockup::after {
-    content: '';
-    position: absolute;
-    right: -3px;
-    top: 250px;
-    width: 3px;
-    height: 60px;
-    background: #1a1a1a;
-    border-radius: 0 3px 3px 0;
-}
-
-.volume-button {
-    position: absolute;
-    right: -3px;
-    width: 3px;
-    height: 40px;
-    background: #1a1a1a;
-    border-radius: 0 3px 3px 0;
-}
-
-.volume-button.up {
-    top: 100px;
-}
-
-.volume-button.down {
-    top: 150px;
-}
-
-.action-button {
-    position: absolute;
-    right: -3px;
-    top: 250px;
-    width: 3px;
-    height: 60px;
-    background: #1a1a1a;
-    border-radius: 0 3px 3px 0;
-}
-
-/* Home Indicator */
-.home-indicator {
-    position: absolute;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 135px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
-    z-index: 11;
-}
-
-/* Responsive Design */
+/* Enhanced Responsive Design */
 @media (max-width: 768px) {
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-        padding: 0 1rem;
-        animation: none;
-        border-right: none;
-    }
-
-    .hero p {
-        font-size: 1.2rem;
-        padding: 0 1rem;
-    }
-
-    .section {
-        padding: 2rem 0;
-        margin: 1rem 0;
-    }
-
-    .form {
-        margin: 0 1rem;
-        padding: 1.5rem;
-    }
-
-    .app-showcase {
-        flex-direction: column;
-        padding: 2rem 0;
-    }
-
-    .iphone-mockup {
-        width: 350px;
-        height: 758px;
-        border-radius: 45px;
-    }
-
-    .iphone-screen {
-        border-radius: 35px;
-    }
-
-    .app-logo {
-        width: 100px;
-        height: 100px;
-        font-size: 2rem;
-        margin: 50px auto 15px;
-    }
-
-    .app-slogan h3 {
-        font-size: 1.8rem;
-    }
-
-    .feature-icon {
-        padding: 15px;
-    }
-
-    .feature-icon i {
-        font-size: 1.8rem;
-    }
-
-    .volume-button {
-        height: 35px;
-    }
-
-    .volume-button.up {
-        top: 80px;
-    }
-
-    .volume-button.down {
-        top: 125px;
-    }
-
-    .action-button {
-        top: 200px;
-        height: 50px;
-    }
-
-    .home-indicator {
-        width: 120px;
-    }
-
-    .workout-thumbnail {
-        width: 80px;
-        height: 80px;
-        margin: 1rem 0;
-    }
-
-    .meal-image {
-        width: 100%;
-        height: 200px;
-    }
-
-    .exercise-video {
-        margin: 0.5rem 0;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .section h2 {
-        font-size: 2rem;
-    }
-
-    .form {
-        padding: 1rem;
-    }
-
-    .iphone-mockup {
-        width: 300px;
-        height: 650px;
-        border-radius: 40px;
-    }
-
-    .iphone-screen {
-        border-radius: 30px;
-    }
-
-    .app-logo {
-        width: 80px;
-        height: 80px;
-        font-size: 1.8rem;
-        margin: 40px auto 10px;
-    }
-
-    .app-slogan h3 {
-        font-size: 1.5rem;
-    }
-
-    .feature-icon {
-        padding: 12px;
-    }
-
-    .feature-icon i {
-        font-size: 1.5rem;
-    }
-
-    .volume-button {
-        height: 30px;
-    }
-
-    .volume-button.up {
-        top: 70px;
-    }
-
-    .volume-button.down {
-        top: 110px;
-    }
-
-    .action-button {
-        top: 180px;
-        height: 45px;
-    }
-
-    .home-indicator {
-        width: 100px;
-    }
-}
-
-/* Additional Mobile Optimizations */
-@media (max-width: 480px) {
-    /* General Layout */
-    .container {
-        width: 100%;
-        padding: 0 0.5rem;
-    }
-
-    .section {
-        padding: 2rem 1rem;
-        margin: 1rem 0;
-        border-radius: 10px;
-    }
-
-    /* Typography */
-    h1 { font-size: 1.8rem !important; }
-    h2 { font-size: 1.5rem !important; }
-    h3 { font-size: 1.3rem !important; }
-    p { font-size: 0.9rem !important; }
-
-    /* Navigation */
-    .navbar {
-        padding: 0.5rem;
-    }
-
-    .nav-links {
-        position: fixed;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: rgba(18, 18, 18, 0.95);
-        padding: 1rem;
-        transform: translateY(-150%);
-        transition: transform 0.3s ease;
-    }
-
-    .nav-links.active {
-        transform: translateY(0);
-    }
-
-    /* Hero Section */
-    .hero {
-        height: auto;
-        min-height: 100vh;
-        padding: 4rem 1rem;
-    }
-
-    .hero h1 {
-        font-size: 2rem !important;
-        white-space: normal;
-        border-right: none;
-        animation: none;
-    }
-
-    .hero p {
-        font-size: 1rem !important;
-        padding: 0;
-    }
-
-    .hero .btn {
-        width: 100%;
-        text-align: center;
-        margin-top: 1rem;
-    }
-
-    /* Forms */
-    .form {
-        padding: 1rem;
-        margin: 0;
-    }
-
-    .form input,
-    .form select,
-    .form button {
-        font-size: 1rem;
-        padding: 0.8rem;
-    }
-
-    /* Workout Section */
-    .workout-container,
-    .nutrition-container,
-    .progress-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-        padding: 1rem;
-    }
-
-    .workout-setup,
-    .nutrition-setup {
-        padding: 1rem;
-    }
-
-    .equipment-grid,
-    .restrictions-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .workout-preview,
-    .nutrition-preview {
-        padding: 1rem;
-    }
-
-    .workout-stats {
-        grid-template-columns: 1fr;
-        gap: 0.5rem;
-    }
-
-    /* Meal Cards */
-    .meal-card {
-        padding: 1rem;
-    }
-
-    .meal-content {
-        flex-direction: column;
-    }
-
-    .meal-image {
-        width: 100%;
-        height: 180px;
-        margin-bottom: 1rem;
-    }
-
-    /* Progress Section */
-    .progress-sidebar {
-        grid-template-columns: 1fr;
-    }
-
-    .stat-card {
-        padding: 1rem;
-    }
-
-    .progress-charts {
-        grid-template-columns: 1fr;
-    }
-
-    .chart-container {
-        height: 250px;
-    }
-
-    /* App Showcase */
-    .app-showcase {
-        padding: 2rem 1rem;
-    }
-
-    .iphone-mockup {
-        width: 280px;
-        height: 600px;
-        border-radius: 35px;
-    }
-
-    .app-features-screen {
-        grid-template-columns: 1fr;
-        gap: 0.8rem;
-    }
-
-    .feature-icon {
-        padding: 1rem;
-    }
-
-    /* Bottom Navigation */
-    .tab-bar {
-        height: 70px;
-        padding-bottom: 15px;
-    }
-
-    .tab-item i {
-        font-size: 1.2rem;
-    }
-
-    .tab-item span {
-        font-size: 0.65rem;
-    }
-
-    /* Touch Interactions */
-    .btn,
-    .form button,
-    .equipment-item,
-    .restriction-item,
-    .meal-card,
-    .workout-item,
-    .achievement-item {
-        touch-action: manipulation;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    /* Improved Touch Targets */
-    .nav-links a,
-    .btn,
-    .form button,
-    .equipment-item,
-    .restriction-item {
-        min-height: 44px;
-        padding: 12px;
-    }
-
-    /* Loading States */
-    .lazy-load {
-        min-height: 200px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 10px;
-    }
-
-    /* Scrolling */
-    .workout-exercises,
-    .meal-schedule,
-    .achievement-list {
-        max-height: 400px;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-        scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
-    }
-
-    /* Performance Optimizations */
-    * {
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-    }
-
-    .animation-reduce {
-        animation: none !important;
-        transform: none !important;
-        transition: none !important;
-    }
-}
-
-/* Tablet Optimizations */
-@media (min-width: 481px) and (max-width: 768px) {
-    .container {
-        width: 95%;
-    }
-
-    .workout-container,
-    .nutrition-container,
-    .progress-container {
+    .grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
-    .equipment-grid,
-    .restrictions-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .card {
+        margin-bottom: 1rem;
     }
 
-    .workout-stats,
-    .progress-metrics {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .meal-schedule {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
-    .app-features-screen {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Landscape Mode Optimizations */
-@media (max-height: 480px) and (orientation: landscape) {
-    .hero {
-        height: auto;
-        min-height: 100vh;
-    }
-
-    .hero h1 {
-        font-size: 1.8rem !important;
-    }
-
-    .nav-links {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .workout-container,
-    .nutrition-container,
-    .progress-container {
-        margin-top: 1rem;
-    }
-
-    .iphone-mockup {
-        transform: scale(0.8);
-    }
-}
-
-/* High-DPI Screen Optimizations */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .app-logo,
-    .feature-icon i,
-    .workout-icon {
-        transform: translateZ(0);
-    }
-
-    img {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-    }
-}
-
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-}
-
-/* Workout Section Styles */
-.workout-container {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 2rem;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.workout-setup {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 2rem;
-    backdrop-filter: blur(10px);
-    animation: slideIn 0.5s ease-out;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #fff;
-    font-weight: 500;
-}
-
-.equipment-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-top: 0.5rem;
-}
-
-.equipment-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.equipment-item:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-}
-
-.equipment-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: #007BFF;
-}
-
-.workout-preview {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 2rem;
-    backdrop-filter: blur(10px);
-    animation: slideInRight 0.5s ease-out;
-}
-
-.preview-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.preview-actions {
-    display: flex;
-    gap: 1rem;
-}
-
-.btn-secondary {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-}
-
-.workout-stats {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.stat-item {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1rem;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    transition: all 0.3s ease;
-}
-
-.stat-item:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.stat-item i {
-    font-size: 1.5rem;
-    color: #007BFF;
-}
-
-.workout-exercises {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.exercise-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.exercise-card:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.exercise-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.exercise-header h4 {
-    color: #fff;
-    font-size: 1.2rem;
-    margin: 0;
-}
-
-.duration {
-    background: rgba(0, 123, 255, 0.2);
-    color: #007BFF;
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.9rem;
-}
-
-.exercise-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.exercise-list li {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.exercise-list li:last-child {
-    border-bottom: none;
-}
-
-.progress-section {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 1.5rem;
-}
-
-.progress-chart {
-    height: 200px;
-    margin: 1rem 0;
-}
-
-.progress-metrics {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-
-.metric {
-    text-align: center;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-.metric:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.metric .label {
-    display: block;
-    color: #888;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
-}
-
-.metric .value {
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-/* Responsive Design for Workout Section */
-@media (max-width: 1024px) {
-    .workout-container {
-        grid-template-columns: 1fr;
-    }
-
-    .workout-preview {
-        margin-top: 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .workout-stats,
-    .progress-metrics {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .equipment-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .preview-header {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-
-    .preview-actions {
+    .btn {
         width: 100%;
         justify-content: center;
     }
-}
 
-@media (max-width: 480px) {
-    .workout-stats,
-    .progress-metrics {
-        grid-template-columns: 1fr;
-    }
-
-    .stat-item,
-    .metric {
-        padding: 0.75rem;
-    }
-}
-
-/* Nutrition Section Styles */
-.nutrition-container {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 2rem;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.nutrition-setup {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 2rem;
-    backdrop-filter: blur(10px);
-    animation: slideIn 0.5s ease-out;
-}
-
-.restrictions-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-    margin-top: 0.5rem;
-}
-
-.restriction-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.restriction-item:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-}
-
-.restriction-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: #007BFF;
-}
-
-.calorie-input {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.calorie-input input {
-    flex: 1;
-}
-
-.calorie-unit {
-    color: #888;
-    font-size: 0.9rem;
-}
-
-.macro-sliders {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 0.5rem;
-}
-
-.macro-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.macro-item label {
-    min-width: 60px;
-}
-
-.macro-item input[type="range"] {
-    flex: 1;
-    height: 6px;
-    -webkit-appearance: none;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
-    outline: none;
-}
-
-.macro-item input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    background: #007BFF;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.macro-item input[type="range"]::-webkit-slider-thumb:hover {
-    transform: scale(1.1);
-}
-
-.macro-value {
-    min-width: 45px;
-    text-align: right;
-    color: #007BFF;
-}
-
-.nutrition-preview {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    padding: 2rem;
-    backdrop-filter: blur(10px);
-    animation: slideInRight 0.5s ease-out;
-}
-
-.meal-schedule {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin: 2rem 0;
-}
-
-.meal-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 1.5rem;
-    transition: all 0.3s ease;
-}
-
-.meal-card:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.meal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.meal-header h4 {
-    color: #fff;
-    font-size: 1.2rem;
-    margin: 0;
-}
-
-.calories {
-    background: rgba(0, 123, 255, 0.2);
-    color: #007BFF;
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.9rem;
-}
-
-.meal-content {
-    display: flex;
-    gap: 1.5rem;
-}
-
-.meal-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.meal-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.meal-card:hover .meal-image img {
-    transform: scale(1.05);
-}
-
-.meal-details {
-    flex: 1;
-}
-
-.meal-details h5 {
-    color: #fff;
-    font-size: 1.1rem;
-    margin: 0 0 0.5rem 0;
-}
-
-.meal-details p {
-    color: #888;
-    font-size: 0.9rem;
-    margin: 0 0 1rem 0;
-}
-
-.macro-breakdown {
-    display: flex;
-    gap: 1rem;
-    font-size: 0.9rem;
-    color: #888;
-}
-
-.nutrition-insights {
-    margin-top: 2rem;
-}
-
-.insights-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.insight-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.insight-card:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.insight-card i {
-    font-size: 2rem;
-    color: #007BFF;
-    margin-bottom: 1rem;
-}
-
-.insight-card h4 {
-    color: #fff;
-    font-size: 1.1rem;
-    margin: 0 0 0.5rem 0;
-}
-
-.insight-card p {
-    color: #888;
-    font-size: 0.9rem;
-    margin: 0;
-}
-
-/* Responsive Design for Nutrition Section */
-@media (max-width: 1024px) {
-    .nutrition-container {
-        grid-template-columns: 1fr;
-    }
-
-    .nutrition-preview {
-        margin-top: 2rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .restrictions-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .meal-content {
-        flex-direction: column;
-    }
-
-    .meal-image {
-        width: 100%;
-        height: 200px;
-    }
-
-    .insights-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .insights-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .macro-breakdown {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-}
-
-/* Progress Tracker Section Styles */
-.progress-container {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 2rem;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.progress-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.progress-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.stat-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    transition: all 0.3s ease;
-}
-
-.stat-card:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.stat-card i {
-    font-size: 2rem;
-    color: #007BFF;
-}
-
-.stat-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.stat-value {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #fff;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    color: #888;
-}
-
-.body-metrics {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 1.5rem;
-}
-
-.body-metrics h3 {
-    margin-bottom: 1rem;
-    color: #fff;
-}
-
-.metrics-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-
-.metric-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.metric-label {
-    color: #888;
-    font-size: 0.9rem;
-}
-
-.metric-value {
-    color: #fff;
-    font-weight: 600;
-}
-
-.achievements {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 1.5rem;
-}
-
-.achievements h3 {
-    margin-bottom: 1rem;
-    color: #fff;
-}
-
-.achievement-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.achievement-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-.achievement-item:hover {
-    transform: translateX(5px);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.achievement-item i {
-    color: #007BFF;
-    font-size: 1.2rem;
-}
-
-.progress-main {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-
-.progress-title {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.time-filter {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.time-filter button {
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    color: #fff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.time-filter button.active {
-    background: #007BFF;
-}
-
-.progress-actions {
-    display: flex;
-    gap: 1rem;
-}
-
-.progress-charts {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-
-.chart-container {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 1.5rem;
-    height: 300px;
-}
-
-.recent-workouts {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 1.5rem;
-}
-
-.workout-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.workout-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-}
-
-.workout-item:hover {
-    transform: translateX(5px);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.workout-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 123, 255, 0.2);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #007BFF;
-}
-
-.workout-details {
-    flex: 1;
-}
-
-.workout-details h4 {
-    margin: 0;
-    color: #fff;
-}
-
-.workout-details p {
-    margin: 0;
-    color: #888;
-    font-size: 0.9rem;
-}
-
-.workout-stats {
-    display: flex;
-    gap: 1rem;
-}
-
-.workout-stats .stat {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.25rem 0.75rem;
-    border-radius: 15px;
-    font-size: 0.9rem;
-    color: #fff;
-}
-
-.health-insights {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 1.5rem;
-}
-
-.insights-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.insight-card {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.insight-card:hover {
-    transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.15);
-}
-
-.insight-card i {
-    font-size: 2rem;
-    color: #007BFF;
-    margin-bottom: 1rem;
-}
-
-.insight-card h4 {
-    color: #fff;
-    margin: 0 0 0.5rem 0;
-}
-
-.insight-card p {
-    color: #888;
-    margin: 0 0 1rem 0;
-}
-
-.trend {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.trend.positive {
-    color: #00ff88;
-}
-
-.trend.negative {
-    color: #ff4444;
-}
-
-/* Responsive Design for Progress Section */
-@media (max-width: 1200px) {
-    .progress-container {
-        grid-template-columns: 1fr;
-    }
-
-    .progress-sidebar {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .progress-sidebar {
-        grid-template-columns: 1fr;
-    }
-
-    .progress-charts {
-        grid-template-columns: 1fr;
-    }
-
-    .insights-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .progress-header {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-
-    .progress-actions {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .insights-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .workout-stats {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .workout-item {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .workout-stats {
-        width: 100%;
-        justify-content: center;
-    }
-}
-
-/* Section Visibility */
-section {
-    display: block;
-    width: 100%;
-    padding: 4rem 2rem;
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Workout Plan Section */
-.workout-container {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 2rem;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Nutrition Plan Section */
-.nutrition-container {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 2rem;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Progress Tracker Section */
-.progress-container {
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 2rem;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .workout-container,
-    .nutrition-container,
-    .progress-container {
-        grid-template-columns: 1fr;
+    .form {
         padding: 1.5rem;
     }
 }
 
-@media (max-width: 768px) {
-    section {
-        padding: 3rem 1rem;
+@media (max-width: 480px) {
+    :root {
+        --border-radius: 8px;
     }
-    
-    .workout-container,
-    .nutrition-container,
-    .progress-container {
+
+    .card {
         padding: 1rem;
     }
-}
 
-/* Plan Section Banners */
-.plan-banner {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    margin-bottom: 2rem;
-    border-radius: 20px;
-    overflow: hidden;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.plan-banner::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, rgba(0, 123, 255, 0.3), rgba(0, 255, 136, 0.3));
-    animation: gradientShift 8s ease infinite;
-}
-
-.plan-banner-content {
-    position: relative;
-    z-index: 2;
-    padding: 2rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.plan-banner h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(135deg, #fff 0%, #007BFF 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glow 2s ease-in-out infinite;
-}
-
-.plan-banner p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
-    max-width: 600px;
-    line-height: 1.6;
-}
-
-.plan-banner-overlay {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50%;
-    height: 100%;
-    background: url('assets/images/pattern.png') repeat;
-    opacity: 0.1;
-    animation: slide 20s linear infinite;
-}
-
-.plan-banner-icon {
-    position: absolute;
-    right: 2rem;
-    bottom: 2rem;
-    font-size: 4rem;
-    color: rgba(255, 255, 255, 0.1);
-    transform: rotate(-15deg);
-}
-
-/* Specific Plan Banners */
-.workout-banner {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%),
-                url('assets/images/workout-pattern.png');
-    background-blend-mode: overlay;
-}
-
-.nutrition-banner {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%),
-                url('assets/images/nutrition-pattern.png');
-    background-blend-mode: overlay;
-}
-
-.progress-banner {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%),
-                url('assets/images/progress-pattern.png');
-    background-blend-mode: overlay;
-}
-
-/* Banner Animations */
-@keyframes gradientShift {
-    0% { opacity: 0.5; transform: scale(1); }
-    50% { opacity: 0.7; transform: scale(1.02); }
-    100% { opacity: 0.5; transform: scale(1); }
-}
-
-@keyframes slide {
-    from { transform: translateX(0); }
-    to { transform: translateX(100%); }
-}
-
-/* Banner Hover Effects */
-.plan-banner:hover::before {
-    opacity: 0.8;
-    transform: scale(1.05);
-}
-
-.plan-banner:hover .plan-banner-icon {
-    transform: rotate(0deg) scale(1.1);
-    color: rgba(255, 255, 255, 0.2);
-}
-
-/* Responsive Banner Styles */
-@media (max-width: 768px) {
-    .plan-banner {
-        height: 180px;
+    .form input,
+    .form select,
+    .form textarea {
+        padding: 0.8rem;
     }
 
-    .plan-banner h2 {
-        font-size: 2rem;
-    }
-
-    .plan-banner p {
-        font-size: 1rem;
-        max-width: 100%;
-    }
-
-    .plan-banner-icon {
-        font-size: 3rem;
-        right: 1rem;
-        bottom: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .plan-banner {
-        height: 160px;
-    }
-
-    .plan-banner h2 {
-        font-size: 1.8rem;
-    }
-
-    .plan-banner p {
-        font-size: 0.9rem;
-    }
-
-    .plan-banner-content {
-        padding: 1.5rem;
-    }
-
-    .plan-banner-icon {
-        font-size: 2.5rem;
-    }
-}
-
-/* Enhanced Section Headers */
-.section-header {
-    position: relative;
-    margin-bottom: 3rem;
-    text-align: center;
-}
-
-.section-header::after {
-    content: '';
-    position: absolute;
-    bottom: -1rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(90deg, #007BFF, #00ff88);
-    border-radius: 3px;
-}
-
-.section-header h2 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, #fff 0%, #007BFF 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.section-header p {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.1rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Section Transitions */
-.section {
-    position: relative;
-    overflow: hidden;
-}
-
-.section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at top right, rgba(0, 123, 255, 0.1), transparent);
-    pointer-events: none;
-}
-
-/* Performance Optimizations */
-* {
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    will-change: transform, opacity;
-}
-
-/* Optimize Images */
-img {
-    max-width: 100%;
-    height: auto;
-    image-rendering: -webkit-optimize-contrast;
-    transform: translateZ(0);
-    will-change: transform;
-}
-
-/* Lazy Loading */
-.lazy-image {
-    opacity: 0;
-    transition: opacity 0.3s ease-in;
-}
-
-.lazy-image.loaded {
-    opacity: 1;
-}
-
-/* Loading Placeholders */
-.loading-placeholder {
-    background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
-    background-size: 200% 100%;
-    animation: loadingShimmer 1.5s infinite;
-}
-
-@keyframes loadingShimmer {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-}
-
-/* Hardware Acceleration */
-.hardware-accelerated {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
-
-/* Smooth Scrolling */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-}
-
-/* Optimize Animations */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-}
-
-.animation-optimized {
-    transform: translateZ(0);
-    will-change: transform, opacity;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Content Visibility */
-.offscreen {
-    content-visibility: auto;
-    contain: layout style paint;
-}
-
-/* Memory Optimization */
-.memory-efficient {
-    contain: content;
-    content-visibility: auto;
-}
-
-/* Touch Optimization */
-@media (hover: none) {
-    .touch-target {
-        min-height: 44px;
-        min-width: 44px;
-        padding: 12px;
-        touch-action: manipulation;
-    }
-}
-
-/* Reduce Paint Operations */
-.reduce-paint {
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    will-change: transform;
-}
-
-/* Optimize Layout Shifts */
-.content-wrapper {
-    contain: layout style;
-    content-visibility: auto;
-}
-
-/* Efficient Grid Layouts */
-.grid-optimized {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    contain: layout style;
-}
-
-/* Optimize Font Loading */
-@font-face {
-    font-family: 'Primary Font';
-    font-display: swap;
-    src: local('Arial'), local('Helvetica');
-}
-
-/* Optimize Shadows */
-.optimized-shadow {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    will-change: transform;
-    transform: translateZ(0);
-}
-
-/* Efficient Transitions */
-.efficient-transition {
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform, opacity;
-}
-
-/* Optimize Background Images */
-.bg-optimized {
-    background-size: cover;
-    background-position: center;
-    transform: translateZ(0);
-    will-change: transform;
-    image-rendering: -webkit-optimize-contrast;
-}
-
-/* Reduce Reflows */
-.prevent-reflow {
-    contain: layout style;
-    min-height: 0;
-    transform: translateZ(0);
-}
-
-/* Mobile Optimizations */
-@media (max-width: 768px) {
-    .mobile-optimized {
-        will-change: transform;
-        transform: translateZ(0);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .touch-scroll {
-        -webkit-overflow-scrolling: touch;
-        overflow-y: auto;
-        overscroll-behavior: contain;
-    }
-}
-
-/* High DPI Screen Optimizations */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .high-dpi {
-        image-rendering: -webkit-optimize-contrast;
-        transform: translateZ(0);
-    }
-}
-
-/* Reduce Memory Usage */
-.memory-efficient {
-    contain: content;
-    content-visibility: auto;
-    will-change: auto;
-}
-
-/* Optimize Lists */
-.list-optimized {
-    contain: content;
-    content-visibility: auto;
-    will-change: contents;
-}
-
-/* Efficient Hover States */
-@media (hover: hover) {
-    .hover-optimized {
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        will-change: transform;
-    }
-}
-
-/* Optimize Fixed Elements */
-.fixed-optimized {
-    position: fixed;
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-}
-
-/* Reduce Paint Area */
-.paint-optimized {
-    transform: translateZ(0);
-    will-change: transform;
-    contain: paint;
-}
-
-/* Optimize Scrolling */
-.scroll-optimized {
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-    scroll-behavior: smooth;
-    will-change: transform;
-}
-
-/* Efficient Animations */
-.animation-optimized {
-    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform, opacity;
-    transform: translateZ(0);
-}
-
-/* Loading States */
-.loading-state {
-    transition: opacity 0.3s ease;
-    will-change: opacity;
-    contain: layout style;
-}
-
-/* Optimize Forms */
-.form-optimized {
-    contain: content;
-    will-change: contents;
-    transform: translateZ(0);
-}
-
-/* Efficient Modals */
-.modal-optimized {
-    transform: translateZ(0);
-    will-change: transform, opacity;
-    backface-visibility: hidden;
-    contain: layout paint style;
-}
-
-/* Optimize Charts */
-.chart-optimized {
-    transform: translateZ(0);
-    will-change: transform;
-    contain: layout style;
-}
-
-/* Efficient Cards */
-.card-optimized {
-    transform: translateZ(0);
-    will-change: transform;
-    contain: layout style;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Optimize Navigation */
-.nav-optimized {
-    transform: translateZ(0);
-    will-change: transform;
-    contain: layout style;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Contact & Social Section Styles */
-.contact-section {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 5rem 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.contact-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at top right, rgba(0, 123, 255, 0.1), transparent);
-    pointer-events: none;
-}
-
-.contact-container {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 3rem;
-    margin-top: 3rem;
-}
-
-.contact-info {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-.contact-card {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 2rem;
-    text-align: center;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.contact-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.contact-card i {
-    font-size: 2.5rem;
-    color: #007BFF;
-    margin-bottom: 1rem;
-}
-
-.contact-card h3 {
-    color: #fff;
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-}
-
-.contact-card p {
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
-}
-
-.contact-form {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 2.5rem;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.contact-form .form-group {
-    margin-bottom: 1.5rem;
-}
-
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
-    color: #fff;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-}
-
-.contact-form textarea {
-    height: 150px;
-    resize: vertical;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    outline: none;
-    border-color: #007BFF;
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 15px rgba(0, 123, 255, 0.3);
-}
-
-.contact-form button {
-    width: 100%;
-    padding: 1rem;
-    background: #007BFF;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.contact-form button:hover {
-    background: #0056b3;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-}
-
-.social-links {
-    text-align: center;
-    margin-top: 4rem;
-}
-
-.social-links h3 {
-    color: #fff;
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-}
-
-.social-icon {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.social-icon:hover {
-    transform: translateY(-5px);
-    background: #007BFF;
-    color: #fff;
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-}
-
-/* Contact Section Responsive Styles */
-@media (max-width: 1024px) {
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .contact-info {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .contact-info {
-        grid-template-columns: 1fr;
-    }
-
-    .contact-form {
-        padding: 1.5rem;
-    }
-
-    .social-icons {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .contact-section {
-        padding: 3rem 0;
-    }
-
-    .contact-card {
-        padding: 1.5rem;
-    }
-
-    .social-icon {
-        width: 45px;
-        height: 45px;
+    .btn {
+        padding: 0.8rem 1.5rem;
         font-size: 1rem;
     }
-}
-
-/* Loading Animation for Form Submission */
-@keyframes submitLoading {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.form-loading {
-    position: relative;
-    pointer-events: none;
-}
-
-.form-loading::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 50%;
-    left: 50%;
-    margin: -10px 0 0 -10px;
-    border: 2px solid #fff;
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: submitLoading 0.8s linear infinite;
-}
-
-/* Form Success/Error States */
-.form-success input,
-.form-success textarea {
-    border-color: #00ff88;
-}
-
-.form-error input,
-.form-error textarea {
-    border-color: #ff4444;
-}
-
-.form-message {
-    padding: 1rem;
-    border-radius: 8px;
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    display: none;
-}
-
-.form-message.success {
-    background: rgba(0, 255, 136, 0.1);
-    color: #00ff88;
-    border: 1px solid rgba(0, 255, 136, 0.2);
-    display: block;
-}
-
-.form-message.error {
-    background: rgba(255, 68, 68, 0.1);
-    color: #ff4444;
-    border: 1px solid rgba(255, 68, 68, 0.2);
-    display: block;
 }
 
 /* Touch Device Optimizations */
 @media (hover: none) {
-    .contact-card,
-    .social-icon {
-        transform: none !important;
+    .btn:hover,
+    .card:hover,
+    .form:hover {
+        transform: none;
     }
 
-    .contact-form input,
-    .contact-form textarea {
-        font-size: 16px; /* Prevent zoom on iOS */
+    .btn::before {
+        display: none;
     }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }

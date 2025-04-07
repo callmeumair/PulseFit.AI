@@ -1,5 +1,136 @@
 // DOM Elements
 document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.querySelector('.navbar');
+    const navLinks = document.querySelector('.nav-links');
+    const menuToggle = document.createElement('button');
+    menuToggle.className = 'menu-toggle';
+    menuToggle.innerHTML = '<span></span><span></span><span></span>';
+    navbar.querySelector('.container').appendChild(menuToggle);
+
+    // Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+            }
+        });
+    });
+
+    // Mobile Menu Toggle
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+
+    // Navbar Scroll Effect
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll <= 0) {
+            navbar.classList.remove('scroll-up');
+            return;
+        }
+        
+        if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
+            navbar.classList.remove('scroll-up');
+            navbar.classList.add('scroll-down');
+        } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
+            navbar.classList.remove('scroll-down');
+            navbar.classList.add('scroll-up');
+        }
+        lastScroll = currentScroll;
+    });
+
+    // Intersection Observer for Animations
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements with animation classes
+    document.querySelectorAll('.section, .card, .form, .grid > *').forEach(el => {
+        observer.observe(el);
+    });
+
+    // Form Interactions
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        const inputs = form.querySelectorAll('input, select, textarea');
+        
+        inputs.forEach(input => {
+            // Add focus effects
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('focused');
+                if (input.value) {
+                    input.parentElement.classList.add('filled');
+                } else {
+                    input.parentElement.classList.remove('filled');
+                }
+            });
+        });
+
+        // Form submission animation
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            form.classList.add('submitting');
+            
+            // Simulate form submission
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            form.classList.remove('submitting');
+            form.classList.add('submitted');
+            
+            setTimeout(() => {
+                form.classList.remove('submitted');
+            }, 2000);
+        });
+    });
+
+    // Lazy Loading Images
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.add('loaded');
+                observer.unobserve(img);
+            }
+        });
+    });
+
+    lazyImages.forEach(img => imageObserver.observe(img));
+
+    // Performance Optimizations
+    const debouncedResize = debounce(() => {
+        // Update layout-sensitive calculations
+        updateLayout();
+    }, 250);
+
+    window.addEventListener('resize', debouncedResize);
+
     // Form Elements
     const workoutForm = document.getElementById('workout-form');
     const nutritionForm = document.getElementById('nutrition-form');
@@ -395,4 +526,37 @@ function updateNutritionPreview(data) {
             }
         }
     });
-} 
+}
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function updateLayout() {
+    // Add any layout updates needed on resize
+    const heroHeight = window.innerHeight;
+    document.querySelector('.hero').style.minHeight = `${heroHeight}px`;
+}
+
+// Add smooth scrolling polyfill for Safari
+if (!('scrollBehavior' in document.documentElement.style)) {
+    import('scroll-behavior-polyfill').then(() => {
+        console.log('Smooth scrolling polyfill loaded');
+    });
+}
+
+// Initialize any third-party libraries or custom components
+function initializeComponents() {
+    // Add any component initialization here
+}
+
+// Call initialization function
+initializeComponents(); 
