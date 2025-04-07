@@ -715,4 +715,76 @@ document.getElementById('login').addEventListener('submit', (e) => {
     // Add your login logic here
     alert('Login successful!');
     closeAuthModal();
+});
+
+// Chatbot Functionality
+const chatbotToggle = document.querySelector('.chatbot-toggle');
+const chatbotWindow = document.querySelector('.chatbot-window');
+const closeChatbot = document.querySelector('.close-chatbot');
+const chatInput = document.getElementById('chatInput');
+const sendMessage = document.getElementById('sendMessage');
+const chatMessages = document.querySelector('.chatbot-messages');
+
+// Toggle chatbot window
+chatbotToggle.addEventListener('click', () => {
+  chatbotWindow.classList.add('active');
+});
+
+closeChatbot.addEventListener('click', () => {
+  chatbotWindow.classList.remove('active');
+});
+
+// Send message function
+function sendUserMessage() {
+  const message = chatInput.value.trim();
+  if (message) {
+    // Add user message to chat
+    addMessage(message, 'user');
+    chatInput.value = '';
+
+    // Simulate bot response (replace with actual AI integration)
+    setTimeout(() => {
+      const botResponse = getBotResponse(message);
+      addMessage(botResponse, 'bot');
+    }, 1000);
+  }
+}
+
+// Add message to chat
+function addMessage(text, sender) {
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `message ${sender}`;
+  messageDiv.innerHTML = `<p>${text}</p>`;
+  chatMessages.appendChild(messageDiv);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Get bot response (replace with actual AI integration)
+function getBotResponse(message) {
+  const responses = {
+    'hello': 'Hello! How can I help you with your fitness journey today?',
+    'hi': 'Hi there! What can I do for you?',
+    'help': 'I can help you with:\n- Fitness advice\n- Nutrition tips\n- Workout plans\n- Progress tracking\nWhat would you like to know?',
+    'workout': 'I can help you create a personalized workout plan. What are your fitness goals?',
+    'nutrition': 'I can provide nutrition advice and meal plans. What specific information are you looking for?',
+    'progress': 'I can help you track your fitness progress. Would you like to log your current stats?'
+  };
+
+  const lowerMessage = message.toLowerCase();
+  for (const [key, value] of Object.entries(responses)) {
+    if (lowerMessage.includes(key)) {
+      return value;
+    }
+  }
+
+  return "I'm here to help with your fitness journey. You can ask me about workouts, nutrition, or progress tracking. What would you like to know?";
+}
+
+// Event listeners for sending messages
+sendMessage.addEventListener('click', sendUserMessage);
+
+chatInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    sendUserMessage();
+  }
 }); 
