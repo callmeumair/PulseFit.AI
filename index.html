@@ -14,12 +14,11 @@
       <a href="#" class="logo">
         <img src="images/image.png" alt="PulseFit AI Logo" class="logo-img">
       </a>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#nutrition">Nutrition Plan</a></li>
-        <li><a href="#progress">Progress Tracker</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-      </ul>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
     </div>
   </nav>
 
@@ -34,49 +33,9 @@
     <div class="container">
       <h1>Welcome to PulseFit AI</h1>
       <p>Your AI-powered fitness companion.</p>
-      <a href="#nutrition" class="btn">Get Started</a>
-    </div>
-  </section>
-
-  <!-- Nutrition Plan Section -->
-  <section id="nutrition" class="section">
-    <div class="container">
-      <h2>Nutrition Plan</h2>
-      <div class="nutrition-container">
-        <form id="nutritionForm" class="form">
-          <div class="form-group">
-            <label for="dietaryPreference">Dietary Preference</label>
-            <select id="dietaryPreference" name="dietaryPreference" required>
-              <option value="">Select preference</option>
-              <option value="balanced">Balanced</option>
-              <option value="vegetarian">Vegetarian</option>
-              <option value="vegan">Vegan</option>
-              <option value="keto">Keto</option>
-            </select>
-          </div>
-          <button type="submit" class="btn">Generate Nutrition Plan</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Progress Tracker Section -->
-  <section id="progress" class="section">
-    <div class="container">
-      <h2>Progress Tracker</h2>
-      <div class="progress-container">
-        <form id="progressForm" class="form">
-          <div class="form-group">
-            <label for="trackingPeriod">Tracking Period</label>
-            <select id="trackingPeriod" name="trackingPeriod" required>
-              <option value="">Select period</option>
-              <option value="weekly">Weekly</option>
-              <option value="monthly">Monthly</option>
-              <option value="quarterly">Quarterly</option>
-            </select>
-          </div>
-          <button type="submit" class="btn">View Progress</button>
-        </form>
+      <div class="hero-buttons">
+        <a href="#pricing" class="btn btn-primary">Get Started</a>
+        <a href="#faq" class="btn btn-secondary">Learn More</a>
       </div>
     </div>
   </section>
