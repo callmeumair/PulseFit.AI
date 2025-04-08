@@ -790,17 +790,55 @@ body {
 
 /* Footer Styles */
 .footer {
-  background: #000;
-  color: #fff;
-  padding: 2rem 0;
-  text-align: center;
-  border-top: 1px solid #333;
+    background: #1a1a1a;
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.social-link {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-link:hover {
+    color: #4CAF50;
+    transform: translateY(-3px);
 }
 
 .footer p {
-  margin: 0;
-  font-size: 0.9rem;
-  color: #ccc;
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .footer {
+        padding: 1.5rem 0;
+    }
+    
+    .social-links {
+        gap: 1rem;
+    }
+    
+    .social-link {
+        font-size: 1.3rem;
+    }
 }
 
 /* Auth Section Styles */
