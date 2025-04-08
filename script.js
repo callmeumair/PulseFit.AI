@@ -418,14 +418,21 @@ function initializeAnimations() {
 function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
-    notification.textContent = message;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-icon">${type === 'success' ? '✓' : type === 'error' ? '✕' : 'ℹ'}</span>
+            <span class="notification-message">${message}</span>
+        </div>
+    `;
     
     document.body.appendChild(notification);
     
+    // Add show class after a small delay
     setTimeout(() => {
         notification.classList.add('show');
     }, 100);
     
+    // Remove notification after 3 seconds
     setTimeout(() => {
         notification.classList.remove('show');
         setTimeout(() => {
@@ -1214,6 +1221,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check if user has paid for pro plan
     function checkProPlanAccess() {
         const hasPaid = localStorage.getItem('hasPaidForPro') === 'true';
+        const paymentDate = localStorage.getItem('proPaymentDate');
+        
+        if (hasPaid && paymentDate) {
+            // Check if payment is still valid (e.g., monthly subscription)
+            const paymentTimestamp = new Date(paymentDate).getTime();
+            const currentTimestamp = new Date().getTime();
+            const oneMonth = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+            
+            if (currentTimestamp - paymentTimestamp > oneMonth) {
+                // Subscription expired
+                localStorage.removeItem('hasPaidForPro');
+                localStorage.removeItem('proPaymentDate');
+                return false;
+            }
+        }
+        
         return hasPaid;
     }
 
@@ -1228,10 +1251,18 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (isAuthenticated) {
                 if (checkProPlanAccess()) {
+                    // User has pro access, redirect to pro plan
                     window.location.href = 'pro-plan.html';
                 } else {
-                    // Redirect to PayPal.me
-                    window.location.href = 'https://paypal.me/Umer844';
+                    // Show confirmation before redirecting to PayPal
+                    if (confirm('You will be redirected to PayPal to complete your payment. Continue?')) {
+                        // Add loading state to button
+                        this.classList.add('loading');
+                        this.disabled = true;
+                        
+                        // Redirect to PayPal.me
+                        window.location.href = 'https://paypal.me/Umer844';
+                    }
                 }
             } else {
                 // User is not logged in, show auth modal
@@ -1241,9 +1272,21 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Add payment verification after PayPal redirect
+    if (window.location.search.includes('payment=success')) {
+        // Mark user as pro
+        localStorage.setItem('hasPaidForPro', 'true');
+        showNotification('Payment successful! Welcome to Pro Plan!', 'success');
+        
+        // Redirect to pro plan page
+        setTimeout(() => {
+            window.location.href = 'pro-plan.html';
+        }, 2000);
+    }
+
     // Check pro plan access on pro plan page load
     if (window.location.pathname.includes('pro-plan.html')) {
-        if (!checkAuthentication()) {
+        if (!isAuthenticated) {
             showNotification('Please sign up or log in to access this page', 'error');
             setTimeout(() => {
                 window.location.href = 'index.html';
