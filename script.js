@@ -950,9 +950,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Authentication check function
     function checkAuthentication() {
-        // In a real application, this would check for a valid session/token
-        // For demo purposes, we'll use localStorage
-        return localStorage.getItem('isAuthenticated') === 'true';
+        try {
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            return isAuthenticated && userData && Object.keys(userData).length > 0;
+        } catch (error) {
+            console.error('Error checking authentication:', error);
+            return false;
+        }
     }
 
     // Handle successful authentication
@@ -1052,13 +1057,25 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     // Get user data from localStorage
     function getUserData() {
-        return {
-            name: localStorage.getItem('userName') || 'User',
-            fitnessLevel: localStorage.getItem('fitnessLevel') || 'beginner',
-            goal: localStorage.getItem('fitnessGoal') || 'weight-loss',
-            joinDate: localStorage.getItem('joinDate') || new Date().toISOString(),
-            progress: JSON.parse(localStorage.getItem('userProgress') || '{}')
-        };
+        try {
+            const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+            return {
+                name: userData.name || 'User',
+                fitnessLevel: userData.fitnessLevel || 'beginner',
+                goal: userData.goal || 'weight-loss',
+                joinDate: userData.joinDate || new Date().toISOString(),
+                progress: userData.progress || {}
+            };
+        } catch (error) {
+            console.error('Error getting user data:', error);
+            return {
+                name: 'User',
+                fitnessLevel: 'beginner',
+                goal: 'weight-loss',
+                joinDate: new Date().toISOString(),
+                progress: {}
+            };
+        }
     }
 
     // Update user display with personalized data
@@ -1220,24 +1237,32 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     // Check if user has paid for pro plan
     function checkProPlanAccess() {
-        const hasPaid = localStorage.getItem('hasPaidForPro') === 'true';
-        const paymentDate = localStorage.getItem('proPaymentDate');
-        
-        if (hasPaid && paymentDate) {
-            // Check if payment is still valid (e.g., monthly subscription)
-            const paymentTimestamp = new Date(paymentDate).getTime();
-            const currentTimestamp = new Date().getTime();
-            const oneMonth = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+        try {
+            const hasPaid = localStorage.getItem('hasPaidForPro') === 'true';
+            const paymentDate = localStorage.getItem('proPaymentDate');
             
-            if (currentTimestamp - paymentTimestamp > oneMonth) {
-                // Subscription expired
-                localStorage.removeItem('hasPaidForPro');
-                localStorage.removeItem('proPaymentDate');
-                return false;
+            console.log('Checking pro plan access:', { hasPaid, paymentDate });
+            
+            if (hasPaid && paymentDate) {
+                // Check if payment is still valid (e.g., monthly subscription)
+                const paymentTimestamp = new Date(paymentDate).getTime();
+                const currentTimestamp = new Date().getTime();
+                const oneMonth = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+                
+                if (currentTimestamp - paymentTimestamp > oneMonth) {
+                    // Subscription expired
+                    console.log('Subscription expired');
+                    localStorage.removeItem('hasPaidForPro');
+                    localStorage.removeItem('proPaymentDate');
+                    return false;
+                }
+                return true;
             }
+            return false;
+        } catch (error) {
+            console.error('Error checking pro plan access:', error);
+            return false;
         }
-        
-        return hasPaid;
     }
 
     // Handle pro plan button click
@@ -1245,47 +1270,62 @@ document.addEventListener('DOMContentLoaded', function() {
     if (proPlanButton) {
         proPlanButton.addEventListener('click', function(e) {
             e.preventDefault();
+            console.log('Pro plan button clicked');
             
             // Check if user is authenticated
             const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            console.log('Is authenticated:', isAuthenticated);
             
             if (isAuthenticated) {
                 if (checkProPlanAccess()) {
                     // User has pro access, redirect to pro plan
+                    console.log('User has pro access, redirecting...');
                     window.location.href = 'pro-plan.html';
                 } else {
                     // Show confirmation before redirecting to PayPal
+                    console.log('User needs to upgrade, showing confirmation...');
                     if (confirm('You will be redirected to PayPal to complete your payment. Continue?')) {
                         // Add loading state to button
                         this.classList.add('loading');
                         this.disabled = true;
                         
                         // Redirect to PayPal.me
+                        console.log('Redirecting to PayPal...');
                         window.location.href = 'https://paypal.me/Umer844';
                     }
                 }
             } else {
                 // User is not logged in, show auth modal
+                console.log('User not authenticated, showing auth modal...');
                 openAuthModal('signup');
                 showNotification('Please sign up or log in to access the pro plan', 'info');
             }
         });
+    } else {
+        console.error('Pro plan button not found');
     }
 
     // Add payment verification after PayPal redirect
     if (window.location.search.includes('payment=success')) {
-        // Mark user as pro
-        localStorage.setItem('hasPaidForPro', 'true');
-        showNotification('Payment successful! Welcome to Pro Plan!', 'success');
-        
-        // Redirect to pro plan page
-        setTimeout(() => {
-            window.location.href = 'pro-plan.html';
-        }, 2000);
+        try {
+            // Mark user as pro
+            localStorage.setItem('hasPaidForPro', 'true');
+            localStorage.setItem('proPaymentDate', new Date().toISOString());
+            showNotification('Payment successful! Welcome to Pro Plan!', 'success');
+            
+            // Redirect to pro plan page
+            setTimeout(() => {
+                window.location.href = 'pro-plan.html';
+            }, 2000);
+        } catch (error) {
+            console.error('Error processing payment:', error);
+            showNotification('Error processing payment. Please try again.', 'error');
+        }
     }
 
     // Check pro plan access on pro plan page load
     if (window.location.pathname.includes('pro-plan.html')) {
+        const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
         if (!isAuthenticated) {
             showNotification('Please sign up or log in to access this page', 'error');
             setTimeout(() => {
@@ -1373,7 +1413,7 @@ function customizeProExperience() {
     });
 
     // Initialize advanced analytics
-    initializeAdvancedAnalytics();
+    initializeAnalytics();
     
     // Enable AI workout generation
     const workoutForm = document.querySelector('.workout-form');
@@ -1441,7 +1481,8 @@ function handleProWorkoutGeneration(e) {
         goal: formData.get('workout-goal'),
         level: formData.get('workout-level'),
         duration: formData.get('workout-duration'),
-        equipment: formData.get('equipment')
+        equipment: formData.get('equipment'),
+        timestamp: new Date().toISOString()
     };
 
     // Show loading state
@@ -1469,16 +1510,13 @@ function handleProNutritionTracking(e) {
             protein: formData.get('protein'),
             carbs: formData.get('carbs'),
             fat: formData.get('fat')
-        }
+        },
+        timestamp: new Date().toISOString()
     };
 
     // Save meal data with advanced tracking
     const meals = JSON.parse(localStorage.getItem('userMeals') || '[]');
-    meals.push({
-        ...nutritionData,
-        timestamp: new Date().toISOString(),
-        aiAnalysis: 'Analyzing meal composition...'
-    });
+    meals.push(nutritionData);
     localStorage.setItem('userMeals', JSON.stringify(meals));
 
     showNotification('Meal added with advanced tracking!', 'success');
@@ -1503,15 +1541,13 @@ function handleBasicWorkoutTracking(e) {
     const formData = new FormData(e.target);
     const workoutData = {
         goal: formData.get('workout-goal'),
-        level: formData.get('workout-level')
+        level: formData.get('workout-level'),
+        timestamp: new Date().toISOString()
     };
 
     // Save basic workout data
     const workouts = JSON.parse(localStorage.getItem('userWorkouts') || '[]');
-    workouts.push({
-        ...workoutData,
-        timestamp: new Date().toISOString()
-    });
+    workouts.push(workoutData);
     localStorage.setItem('userWorkouts', JSON.stringify(workouts));
 
     showNotification('Workout logged successfully!', 'success');
@@ -1524,15 +1560,13 @@ function handleBasicNutritionTracking(e) {
     const nutritionData = {
         mealType: formData.get('meal-type'),
         food: formData.get('food-item'),
-        calories: formData.get('calories')
+        calories: formData.get('calories'),
+        timestamp: new Date().toISOString()
     };
 
     // Save basic meal data
     const meals = JSON.parse(localStorage.getItem('userMeals') || '[]');
-    meals.push({
-        ...nutritionData,
-        timestamp: new Date().toISOString()
-    });
+    meals.push(nutritionData);
     localStorage.setItem('userMeals', JSON.stringify(meals));
 
     showNotification('Meal added successfully!', 'success');
@@ -1550,23 +1584,35 @@ function handleBasicSupportAction(e) {
 }
 
 // Initialize advanced analytics for pro users
-function initializeAdvancedAnalytics() {
-    const ctx = document.getElementById('progressChart');
-    if (ctx) {
+function initializeAnalytics() {
+    try {
+        const ctx = document.getElementById('progressChart');
+        if (!ctx) {
+            console.warn('Progress chart element not found');
+            return;
+        }
+
         const userData = getUserData();
-        const progress = userData.progress || {};
-        
-        new Chart(ctx, {
+        const progressData = userData.progress || {};
+        const labels = Object.keys(progressData).map(date => new Date(date).toLocaleDateString());
+        const data = Object.values(progressData);
+
+        // Destroy existing chart if it exists
+        if (window.progressChart) {
+            window.progressChart.destroy();
+        }
+
+        window.progressChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: Object.keys(progress).slice(-4),
+                labels: labels,
                 datasets: [{
                     label: 'Progress',
-                    data: Object.values(progress).map(p => p.score || 0),
-                    borderColor: '#00ff88',
+                    data: data,
+                    borderColor: '#4CAF50',
+                    backgroundColor: 'rgba(76, 175, 80, 0.1)',
                     tension: 0.4,
-                    fill: true,
-                    backgroundColor: 'rgba(0, 255, 136, 0.1)'
+                    fill: true
                 }]
             },
             options: {
@@ -1575,29 +1621,83 @@ function initializeAdvancedAnalytics() {
                 plugins: {
                     legend: {
                         display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
                     }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: '#ffffff'
+                            color: 'rgba(0, 0, 0, 0.1)'
                         }
                     },
                     x: {
                         grid: {
-                            color: 'rgba(255, 255, 255, 0.1)'
-                        },
-                        ticks: {
-                            color: '#ffffff'
+                            display: false
                         }
                     }
                 }
             }
         });
+
+        // Update stats display
+        updateStatsDisplay(progressData);
+    } catch (error) {
+        console.error('Error initializing analytics:', error);
+    }
+}
+
+// Enhanced stats display update
+function updateStatsDisplay(progressData) {
+    try {
+        const statsContainer = document.querySelector('.stats-grid');
+        if (!statsContainer) return;
+
+        const lastEntry = Object.entries(progressData).pop();
+        if (!lastEntry) return;
+
+        const [date, value] = lastEntry;
+        const previousValue = Object.values(progressData)[Object.values(progressData).length - 2] || value;
+        const change = ((value - previousValue) / previousValue * 100).toFixed(1);
+
+        statsContainer.innerHTML = `
+            <div class="stat-item">
+                <h3>Current Progress</h3>
+                <p class="stat-value">${value}</p>
+                <p class="stat-change ${change >= 0 ? 'positive' : 'negative'}">
+                    ${change >= 0 ? '+' : ''}${change}%
+                </p>
+            </div>
+            <div class="stat-item">
+                <h3>Last Updated</h3>
+                <p class="stat-value">${new Date(date).toLocaleDateString()}</p>
+            </div>
+        `;
+    } catch (error) {
+        console.error('Error updating stats display:', error);
+    }
+}
+
+// Enhanced progress update
+function updateProgress(value) {
+    try {
+        const userData = getUserData();
+        const progressData = userData.progress || {};
+        const today = new Date().toISOString().split('T')[0];
+        
+        progressData[today] = value;
+        userData.progress = progressData;
+        
+        localStorage.setItem('userData', JSON.stringify(userData));
+        
+        initializeAnalytics();
+        showNotification('Progress updated successfully!', 'success');
+    } catch (error) {
+        console.error('Error updating progress:', error);
+        showNotification('Failed to update progress', 'error');
     }
 }
 
