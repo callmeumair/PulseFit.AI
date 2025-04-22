@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PulseFit AI - Payment</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#nutrition">Nutrition</a></li>
+                <li><a href="#progress">Progress</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li class="user-profile">
+                    <span id="userName">User</span>
+                    <button class="btn-small" id="logoutBtn">Logout</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="payment-section">
+        <div class="container">
+            <div class="payment-header">
+                <h1>Complete Your Pro Plan Subscription</h1>
+                <p>Choose your preferred payment method</p>
+            </div>
+
+            <div class="payment-options">
+                <div class="payment-card">
+                    <i class="fab fa-paypal"></i>
+                    <h3>PayPal</h3>
+                    <p>Pay securely with PayPal</p>
+                    <a href="https://paypal.me/Umer844" class="btn payment-btn" target="_blank">
+                        Pay with PayPal
+                    </a>
+                </div>
+
+                <div class="payment-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>UPI Payment</h3>
+                    <p>Pay using UPI</p>
+                    <div class="upi-details">
+                        <p>UPI ID: 9022264804</p>
+                        <button class="btn payment-btn" onclick="copyUPI()">
+                            Copy UPI ID
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="payment-instructions">
+                <h3>Payment Instructions</h3>
+                <div class="instructions-content">
+                    <div class="instruction-step">
+                        <span class="step-number">1</span>
+                        <p>Choose your preferred payment method</p>
+                    </div>
+                    <div class="instruction-step">
+                        <span class="step-number">2</span>
+                        <p>Complete the payment using the selected method</p>
+                    </div>
+                    <div class="instruction-step">
+                        <span class="step-number">3</span>
+                        <p>After successful payment, you'll be redirected to your Pro Plan dashboard</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function copyUPI() {
+            const upiId = '9022264804';
+            navigator.clipboard.writeText(upiId).then(() => {
+                alert('UPI ID copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy UPI ID:', err);
+            });
+        }
+    </script>
+</body>
+</html> 
