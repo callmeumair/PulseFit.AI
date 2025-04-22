@@ -1951,21 +1951,36 @@ body {
 
 /* Payment Section Styles */
 .payment-section {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border: 1px solid #e9ecef;
-    padding: 2rem;
-    margin-top: 2rem;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: calc(100vh - 60px);
 }
 
-.subscription-options {
+.payment-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.payment-header h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.payment-header p {
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.payment-options {
     display: flex;
     gap: 2rem;
     justify-content: center;
-    margin: 2rem 0;
+    margin-bottom: 3rem;
     flex-wrap: wrap;
 }
 
-.subscription-card {
+.payment-card {
     background: white;
     border-radius: 12px;
     padding: 2rem;
@@ -1973,77 +1988,32 @@ body {
     flex: 1;
     min-width: 300px;
     max-width: 400px;
-    position: relative;
+    text-align: center;
     transition: transform 0.3s ease;
 }
 
-.subscription-card:hover {
+.payment-card:hover {
     transform: translateY(-5px);
 }
 
-.subscription-card.popular {
-    border: 2px solid #007bff;
+.payment-card i {
+    font-size: 3rem;
+    color: #007bff;
+    margin-bottom: 1rem;
 }
 
-.popular-badge {
-    position: absolute;
-    top: -12px;
-    right: 20px;
-    background: #007bff;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-.subscription-card h4 {
+.payment-card h3 {
     font-size: 1.5rem;
-    margin-bottom: 1rem;
     color: #2c3e50;
+    margin-bottom: 0.5rem;
 }
 
-.price {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #2c3e50;
-    margin-bottom: 1rem;
-}
-
-.price span {
-    font-size: 1rem;
+.payment-card p {
     color: #6c757d;
+    margin-bottom: 1.5rem;
 }
 
-.savings {
-    background: #28a745;
-    color: white;
-    padding: 0.5rem;
-    border-radius: 4px;
-    text-align: center;
-    margin-bottom: 1rem;
-    font-weight: bold;
-}
-
-.benefits {
-    list-style: none;
-    padding: 0;
-    margin: 1.5rem 0;
-}
-
-.benefits li {
-    margin-bottom: 0.8rem;
-    display: flex;
-    align-items: center;
-    color: #495057;
-}
-
-.benefits li i {
-    color: #28a745;
-    margin-right: 0.5rem;
-}
-
-.subscribe-btn {
+.payment-btn {
     width: 100%;
     padding: 1rem;
     background: #007bff;
@@ -2054,43 +2024,85 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.subscribe-btn:hover {
+.payment-btn:hover {
     background: #0056b3;
 }
 
-.payment-methods {
-    text-align: center;
-    margin-top: 2rem;
-    padding-top: 2rem;
-    border-top: 1px solid #e9ecef;
+.upi-details {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
 }
 
-.payment-methods h4 {
-    color: #6c757d;
+.upi-details p {
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: #2c3e50;
     margin-bottom: 1rem;
 }
 
-.payment-icons {
+.payment-instructions {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.payment-instructions h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.instructions-content {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     gap: 1.5rem;
 }
 
-.payment-icons i {
-    font-size: 2rem;
-    color: #6c757d;
+.instruction-step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.step-number {
+    background: #007bff;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.instruction-step p {
+    color: #495057;
+    margin: 0;
 }
 
 @media (max-width: 768px) {
-    .subscription-options {
+    .payment-options {
         flex-direction: column;
         align-items: center;
     }
     
-    .subscription-card {
+    .payment-card {
         width: 100%;
         max-width: 100%;
+    }
+    
+    .payment-header h1 {
+        font-size: 2rem;
     }
 }

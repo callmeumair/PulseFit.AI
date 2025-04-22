@@ -1282,17 +1282,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('User has pro access, redirecting...');
                     window.location.href = 'pro-plan.html';
                 } else {
-                    // Show confirmation before redirecting to PayPal
-                    console.log('User needs to upgrade, showing confirmation...');
-                    if (confirm('You will be redirected to PayPal to complete your payment. Continue?')) {
-                        // Add loading state to button
-                        this.classList.add('loading');
-                        this.disabled = true;
-                        
-                        // Redirect to PayPal.me
-                        console.log('Redirecting to PayPal...');
-                        window.location.href = 'https://paypal.me/Umer844';
-                    }
+                    // Redirect to payment page
+                    console.log('Redirecting to payment page...');
+                    window.location.href = 'payment.html';
                 }
             } else {
                 // User is not logged in, show auth modal
