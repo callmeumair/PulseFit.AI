@@ -1704,4 +1704,123 @@ function updateProgress(value) {
 // Initialize user experience on page load
 document.addEventListener('DOMContentLoaded', function() {
     customizeUserExperience();
-}); 
+});
+
+// Subscription handling
+document.addEventListener('DOMContentLoaded', function() {
+    const subscribeButtons = document.querySelectorAll('.subscribe-btn');
+    
+    subscribeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const plan = this.getAttribute('data-plan');
+            handleSubscription(plan);
+        });
+    });
+});
+
+function handleSubscription(plan) {
+    // Here you would typically integrate with a payment processor like Stripe
+    // For now, we'll show a confirmation dialog
+    const price = plan === 'monthly' ? '$19.99' : '$149.99';
+    const period = plan === 'monthly' ? 'month' : 'year';
+    
+    if (confirm(`You are about to subscribe to the ${plan} plan for ${price} per ${period}. Would you like to proceed?`)) {
+        // In a real implementation, this would redirect to a payment processor
+        // or show a payment form
+        showPaymentForm(plan);
+    }
+}
+
+function showPaymentForm(plan) {
+    // Create and show a modal with payment form
+    const modal = document.createElement('div');
+    modal.className = 'payment-modal';
+    modal.innerHTML = `
+        <div class="payment-modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Complete Your Subscription</h2>
+            <form id="payment-form">
+                <div class="form-group">
+                    <label for="card-name">Name on Card</label>
+                    <input type="text" id="card-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="expiry">Expiry Date</label>
+                        <input type="text" id="expiry" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" placeholder="123" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn">Pay Now</button>
+            </form>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Add event listeners
+    const closeBtn = modal.querySelector('.close-modal');
+    closeBtn.onclick = function() {
+        modal.remove();
+    };
+    
+    const form = modal.querySelector('#payment-form');
+    form.onsubmit = function(e) {
+        e.preventDefault();
+        // Here you would typically process the payment
+        // For now, we'll just show a success message
+        alert('Payment successful! Welcome to PulseFit Pro!');
+        modal.remove();
+    };
+}
+
+// Add styles for the payment modal
+const style = document.createElement('style');
+style.textContent = `
+    .payment-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    .payment-modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+    }
+    
+    .close-modal {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+    
+    .form-row {
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .form-row .form-group {
+        flex: 1;
+    }
+`;
+document.head.appendChild(style); 

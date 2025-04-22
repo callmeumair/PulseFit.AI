@@ -1948,3 +1948,149 @@ body {
     opacity: 0.7;
     cursor: not-allowed;
 }
+
+/* Payment Section Styles */
+.payment-section {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    border: 1px solid #e9ecef;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.subscription-options {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.subscription-card {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.subscription-card:hover {
+    transform: translateY(-5px);
+}
+
+.subscription-card.popular {
+    border: 2px solid #007bff;
+}
+
+.popular-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: #007bff;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.subscription-card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+.price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.price span {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.savings {
+    background: #28a745;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.benefits {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.benefits li {
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    color: #495057;
+}
+
+.benefits li i {
+    color: #28a745;
+    margin-right: 0.5rem;
+}
+
+.subscribe-btn {
+    width: 100%;
+    padding: 1rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.subscribe-btn:hover {
+    background: #0056b3;
+}
+
+.payment-methods {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.payment-methods h4 {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.payment-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.payment-icons i {
+    font-size: 2rem;
+    color: #6c757d;
+}
+
+@media (max-width: 768px) {
+    .subscription-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .subscription-card {
+        width: 100%;
+        max-width: 100%;
+    }
+}
