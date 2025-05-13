@@ -189,6 +189,76 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add mobile menu functionality
     initializeMobileMenu();
+
+    // Cursor Following Effect
+    const cursor = document.querySelector('.cursor-follower');
+    const links = document.querySelectorAll('.nav-link');
+    const buttons = document.querySelectorAll('button, .btn, .welcome-btn');
+
+    // Cursor movement
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    // Cursor effects on interactive elements
+    const handleMouseEnter = () => cursor.classList.add('active');
+    const handleMouseLeave = () => cursor.classList.remove('active');
+
+    links.forEach(link => link.addEventListener('mouseenter', handleMouseEnter));
+    links.forEach(link => link.addEventListener('mouseleave', handleMouseLeave));
+    buttons.forEach(button => button.addEventListener('mouseenter', handleMouseEnter));
+    buttons.forEach(button => button.addEventListener('mouseleave', handleMouseLeave));
+
+    // Hide cursor when leaving window
+    document.addEventListener('mouseleave', () => {
+        cursor.style.opacity = '0';
+    });
+
+    document.addEventListener('mouseenter', () => {
+        cursor.style.opacity = '0.5';
+    });
+
+    // Active navigation highlighting
+    const sections = document.querySelectorAll('section[id]');
+
+    function highlightNavigation() {
+        const scrollY = window.pageYOffset;
+
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100;
+            const sectionId = section.getAttribute('id');
+
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                links.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${sectionId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', highlightNavigation);
+    window.addEventListener('load', highlightNavigation);
+
+    // Smooth scroll for navigation links
+    links.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
 });
 
 // Chart Initialization

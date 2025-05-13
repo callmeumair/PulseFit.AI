@@ -101,33 +101,73 @@ body {
 
 .nav-links {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
     gap: 2rem;
-    list-style: none;
+    align-items: center;
 }
 
 .nav-link {
     color: var(--text-color);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
+    transition: all 0.3s ease;
     position: relative;
+    overflow: hidden;
+    background: transparent;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    border-radius: var(--border-radius);
 }
 
 .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -5px;
-    left: 0;
+    bottom: -2px;
+    left: 50%;
     width: 0;
     height: 2px;
-    background: var(--gradient-start);
-    transition: width 0.3s ease;
+    background: var(--gradient-primary);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover {
+    color: var(--background-color);
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.nav-link:hover::before {
+    opacity: 1;
 }
 
 .nav-link:hover::after {
-    width: 100%;
+    width: 80%;
+}
+
+.nav-link.active {
+    color: var(--background-color);
+    background: var(--gradient-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.nav-link.active::before {
+    opacity: 1;
+}
+
+.nav-link.active::after {
+    width: 80%;
 }
 
 /* Mobile Menu Styles */
@@ -2424,4 +2464,44 @@ body {
         width: 100%;
         justify-content: center;
     }
+}
+
+/* Cursor Following Effect */
+.cursor-follower {
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    z-index: 9999;
+    transition: transform 0.1s ease;
+    transform: translate(-50%, -50%);
+    opacity: 0.5;
+    filter: blur(1px);
+}
+
+.cursor-follower.active {
+    transform: translate(-50%, -50%) scale(1.5);
+    background: var(--gradient-primary);
+    opacity: 0.8;
+}
+
+/* Glow Animation */
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 136, 0.5),
+                    0 0 30px rgba(0, 255, 136, 0.3);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(0, 255, 136, 0.3);
+    }
+}
+
+.nav-link:hover {
+    animation: glowPulse 2s infinite;
 }
