@@ -1,25 +1,25 @@
 /* Modern CSS Reset and Base Styles */
 :root {
-    --primary-color: #4a90e2;
-    --secondary-color: #2ecc71;
-    --accent-color: #e74c3c;
-    --text-color: #2c3e50;
-    --background-color: #f8f9fa;
-    --card-background: rgba(255, 255, 255, 0.9);
-    --glass-background: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --shadow-color: rgba(0, 0, 0, 0.1);
-    --gradient-start: #4a90e2;
-    --gradient-end: #2ecc71;
-    --success-color: #28a745;
-    --background-dark: #121212;
-    --text-light: #ffffff;
-    --text-dark: #333333;
+    --primary-color: #00ff88;
+    --secondary-color: #00b4d8;
+    --accent-color: #ff4d4d;
+    --text-color: #ffffff;
+    --text-secondary: #b3b3b3;
+    --background-color: #000000;
+    --background-secondary: #121212;
+    --card-background: rgba(18, 18, 18, 0.95);
+    --glass-background: rgba(18, 18, 18, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --gradient-start: #00ff88;
+    --gradient-end: #00b4d8;
+    --success-color: #00ff88;
+    --error-color: #ff4d4d;
     --border-radius: 12px;
     --transition-speed: 0.3s;
-    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     --gradient-primary: linear-gradient(135deg, #00ff88 0%, #00b4d8 100%);
-    --gradient-dark: linear-gradient(135deg, #1a1a1a 0%, #121212 100%);
+    --gradient-dark: linear-gradient(135deg, #121212 0%, #000000 100%);
 }
 
 * {
@@ -34,7 +34,7 @@ body {
     padding: 0;
     line-height: 1.6;
     color: var(--text-color);
-    background: linear-gradient(135deg, var(--background-color), #e9ecef);
+    background: var(--background-color);
     overflow-x: hidden;
 }
 
@@ -64,6 +64,8 @@ body {
     z-index: 1000;
     padding: 1rem 0;
     transition: all 0.3s ease;
+    background: var(--background-secondary);
+    border-bottom: 1px solid var(--glass-border);
 }
 
 .navbar.scrolled {
@@ -170,7 +172,7 @@ body {
         left: 0;
         width: 100%;
         padding: 1rem;
-        background: rgba(18, 18, 18, 0.98);
+        background: var(--card-background);
         backdrop-filter: blur(10px);
         flex-direction: column;
         gap: 1rem;
@@ -179,6 +181,7 @@ body {
         opacity: 0;
         transition: all var(--transition-speed) ease;
         pointer-events: none;
+        border: 1px solid var(--glass-border);
     }
 
     .nav-links.active {
@@ -352,8 +355,8 @@ body {
 .form textarea {
     width: 100%;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: var(--background-secondary);
+    border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
     color: var(--text-color);
     font-size: 1rem;
@@ -365,8 +368,7 @@ body {
 .form textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
 }
 
 /* Enhanced Grid Layout */
@@ -384,7 +386,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--background-secondary);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -393,7 +395,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #0056b3;
+    background: var(--secondary-color);
 }
 
 /* Loading Skeleton Animation */
@@ -598,22 +600,22 @@ body {
   width: 100%;
   padding: 1rem;
   font-size: 1.1rem;
-  background: var(--primary-color);
-  color: white;
-  border: none;
+  background: var(--background-secondary);
+  color: var(--text-color);
+  border: 1px solid var(--glass-border);
   border-radius: var(--border-radius);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .pricing-btn:hover {
-  background: var(--primary-dark);
-  transform: translateY(-2px);
+  background: var(--primary-color);
+  color: var(--background-color);
 }
 
 .pricing-btn.featured-btn {
   background: var(--primary-color);
-  color: white;
+  color: var(--background-color);
 }
 
 .pricing-note {
@@ -1057,12 +1059,12 @@ body {
   right: 20px;
   width: 350px;
   height: 500px;
-  background: #1a1a1a;
+  background: var(--card-background);
   border-radius: var(--border-radius);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   display: none;
   flex-direction: column;
-  border: 1px solid #333;
+  border: 1px solid var(--glass-border);
   overflow: hidden;
 }
 
@@ -1073,12 +1075,12 @@ body {
 
 .chatbot-header {
   padding: 1rem;
-  background: #000;
+  background: var(--background-secondary);
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--glass-border);
 }
 
 .chatbot-header h3 {
@@ -1116,32 +1118,32 @@ body {
 }
 
 .message.bot {
-  background: #333;
-  color: white;
+  background: var(--background-secondary);
+  color: var(--text-color);
   align-self: flex-start;
 }
 
 .message.user {
   background: var(--primary-color);
-  color: white;
+  color: var(--background-color);
   align-self: flex-end;
 }
 
 .chatbot-input {
   padding: 1rem;
-  background: #000;
+  background: var(--background-secondary);
   display: flex;
   gap: 0.5rem;
-  border-top: 1px solid #333;
+  border-top: 1px solid var(--glass-border);
 }
 
 .chatbot-input input {
   flex: 1;
   padding: 0.8rem;
-  border: 1px solid #333;
+  border: 1px solid var(--glass-border);
   border-radius: var(--border-radius);
-  background: #1a1a1a;
-  color: white;
+  background: var(--card-background);
+  color: var(--text-color);
   transition: border-color 0.3s ease;
 }
 
@@ -1152,7 +1154,7 @@ body {
 
 .chatbot-input button {
   background: var(--primary-color);
-  color: white;
+  color: var(--background-color);
   border: none;
   border-radius: var(--border-radius);
   padding: 0.8rem;
@@ -1625,17 +1627,17 @@ body {
 .form-group select {
     width: 100%;
     padding: 0.8rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: var(--background-secondary);
+    border: 1px solid var(--glass-border);
     border-radius: 8px;
-    color: #fff;
+    color: var(--text-color);
     transition: all 0.3s ease;
 }
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: #00ff88;
+    border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
 }
 
@@ -1694,8 +1696,8 @@ body {
     width: 20px;
     height: 20px;
     margin: -10px 0 0 -10px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top-color: #fff;
+    border: 2px solid var(--text-color);
+    border-top-color: transparent;
     border-radius: 50%;
     animation: spin 1s linear infinite;
 }
@@ -1898,8 +1900,8 @@ body {
     right: 20px;
     padding: 15px 25px;
     border-radius: 8px;
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
+    background: var(--card-background);
+    color: var(--text-color);
     z-index: 1000;
     transform: translateX(120%);
     transition: transform 0.3s ease;
@@ -1922,11 +1924,11 @@ body {
 }
 
 .notification.success {
-    border-left: 4px solid #4CAF50;
+    border-left: 4px solid var(--success-color);
 }
 
 .notification.error {
-    border-left: 4px solid #f44336;
+    border-left: 4px solid var(--error-color);
 }
 
 .notification.info {
@@ -1948,7 +1950,7 @@ body {
     width: 20px;
     height: 20px;
     margin: -10px 0 0 -10px;
-    border: 2px solid #fff;
+    border: 2px solid var(--text-color);
     border-top-color: transparent;
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -1982,6 +1984,7 @@ body {
 
 /* Payment Section Styles */
 .payment-section {
+    background: var(--background-color);
     padding: 120px 20px 60px;
 }
 
@@ -1991,6 +1994,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.6s ease;
+    color: var(--text-color);
 }
 
 .payment-header.animate {
@@ -2009,7 +2013,7 @@ body {
 }
 
 .subtitle {
-    color: #666;
+    color: var(--text-secondary);
     font-size: 1.2rem;
 }
 
@@ -2028,6 +2032,8 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     opacity: 0;
     transform: translateY(20px);
+    background: var(--card-background);
+    border: 1px solid var(--glass-border);
 }
 
 .payment-card.animate {
@@ -2053,7 +2059,7 @@ body {
 }
 
 .payment-card p {
-    color: #666;
+    color: var(--text-secondary);
     margin-bottom: 1.5rem;
 }
 
@@ -2068,12 +2074,13 @@ body {
     transition: all 0.3s ease;
     text-decoration: none;
     color: var(--text-color);
-    background: var(--card-background);
+    background: var(--background-secondary);
+    border: 1px solid var(--glass-border);
 }
 
 .payment-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px var(--shadow-color);
+    background: var(--primary-color);
+    color: var(--background-color);
 }
 
 .payment-btn i {
@@ -2089,6 +2096,8 @@ body {
     padding: 1rem;
     border-radius: 8px;
     margin-top: 1rem;
+    background: var(--background-secondary);
+    border: 1px solid var(--glass-border);
 }
 
 .upi-id {
@@ -2104,6 +2113,8 @@ body {
     padding: 0.3rem 0.6rem;
     border-radius: 4px;
     font-family: monospace;
+    color: var(--primary-color);
+    border: 1px solid var(--glass-border);
 }
 
 /* Payment Instructions */
@@ -2113,6 +2124,8 @@ body {
     opacity: 0;
     transform: translateY(20px);
     transition: all 0.6s ease;
+    background: var(--card-background);
+    border: 1px solid var(--glass-border);
 }
 
 .payment-instructions.animate {
@@ -2135,7 +2148,7 @@ body {
 .step-number {
     width: 30px;
     height: 30px;
-    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    background: var(--gradient-primary);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -2165,11 +2178,11 @@ body {
 }
 
 .notification.success {
-    border-left: 4px solid var(--secondary-color);
+    border-left: 4px solid var(--success-color);
 }
 
 .notification.error {
-    border-left: 4px solid var(--accent-color);
+    border-left: 4px solid var(--error-color);
 }
 
 /* Responsive Design */
@@ -2224,6 +2237,7 @@ body {
 
 .user-name {
     font-weight: 500;
+    color: var(--text-color);
 }
 
 .btn-small {
@@ -2231,8 +2245,10 @@ body {
     border-radius: 6px;
     font-size: 0.9rem;
     cursor: pointer;
-    border: none;
+    border: 1px solid var(--glass-border);
     transition: all 0.3s ease;
+    background: var(--background-secondary);
+    color: var(--text-color);
 }
 
 .btn-small:hover {
