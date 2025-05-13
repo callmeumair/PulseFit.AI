@@ -6,18 +6,19 @@
     <title>PulseFit AI - Payment</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar">
+    <nav class="navbar glass-effect">
         <div class="container">
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#nutrition">Nutrition</a></li>
-                <li><a href="#progress">Progress</a></li>
-                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="#nutrition" class="nav-link">Nutrition</a></li>
+                <li><a href="#progress" class="nav-link">Progress</a></li>
+                <li><a href="#pricing" class="nav-link">Pricing</a></li>
                 <li class="user-profile">
-                    <span id="userName">User</span>
-                    <button class="btn-small" id="logoutBtn">Logout</button>
+                    <span id="userName" class="user-name">User</span>
+                    <button class="btn-small glass-effect" id="logoutBtn">Logout</button>
                 </li>
             </ul>
         </div>
@@ -25,47 +26,56 @@
 
     <section class="payment-section">
         <div class="container">
-            <div class="payment-header">
-                <h1>Complete Your Pro Plan Subscription</h1>
-                <p>Choose your preferred payment method</p>
+            <div class="payment-header animate-on-scroll">
+                <h1 class="gradient-text">Complete Your Pro Plan Subscription</h1>
+                <p class="subtitle">Choose your preferred payment method</p>
             </div>
 
             <div class="payment-options">
-                <div class="payment-card">
-                    <i class="fab fa-paypal"></i>
+                <div class="payment-card glass-effect animate-on-scroll">
+                    <div class="payment-icon">
+                        <i class="fab fa-paypal"></i>
+                    </div>
                     <h3>PayPal</h3>
                     <p>Pay securely with PayPal</p>
-                    <a href="https://paypal.me/Umer844" class="btn payment-btn" target="_blank">
-                        Pay with PayPal
+                    <a href="https://paypal.me/Umer844" class="btn payment-btn glass-effect" target="_blank">
+                        <span>Pay with PayPal</span>
+                        <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
 
-                <div class="payment-card">
-                    <i class="fas fa-mobile-alt"></i>
+                <div class="payment-card glass-effect animate-on-scroll">
+                    <div class="payment-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
                     <h3>UPI Payment</h3>
                     <p>Pay using UPI</p>
-                    <div class="upi-details">
-                        <p>UPI ID: 9022264804</p>
-                        <button class="btn payment-btn" onclick="copyUPI()">
-                            Copy UPI ID
+                    <div class="upi-details glass-effect">
+                        <div class="upi-id">
+                            <span>UPI ID:</span>
+                            <code>9022264804</code>
+                        </div>
+                        <button class="btn payment-btn glass-effect" onclick="copyUPI()">
+                            <span>Copy UPI ID</span>
+                            <i class="fas fa-copy"></i>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <div class="payment-instructions">
+            <div class="payment-instructions glass-effect animate-on-scroll">
                 <h3>Payment Instructions</h3>
                 <div class="instructions-content">
                     <div class="instruction-step">
-                        <span class="step-number">1</span>
+                        <div class="step-number">1</div>
                         <p>Choose your preferred payment method</p>
                     </div>
                     <div class="instruction-step">
-                        <span class="step-number">2</span>
+                        <div class="step-number">2</div>
                         <p>Complete the payment using the selected method</p>
                     </div>
                     <div class="instruction-step">
-                        <span class="step-number">3</span>
+                        <div class="step-number">3</div>
                         <p>After successful payment, you'll be redirected to your Pro Plan dashboard</p>
                     </div>
                 </div>
@@ -73,15 +83,46 @@
         </div>
     </section>
 
+    <div id="notification" class="notification"></div>
+
     <script>
         function copyUPI() {
             const upiId = '9022264804';
             navigator.clipboard.writeText(upiId).then(() => {
-                alert('UPI ID copied to clipboard!');
+                showNotification('UPI ID copied to clipboard!', 'success');
             }).catch(err => {
                 console.error('Failed to copy UPI ID:', err);
+                showNotification('Failed to copy UPI ID', 'error');
             });
         }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html> 
