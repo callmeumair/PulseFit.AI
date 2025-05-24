@@ -1614,15 +1614,15 @@ body {
 }
 
 /* Personalized User Experience Styles */
-.user-welcome {
+.welcome-section {
     position: relative;
-    min-height: 100vh;
+    height: calc(100vh - 70px); /* Adjust 70px to your navbar height if needed */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 2rem;
-    padding-top: 90px;
+    padding: 0 2rem;
+    margin-top: 70px; /* Push section below navbar */
 }
 
 .welcome-content {
