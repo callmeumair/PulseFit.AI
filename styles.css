@@ -252,14 +252,9 @@ body {
 /* Hero Section Styles */
 .hero {
     position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
+    width: 100%;
+    height: 100vh;
     overflow: hidden;
-    background: #000;
 }
 
 .hero-video {
@@ -268,14 +263,14 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
-    opacity: 0.3;
+    z-index: 0;
 }
 
 .hero-video video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
 .overlay {
@@ -284,8 +279,13 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: -1;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.5) 50%,
+        rgba(0, 0, 0, 0.7) 100%
+    );
+    z-index: 1;
 }
 
 .hero .container {
@@ -2304,14 +2304,12 @@ body {
 
 /* Welcome Section Styles */
 .welcome-section {
+    position: relative;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: var(--background-color);
-    position: relative;
-    overflow: hidden;
     padding: 2rem;
 }
 
@@ -2328,142 +2326,95 @@ body {
 
 .welcome-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     max-width: 800px;
-    animation: fadeInUp 1s ease;
+    margin: 0 auto;
 }
 
 .welcome-title {
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 800;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-    background: linear-gradient(135deg, #fff 0%, var(--primary-color) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-    animation: glowPulse 2s ease-in-out infinite;
+    color: #ffffff;
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .welcome-subtitle {
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
-    margin-bottom: 2.5rem;
-    color: var(--text-secondary);
-    text-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .welcome-buttons {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
 }
 
 .welcome-btn {
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
     font-weight: 600;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    transition: all 0.3s ease;
 }
 
 .welcome-btn.primary {
-    background: var(--gradient-primary);
-    color: var(--background-color);
-    border: none;
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    background: var(--primary-color);
+    color: #ffffff;
 }
 
 .welcome-btn.secondary {
-    background: transparent;
-    color: var(--text-color);
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
-}
-
-.welcome-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255, 255, 255, 0.3),
-        transparent
-    );
-    transition: all 0.6s ease;
-}
-
-.welcome-btn:hover::before {
-    left: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .welcome-btn:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .welcome-btn.primary:hover {
-    box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+    background: var(--primary-color-dark);
 }
 
 .welcome-btn.secondary:hover {
-    background: rgba(0, 255, 136, 0.1);
-    box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.welcome-btn i {
-    font-size: 1.2em;
-    transition: transform 0.3s ease;
-}
-
-.welcome-btn:hover i {
-    transform: translateX(3px);
-}
-
-@keyframes glowPulse {
-    0% {
-        text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-    }
-    50% {
-        text-shadow: 0 0 30px rgba(0, 255, 136, 0.5),
-                     0 0 40px rgba(0, 255, 136, 0.3);
-    }
-    100% {
-        text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
-    }
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Responsive Styles */
+/* Responsive adjustments for video background */
 @media (max-width: 768px) {
-    .welcome-section {
-        padding: 1rem;
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .welcome-btn {
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-title {
+        font-size: 2rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1rem;
     }
 
     .welcome-buttons {
         flex-direction: column;
-        gap: 1rem;
     }
 
     .welcome-btn {
