@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - PulseFit.AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-box">
+            <div class="auth-header">
+                <h1>Create Account</h1>
+                <p>Start your fitness journey with PulseFit.AI</p>
+            </div>
+            <form id="signupForm" class="auth-form">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Create a password">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                </div>
+                <button type="submit" class="auth-button">Create Account</button>
+            </form>
+            <div class="auth-footer">
+                <p>Already have an account? <a href="login.html">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

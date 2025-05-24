@@ -779,19 +779,66 @@ window.addEventListener('click', (event) => {
 
 closeModal.addEventListener('click', closeAuthModal);
 
-// Form submission handlers
-document.getElementById('signup').addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Add your signup logic here
-    alert('Sign up successful!');
-    closeAuthModal();
-});
+// Authentication Form Handling
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
 
-document.getElementById('login').addEventListener('submit', (e) => {
-    e.preventDefault();
-    // Add your login logic here
-    alert('Login successful!');
-    closeAuthModal();
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                // Here you would typically make an API call to your backend
+                // For now, we'll just log the attempt
+                console.log('Login attempt:', { email });
+                
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Redirect to home page after successful login
+                window.location.href = 'index.html';
+            } catch (error) {
+                console.error('Login failed:', error);
+                alert('Login failed. Please try again.');
+            }
+        });
+    }
+
+    if (signupForm) {
+        signupForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Basic validation
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            try {
+                // Here you would typically make an API call to your backend
+                // For now, we'll just log the attempt
+                console.log('Signup attempt:', { fullName, email });
+                
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Redirect to login page after successful signup
+                window.location.href = 'login.html';
+            } catch (error) {
+                console.error('Signup failed:', error);
+                alert('Signup failed. Please try again.');
+            }
+        });
+    }
 });
 
 // Chatbot Functionality
