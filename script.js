@@ -630,9 +630,11 @@ function debounce(func, wait) {
 }
 
 function updateLayout() {
-    // Add any layout updates needed on resize
-    const heroHeight = window.innerHeight;
-    document.querySelector('.hero').style.minHeight = `${heroHeight}px`;
+    // Update any layout-sensitive calculations
+    const welcomeSection = document.querySelector('.welcome-section');
+    if (welcomeSection) {
+        welcomeSection.style.minHeight = `${window.innerHeight - 70}px`;
+    }
 }
 
 // Add smooth scrolling polyfill for Safari
