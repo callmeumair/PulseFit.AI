@@ -630,12 +630,64 @@ function debounce(func, wait) {
 }
 
 function updateLayout() {
-    // Update any layout-sensitive calculations
+    // Update layout-sensitive calculations
     const welcomeSection = document.querySelector('.welcome-section');
-    if (welcomeSection) {
-        welcomeSection.style.minHeight = `${window.innerHeight - 70}px`;
+    const navbar = document.querySelector('.navbar');
+    
+    if (welcomeSection && navbar) {
+        const navbarHeight = navbar.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isAndroid = /Android/.test(navigator.userAgent);
+        
+        // Set minimum height based on device
+        if (isIOS) {
+            welcomeSection.style.minHeight = `${windowHeight - navbarHeight}px`;
+        } else if (isAndroid) {
+            welcomeSection.style.minHeight = `${windowHeight - navbarHeight}px`;
+        } else {
+            welcomeSection.style.minHeight = `${windowHeight - navbarHeight}px`;
+        }
+        
+        // Update content positioning
+        const welcomeContent = welcomeSection.querySelector('.welcome-content');
+        if (welcomeContent) {
+            const contentHeight = welcomeContent.offsetHeight;
+            const windowWidth = window.innerWidth;
+            
+            // Adjust padding for different screen sizes
+            if (windowWidth <= 480) {
+                welcomeContent.style.padding = '0.5rem';
+            } else if (windowWidth <= 768) {
+                welcomeContent.style.padding = '1rem';
+            } else if (windowWidth <= 1024) {
+                welcomeContent.style.padding = '1.5rem';
+            } else {
+                welcomeContent.style.padding = '2rem';
+            }
+        }
     }
 }
+
+// Add resize observer for better performance
+const resizeObserver = new ResizeObserver(debounce(() => {
+    updateLayout();
+}, 100));
+
+// Observe the welcome section
+const welcomeSection = document.querySelector('.welcome-section');
+if (welcomeSection) {
+    resizeObserver.observe(welcomeSection);
+}
+
+// Update layout on orientation change
+window.addEventListener('orientationchange', () => {
+    setTimeout(updateLayout, 100);
+});
+
+// Update layout on load and resize
+window.addEventListener('load', updateLayout);
+window.addEventListener('resize', debounce(updateLayout, 100));
 
 // Add smooth scrolling polyfill for Safari
 if (!('scrollBehavior' in document.documentElement.style)) {
