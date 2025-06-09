@@ -289,6 +289,11 @@ body {
     line-height: 1.2;
     position: relative;
     animation: glowPulse 3s ease-in-out infinite;
+    padding: 1.5rem;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 @keyframes glowPulse {
@@ -310,67 +315,76 @@ body {
     }
 }
 
-/* Add a subtle gradient animation to the glow */
+/* Glowing border effect */
 .welcome-title::before {
-    content: 'Welcome to PulseFit AI';
+    content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
     background: linear-gradient(45deg, 
-        rgba(0, 255, 136, 0.1),
-        rgba(0, 180, 216, 0.1),
-        rgba(0, 255, 136, 0.1)
+        var(--primary-color),
+        #00b4d8,
+        var(--primary-color)
     );
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientFlow 8s ease infinite;
-    filter: blur(8px);
-    opacity: 0.5;
+    border-radius: 17px;
     z-index: -1;
+    animation: borderGlow 3s ease-in-out infinite;
+    filter: blur(8px);
+    opacity: 0.7;
 }
 
-@keyframes gradientFlow {
+@keyframes borderGlow {
     0% {
-        background-position: 0% 50%;
+        opacity: 0.5;
+        filter: blur(8px) brightness(1);
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.3),
+                    inset 0 0 15px rgba(0, 255, 136, 0.3);
     }
     50% {
-        background-position: 100% 50%;
+        opacity: 0.8;
+        filter: blur(12px) brightness(1.2);
+        box-shadow: 0 0 25px rgba(0, 255, 136, 0.5),
+                    inset 0 0 25px rgba(0, 255, 136, 0.5);
     }
     100% {
-        background-position: 0% 50%;
+        opacity: 0.5;
+        filter: blur(8px) brightness(1);
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.3),
+                    inset 0 0 15px rgba(0, 255, 136, 0.3);
     }
 }
 
-/* Add a subtle shine effect */
+/* Add a subtle shine effect to the border */
 .welcome-title::after {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
     background: linear-gradient(
         45deg,
         transparent 0%,
         rgba(0, 255, 136, 0.1) 45%,
-        rgba(0, 255, 136, 0.2) 50%,
+        rgba(0, 255, 136, 0.3) 50%,
         rgba(0, 255, 136, 0.1) 55%,
         transparent 100%
     );
-    transform: rotate(45deg);
-    animation: shine 6s infinite;
-    pointer-events: none;
+    border-radius: 17px;
+    z-index: -1;
+    animation: borderShine 6s infinite;
+    filter: blur(4px);
 }
 
-@keyframes shine {
+@keyframes borderShine {
     0% {
+        opacity: 0;
         transform: translateX(-100%) rotate(45deg);
     }
     20%, 100% {
+        opacity: 0.5;
         transform: translateX(100%) rotate(45deg);
     }
 }
@@ -378,22 +392,32 @@ body {
 /* Optimize for different devices */
 @media (max-width: 768px) {
     .welcome-title {
+        padding: 1rem;
         animation: glowPulseMobile 3s ease-in-out infinite;
     }
     
-    @keyframes glowPulseMobile {
+    .welcome-title::before {
+        filter: blur(6px);
+    }
+    
+    @keyframes borderGlow {
         0% {
-            text-shadow: 0 0 8px rgba(0, 255, 136, 0.3),
-                         0 0 15px rgba(0, 255, 136, 0.2);
+            opacity: 0.4;
+            filter: blur(6px) brightness(1);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2),
+                        inset 0 0 10px rgba(0, 255, 136, 0.2);
         }
         50% {
-            text-shadow: 0 0 15px rgba(0, 255, 136, 0.4),
-                         0 0 25px rgba(0, 255, 136, 0.3),
-                         0 0 35px rgba(0, 255, 136, 0.2);
+            opacity: 0.6;
+            filter: blur(8px) brightness(1.1);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4),
+                        inset 0 0 20px rgba(0, 255, 136, 0.4);
         }
         100% {
-            text-shadow: 0 0 8px rgba(0, 255, 136, 0.3),
-                         0 0 15px rgba(0, 255, 136, 0.2);
+            opacity: 0.4;
+            filter: blur(6px) brightness(1);
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.2),
+                        inset 0 0 10px rgba(0, 255, 136, 0.2);
         }
     }
 }
@@ -402,13 +426,41 @@ body {
 @media (prefers-reduced-motion: reduce) {
     .welcome-title {
         animation: none;
-        text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+        border: 2px solid rgba(0, 255, 136, 0.3);
     }
     
     .welcome-title::before,
     .welcome-title::after {
         animation: none;
         opacity: 0.3;
+    }
+}
+
+/* Add a subtle hover effect */
+@media (hover: hover) {
+    .welcome-title:hover::before {
+        animation: borderGlowHover 1.5s ease-in-out infinite;
+    }
+    
+    @keyframes borderGlowHover {
+        0% {
+            opacity: 0.7;
+            filter: blur(8px) brightness(1.2);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4),
+                        inset 0 0 20px rgba(0, 255, 136, 0.4);
+        }
+        50% {
+            opacity: 0.9;
+            filter: blur(12px) brightness(1.4);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.6),
+                        inset 0 0 30px rgba(0, 255, 136, 0.6);
+        }
+        100% {
+            opacity: 0.7;
+            filter: blur(8px) brightness(1.2);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4),
+                        inset 0 0 20px rgba(0, 255, 136, 0.4);
+        }
     }
 }
 
