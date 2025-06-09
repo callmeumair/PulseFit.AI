@@ -483,6 +483,7 @@ body {
     flex-wrap: wrap;
     width: 100%;
     max-width: 500px;
+    margin-bottom: 2rem;
 }
 
 .welcome-btn {
@@ -2067,5 +2068,103 @@ body {
     
     .auth-header p {
         font-size: 14px;
+    }
+}
+
+/* App Store Buttons Styles */
+.app-store-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 500px;
+    margin-top: 1rem;
+}
+
+.app-store-btn {
+    display: inline-block;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+    position: relative;
+    overflow: hidden;
+}
+
+.app-store-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.app-store-btn:hover {
+    transform: translateY(-2px);
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.2));
+}
+
+.app-store-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.store-badge {
+    height: 48px;
+    width: auto;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+/* Responsive adjustments for app store buttons */
+@media (max-width: 768px) {
+    .app-store-buttons {
+        gap: 0.75rem;
+    }
+    
+    .store-badge {
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .app-store-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .store-badge {
+        height: 36px;
+    }
+}
+
+/* Add a subtle glow effect on hover */
+@media (hover: hover) {
+    .app-store-btn:hover {
+        filter: drop-shadow(0 6px 12px rgba(0, 255, 136, 0.2));
+    }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .app-store-btn {
+        transition: none;
+    }
+    
+    .app-store-btn::before {
+        display: none;
+    }
+    
+    .app-store-btn:hover {
+        transform: none;
+        filter: none;
     }
 }

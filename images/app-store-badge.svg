@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="40px" viewBox="0 0 120 40" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="0%" id="gradient">
+            <stop stop-color="#00FF88" offset="0%"/>
+            <stop stop-color="#00B4D8" offset="100%"/>
+        </linearGradient>
+    </defs>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="url(#gradient)" x="0" y="0" width="120" height="40" rx="8"/>
+        <g transform="translate(10, 8)" fill="#FFFFFF">
+            <path d="M10,0 C4.477,0 0,4.477 0,10 C0,15.523 4.477,20 10,20 C15.523,20 20,15.523 20,10 C20,4.477 15.523,0 10,0 Z M10,18 C5.582,18 2,14.418 2,10 C2,5.582 5.582,2 10,2 C14.418,2 18,5.582 18,10 C18,14.418 14.418,18 10,18 Z"/>
+            <path d="M10,4 L10,16 M4,10 L16,10"/>
+        </g>
+        <text font-family="SF Pro Display, -apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="600" fill="#FFFFFF">
+            <tspan x="35" y="25">Download on the</tspan>
+            <tspan x="35" y="38" font-size="16">App Store</tspan>
+        </text>
+    </g>
+</svg> 
