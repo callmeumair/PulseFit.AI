@@ -287,6 +287,129 @@ body {
     text-align: center;
     width: 100%;
     line-height: 1.2;
+    position: relative;
+    animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0% {
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.3),
+                     0 0 20px rgba(0, 255, 136, 0.2),
+                     0 0 30px rgba(0, 255, 136, 0.1);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(0, 255, 136, 0.5),
+                     0 0 30px rgba(0, 255, 136, 0.3),
+                     0 0 40px rgba(0, 255, 136, 0.2),
+                     0 0 50px rgba(0, 255, 136, 0.1);
+    }
+    100% {
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.3),
+                     0 0 20px rgba(0, 255, 136, 0.2),
+                     0 0 30px rgba(0, 255, 136, 0.1);
+    }
+}
+
+/* Add a subtle gradient animation to the glow */
+.welcome-title::before {
+    content: 'Welcome to PulseFit AI';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+        rgba(0, 255, 136, 0.1),
+        rgba(0, 180, 216, 0.1),
+        rgba(0, 255, 136, 0.1)
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow 8s ease infinite;
+    filter: blur(8px);
+    opacity: 0.5;
+    z-index: -1;
+}
+
+@keyframes gradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Add a subtle shine effect */
+.welcome-title::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        rgba(0, 255, 136, 0.1) 45%,
+        rgba(0, 255, 136, 0.2) 50%,
+        rgba(0, 255, 136, 0.1) 55%,
+        transparent 100%
+    );
+    transform: rotate(45deg);
+    animation: shine 6s infinite;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    20%, 100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+/* Optimize for different devices */
+@media (max-width: 768px) {
+    .welcome-title {
+        animation: glowPulseMobile 3s ease-in-out infinite;
+    }
+    
+    @keyframes glowPulseMobile {
+        0% {
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.3),
+                         0 0 15px rgba(0, 255, 136, 0.2);
+        }
+        50% {
+            text-shadow: 0 0 15px rgba(0, 255, 136, 0.4),
+                         0 0 25px rgba(0, 255, 136, 0.3),
+                         0 0 35px rgba(0, 255, 136, 0.2);
+        }
+        100% {
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.3),
+                         0 0 15px rgba(0, 255, 136, 0.2);
+        }
+    }
+}
+
+/* Reduce animation intensity for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .welcome-title {
+        animation: none;
+        text-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+    }
+    
+    .welcome-title::before,
+    .welcome-title::after {
+        animation: none;
+        opacity: 0.3;
+    }
 }
 
 .welcome-subtitle {
