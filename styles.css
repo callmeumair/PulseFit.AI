@@ -2093,19 +2093,23 @@ body {
     padding: 0;
 }
 
-.app-store-btn:hover {
-    transform: scale(1.06);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+.store-badge-wrapper {
+    width: 200px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    border-radius: 12px;
 }
 
 .store-badge {
+    max-width: 90%;
+    max-height: 90%;
+    width: auto;
+    height: auto;
     display: block;
-    height: 56px;
-    width: 200px;
-    min-width: 160px;
-    max-width: 220px;
     object-fit: contain;
-    background: #000;
 }
 
 @media (max-width: 600px) {
@@ -2113,10 +2117,8 @@ body {
         flex-direction: column;
         gap: 1rem;
     }
-    .store-badge {
-        height: 44px;
+    .store-badge-wrapper {
         width: 160px;
-        min-width: 120px;
-        max-width: 90vw;
+        height: 44px;
     }
 }
