@@ -9,7 +9,6 @@ dotenv.config();
 
 // Import routes
 const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/users');
 const workoutRoutes = require('./routes/workouts');
 const nutritionRoutes = require('./routes/nutrition');
 
@@ -22,16 +21,30 @@ app.use(bodyParser.json());
 app.use(express.static('frontend'));
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/pulsefit-ai';
+const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret-jwt-key-change-this-in-production';
+
+mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 .then(() => console.log('Connected to MongoDB'))
-.catch(err => console.error('MongoDB connection error:', err));
+.catch(err => {
+    console.error('MongoDB connection error:', err);
+    console.log('Note: Make sure MongoDB is running or set MONGODB_URI environment variable');
+});
+
+// Health check route
+app.get('/api/health', (req, res) => {
+    res.json({ 
+        status: 'OK', 
+        message: 'PulseFit.AI Backend is running',
+        timestamp: new Date().toISOString()
+    });
+});
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
 app.use('/api/workouts', workoutRoutes);
 app.use('/api/nutrition', nutritionRoutes);
 
@@ -42,7 +55,28 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+const PORT = process.env.PORT || 3001;
+
+// Function to find available port
+const findAvailablePort = (startPort) => {
+    return new Promise((resolve, reject) => {
+        const server = require('http').createServer();
+        server.listen(startPort, () => {
+            const port = server.address().port;
+            server.close(() => resolve(port));
+        });
+        server.on('error', () => {
+            findAvailablePort(startPort + 1).then(resolve).catch(reject);
+        });
+    });
+};
+
+// Start server on available port
+findAvailablePort(PORT).then(availablePort => {
+    app.listen(availablePort, () => {
+        console.log(`Server running on port ${availablePort}`);
+        console.log(`Health check: http://localhost:${availablePort}/api/health`);
+    });
+}).catch(err => {
+    console.error('Failed to start server:', err);
 }); 
