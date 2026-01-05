@@ -155,9 +155,11 @@ const config: Config = {
         ...borderRadius,
       },
       
-      // Shadows - Functional or absent
+      // Shadows - Functional or absent (only flat values, exclude nested border object)
       boxShadow: {
-        ...shadows,
+        none: shadows.none,
+        sm: shadows.sm,
+        md: shadows.md,
       },
       
       // Animations - Mechanical, not organic
