@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
-import Button from '../ui/Button'
 import Container from '../ui/Container'
+import WaitlistForm from '../../../components/WaitlistForm'
 
 export default function Hero() {
     return (
@@ -82,14 +82,13 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.8 }}
-                        className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+                        className="flex justify-center items-center"
                     >
-                        <Button variant="primary">
-                            Start Training Now
-                        </Button>
-                        <Button variant="secondary">
-                            See How It Works
-                        </Button>
+                        <WaitlistForm
+                            source="hero_cta"
+                            placeholder="Enter your email for early access"
+                            buttonText="Join Early Access"
+                        />
                     </motion.div>
 
                     <motion.div

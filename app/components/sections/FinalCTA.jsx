@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Section from '../ui/Section'
 import Container from '../ui/Container'
-import Button from '../ui/Button'
+import WaitlistForm from '../../../components/WaitlistForm'
 
 export default function FinalCTA() {
     return (
@@ -52,13 +52,12 @@ export default function FinalCTA() {
                             Join 50,000+ athletes who stopped making excuses and started making gains.
                         </p>
 
-                        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
-                            <Button variant="primary" className="text-lg px-12 py-5">
-                                Get Started Free
-                            </Button>
-                            <div className="text-gym-light-gray text-sm">
-                                No credit card required • 7-day trial
-                            </div>
+                        <div className="flex justify-center mb-12">
+                            <WaitlistForm
+                                source="footer_cta"
+                                placeholder="Enter your email"
+                                buttonText="Get Started Free"
+                            />
                         </div>
 
                         {/* Social proof */}
