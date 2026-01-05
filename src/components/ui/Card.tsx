@@ -3,7 +3,6 @@
 import { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '@/lib/utils'
-import { scaleOnHover } from '@/styles/animations'
 
 interface CardProps {
   children: ReactNode
@@ -14,11 +13,29 @@ interface CardProps {
 export function Card({ children, className, hover = true }: CardProps) {
   return (
     <motion.div
-      variants={hover ? scaleOnHover : undefined}
       initial="rest"
       whileHover={hover ? 'hover' : undefined}
+      variants={{
+        rest: {
+          scale: 1,
+          y: 0,
+          transition: {
+            duration: 0.2,
+            ease: 'easeOut',
+          },
+        },
+        hover: {
+          scale: 1.01,
+          y: -2,
+          transition: {
+            duration: 0.2,
+            ease: 'easeOut',
+          },
+        },
+      }}
       className={cn(
-        'bg-charcoal-light border border-iron/50 rounded-xl p-6 lg:p-8',
+        'bg-charcoal-light border border-iron/50 rounded-none p-6 lg:p-8 transition-colors duration-200',
+        hover && 'hover:border-primary/30',
         className
       )}
     >
@@ -26,4 +43,3 @@ export function Card({ children, className, hover = true }: CardProps) {
     </motion.div>
   )
 }
-

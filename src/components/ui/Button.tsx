@@ -17,24 +17,26 @@ export function Button({
   children,
   ...props
 }: ButtonProps) {
-  const baseStyles = 'font-display font-semibold rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-charcoal'
+  // Base styles - using design system tokens
+  const baseStyles = 'font-display font-semibold rounded-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-charcoal focus-visible:ring-primary'
   
   const variants = {
-    primary: 'bg-primary text-white hover:bg-primary-dark focus:ring-primary',
-    secondary: 'bg-steel text-bone hover:bg-steel-light focus:ring-steel',
-    outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-white focus:ring-primary',
+    primary: 'bg-primary text-bone hover:bg-primary-dark hover:ring-2 hover:ring-primary/30 focus:ring-primary',
+    secondary: 'bg-steel text-bone hover:bg-steel-light hover:ring-2 hover:ring-steel/30 focus:ring-steel',
+    outline: 'border-2 border-primary text-primary hover:bg-primary hover:text-bone hover:ring-2 hover:ring-primary/30 focus:ring-primary',
   }
   
   const sizes = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg',
+    sm: 'px-4 py-2.5 text-small min-h-[44px]',
+    md: 'px-6 py-3 text-body min-h-[44px]',
+    lg: 'px-8 py-4 text-h4 min-h-[48px]',
   }
   
   return (
     <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={{ scale: 1.01 }}
+      whileTap={{ scale: 0.99 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
       className={cn(baseStyles, variants[variant], sizes[size], className)}
       {...props}
     >
@@ -42,4 +44,3 @@ export function Button({
     </motion.button>
   )
 }
-

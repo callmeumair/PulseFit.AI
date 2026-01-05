@@ -12,6 +12,8 @@ const testimonials = [
     quote: 'The AI coach caught form issues I didn\'t even know I had. My numbers exploded once I fixed them.',
     metric: '485 → 570 lbs',
     metricLabel: 'Total',
+    padding: 'p-6 lg:p-8',
+    highlight: true,
   },
   {
     name: 'Sarah Rodriguez',
@@ -20,6 +22,8 @@ const testimonials = [
     quote: 'Finally, a system that adapts to my life instead of forcing me into a rigid schedule. Game changer.',
     metric: '3.2x/week → 4.7x/week',
     metricLabel: 'Frequency',
+    padding: 'p-6 lg:p-7',
+    highlight: false,
   },
   {
     name: 'James Park',
@@ -28,15 +32,17 @@ const testimonials = [
     quote: 'The nutrition tracking is smart enough to work with my chaotic schedule. No more meal prep stress.',
     metric: '15% → 12%',
     metricLabel: 'Body Fat',
+    padding: 'p-6 lg:p-8',
+    highlight: false,
   },
 ]
 
 export function SocialProof() {
   return (
-    <section className="py-24 sm:py-32 bg-charcoal">
+    <section className="py-16 sm:py-24 bg-charcoal">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <MotionWrapper>
-          <FadeInUp className="text-center mb-20">
+          <FadeInUp className="text-center mb-12 sm:mb-16">
             <h2 className="font-display font-bold text-display text-bone mb-4">
               Real Athletes. Real Results.
             </h2>
@@ -46,14 +52,16 @@ export function SocialProof() {
           </FadeInUp>
         </MotionWrapper>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
           {testimonials.map((testimonial, index) => (
             <MotionWrapper key={testimonial.name}>
               <FadeInUp delay={index * 0.1}>
-                <Card className="h-full flex flex-col">
-                  {/* Metric badge */}
-                  <div className="mb-6">
-                    <div className="inline-block bg-primary/10 border border-primary/30 rounded-lg px-4 py-2">
+                <Card 
+                  className={`h-full flex flex-col ${testimonial.highlight ? 'lg:scale-105 lg:border-primary/40' : ''} ${testimonial.padding}`}
+                >
+                  {/* Metric badge - offset positioning */}
+                  <div className={`mb-6 ${index === 1 ? 'ml-2' : index === 2 ? 'mr-2' : ''}`}>
+                    <div className="inline-block bg-primary/10 border border-primary/30 rounded-none px-4 py-2">
                       <div className="text-2xl font-display font-bold text-primary">
                         {testimonial.metric}
                       </div>
@@ -89,4 +97,3 @@ export function SocialProof() {
     </section>
   )
 }
-

@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import { colors, typography, spacing, borderRadius, shadows } from './src/styles/design-system'
 
 const config: Config = {
   content: [
@@ -8,52 +9,161 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // Color System - Instrument readout aesthetic
       colors: {
-        // Base colors
+        // Backgrounds - Near-black base
         charcoal: {
-          DEFAULT: '#0B0B0D',
-          light: '#111',
+          DEFAULT: colors.background.base,
+          light: colors.background.elevated,
         },
-        // Primary accent - burnt orange
-        primary: {
-          DEFAULT: '#FF4500',
-          dark: '#DC4500',
-          light: '#FF6B33',
-        },
-        // Secondary - steel gray
+        // Text Hierarchy
+        bone: colors.text.primary,
         steel: {
-          DEFAULT: '#475569',
-          light: '#64748B',
-          dark: '#334155',
+          DEFAULT: colors.text.muted,
+          light: colors.text.secondary,
+          dark: colors.text.disabled,
         },
-        // Text
-        bone: '#FAFAF9',
-        // Accents
-        chalk: '#E5E7EB',
-        iron: '#1F2937',
-        led: '#10B981',
+        // Primary Accent - Active effort indicator
+        primary: {
+          DEFAULT: colors.accent.primary.DEFAULT,
+          dark: colors.accent.primary.dark,
+          light: colors.accent.primary.light,
+        },
+        // Success - Achievement threshold
+        success: {
+          DEFAULT: colors.accent.success.DEFAULT,
+          dark: colors.accent.success.dark,
+          light: colors.accent.success.light,
+        },
+        // Danger - Critical states
+        danger: {
+          DEFAULT: colors.accent.danger.DEFAULT,
+          dark: colors.accent.danger.dark,
+          light: colors.accent.danger.light,
+        },
+        // Neutral UI Elements
+        iron: colors.neutral.iron,
+        chalk: colors.neutral.chalk,
+        // Background semantic names
+        'bg-base': colors.background.base,
+        'bg-elevated': colors.background.elevated,
+        'bg-interactive': colors.background.interactive,
       },
+      
+      // Typography - Equipment label aesthetic
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-space-grotesk)', 'system-ui', 'sans-serif'],
-        condensed: ['var(--font-space-grotesk)', 'system-ui', 'sans-serif'],
+        sans: [...typography.fontFamily.body],
+        display: [...typography.fontFamily.display],
       },
       fontSize: {
-        'hero': ['clamp(3rem, 8vw, 7rem)', { lineHeight: '0.9', letterSpacing: '-0.02em' }],
-        'display': ['clamp(2rem, 5vw, 4.5rem)', { lineHeight: '1.1', letterSpacing: '-0.01em' }],
-        'h1': ['clamp(1.875rem, 4vw, 3rem)', { lineHeight: '1.2' }],
-        'h2': ['clamp(1.5rem, 3vw, 2.25rem)', { lineHeight: '1.3' }],
-        'h3': ['clamp(1.25rem, 2.5vw, 1.875rem)', { lineHeight: '1.4' }],
+        hero: [
+          typography.fontSize.hero.size,
+          {
+            lineHeight: typography.fontSize.hero.lineHeight,
+            letterSpacing: typography.fontSize.hero.letterSpacing,
+          },
+        ],
+        display: [
+          typography.fontSize.display.size,
+          {
+            lineHeight: typography.fontSize.display.lineHeight,
+            letterSpacing: typography.fontSize.display.letterSpacing,
+          },
+        ],
+        h1: [
+          typography.fontSize.h1.size,
+          {
+            lineHeight: typography.fontSize.h1.lineHeight,
+            letterSpacing: typography.fontSize.h1.letterSpacing,
+          },
+        ],
+        h2: [
+          typography.fontSize.h2.size,
+          {
+            lineHeight: typography.fontSize.h2.lineHeight,
+            letterSpacing: typography.fontSize.h2.letterSpacing,
+          },
+        ],
+        h3: [
+          typography.fontSize.h3.size,
+          {
+            lineHeight: typography.fontSize.h3.lineHeight,
+            letterSpacing: typography.fontSize.h3.letterSpacing,
+          },
+        ],
+        h4: [
+          typography.fontSize.h4.size,
+          {
+            lineHeight: typography.fontSize.h4.lineHeight,
+            letterSpacing: typography.fontSize.h4.letterSpacing,
+          },
+        ],
+        body: [
+          typography.fontSize.body.size,
+          {
+            lineHeight: typography.fontSize.body.lineHeight,
+            letterSpacing: typography.fontSize.body.letterSpacing,
+          },
+        ],
+        small: [
+          typography.fontSize.small.size,
+          {
+            lineHeight: typography.fontSize.small.lineHeight,
+            letterSpacing: typography.fontSize.small.letterSpacing,
+          },
+        ],
+        caption: [
+          typography.fontSize.caption.size,
+          {
+            lineHeight: typography.fontSize.caption.lineHeight,
+            letterSpacing: typography.fontSize.caption.letterSpacing,
+          },
+        ],
       },
+      
+      // Spacing Scale - 4px base unit, systematic
       spacing: {
-        '18': '4.5rem',
-        '22': '5.5rem',
-        '26': '6.5rem',
-        '30': '7.5rem',
+        // Base scale (numeric keys for Tailwind)
+        '0': spacing.scale[0],
+        '1': spacing.scale[1],
+        '2': spacing.scale[2],
+        '3': spacing.scale[3],
+        '4': spacing.scale[4],
+        '5': spacing.scale[5],
+        '6': spacing.scale[6],
+        '8': spacing.scale[8],
+        '10': spacing.scale[10],
+        '12': spacing.scale[12],
+        '16': spacing.scale[16],
+        '20': spacing.scale[20],
+        '24': spacing.scale[24],
+        '32': spacing.scale[32],
+        // Semantic spacing (named keys)
+        xs: spacing.semantic.xs,
+        sm: spacing.semantic.sm,
+        md: spacing.semantic.md,
+        lg: spacing.semantic.lg,
+        xl: spacing.semantic.xl,
+        '2xl': spacing.semantic['2xl'],
+        '3xl': spacing.semantic['3xl'],
+        '4xl': spacing.semantic['4xl'],
+        '5xl': spacing.semantic['5xl'],
       },
+      
+      // Border Radius - Minimal, structural
+      borderRadius: {
+        ...borderRadius,
+      },
+      
+      // Shadows - Functional or absent
+      boxShadow: {
+        ...shadows,
+      },
+      
+      // Animations - Mechanical, not organic
       animation: {
-        'fade-in': 'fadeIn 0.6s ease-out',
-        'slide-up': 'slideUp 0.6s ease-out',
+        'fade-in': 'fadeIn 0.3s ease-out',
+        'slide-up': 'slideUp 0.3s ease-out',
         'grain': 'grain 8s steps(10) infinite',
       },
       keyframes: {
@@ -83,4 +193,3 @@ const config: Config = {
   plugins: [],
 }
 export default config
-

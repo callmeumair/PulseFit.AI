@@ -8,31 +8,39 @@ import { slideInLeft, slideInRight } from '@/styles/animations'
 const features = [
   {
     title: 'AI Coach',
-    description: 'Your silent personal trainer. Analyzes your form, adjusts intensity in real-time, and keeps you accountable without the noise.',
+    description: 'Form analysis in real-time. Intensity adjustments based on your performance data. Accountability without the motivational noise.',
     icon: '🤖',
     layout: 'left',
     stats: '24/7 guidance',
+    contentWidth: 'lg:w-[55%]', // 55/45 split
+    spacing: 'mb-24 sm:mb-32',
   },
   {
     title: 'Smart Workouts',
-    description: 'Personalized routines that adapt to your recovery, goals, and schedule. Every rep is intentional. Every session counts.',
+    description: 'Routines that adapt to recovery patterns, training goals, and your actual schedule. Every rep calculated. Every session optimized.',
     icon: '💪',
     layout: 'right',
     stats: '10,000+ variations',
+    contentWidth: 'lg:w-[60%]', // 60/40 split
+    spacing: 'mb-28 sm:mb-36',
   },
   {
     title: 'Nutrition Intelligence',
-    description: 'Macro tracking that learns your preferences. Meal planning that fits your life. Fuel your body, not your confusion.',
+    description: 'Macro tracking that learns your eating patterns. Meal planning that fits your life, not the other way around.',
     icon: '🍎',
     layout: 'left',
     stats: 'Auto-calibrated',
+    contentWidth: 'lg:w-[55%]',
+    spacing: 'mb-24 sm:mb-32',
   },
   {
     title: 'Performance Analytics',
-    description: 'Deep insights into strength gains, volume progression, and recovery patterns. Data that tells the real story.',
+    description: 'Strength progression, volume trends, recovery metrics. Data that reveals what\'s actually happening, not what you hope is happening.',
     icon: '📊',
     layout: 'right',
     stats: 'Real-time tracking',
+    contentWidth: 'lg:w-[60%]',
+    spacing: 'mb-0',
   },
 ]
 
@@ -41,7 +49,7 @@ export function Features() {
     <section className="py-24 sm:py-32 bg-charcoal-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <MotionWrapper>
-          <FadeInUp className="text-center mb-20">
+          <FadeInUp className="text-center mb-16 sm:mb-20">
             <h2 className="font-display font-bold text-display text-bone mb-4">
               Everything You Need to Dominate
             </h2>
@@ -51,7 +59,7 @@ export function Features() {
           </FadeInUp>
         </MotionWrapper>
 
-        <div className="space-y-32">
+        <div>
           {features.map((feature, index) => (
             <MotionWrapper key={feature.title}>
               <motion.div
@@ -61,10 +69,10 @@ export function Features() {
                 variants={feature.layout === 'left' ? slideInLeft : slideInRight}
                 className={`flex flex-col ${
                   feature.layout === 'right' ? 'lg:flex-row-reverse' : 'lg:flex-row'
-                } gap-12 lg:gap-16 items-center`}
+                } gap-10 lg:gap-12 items-center ${feature.spacing}`}
               >
-                {/* Content */}
-                <div className="flex-1">
+                {/* Content - Varied widths for asymmetry */}
+                <div className={`flex-1 ${feature.contentWidth} w-full`}>
                   <div className="inline-flex items-center gap-3 mb-4">
                     <span className="text-4xl">{feature.icon}</span>
                     <span className="text-sm font-semibold text-primary uppercase tracking-wider">
@@ -79,8 +87,8 @@ export function Features() {
                   </p>
                 </div>
 
-                {/* Visual placeholder */}
-                <div className="flex-1 w-full">
+                {/* Visual placeholder - Varied widths */}
+                <div className={`flex-1 ${feature.layout === 'left' ? 'lg:w-[45%]' : 'lg:w-[40%]'} w-full`}>
                   <Card className="h-64 lg:h-80 flex items-center justify-center bg-gradient-to-br from-iron to-charcoal-light border-primary/20">
                     <div className="text-center">
                       <div className="text-6xl mb-4">{feature.icon}</div>
@@ -96,4 +104,3 @@ export function Features() {
     </section>
   )
 }
-
