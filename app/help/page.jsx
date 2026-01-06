@@ -79,7 +79,7 @@ export default function HelpPage() {
                                 Still Have Questions?
                             </h3>
                             <p className="text-gym-light-gray mb-6">
-                                Can't find what you're looking for? Get in touch with our support team.
+                                Can&apos;t find what you&apos;re looking for? Get in touch with our support team.
                             </p>
                             <Link
                                 href="/contact"

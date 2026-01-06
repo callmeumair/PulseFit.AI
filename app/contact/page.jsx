@@ -122,7 +122,7 @@ export default function ContactPage() {
 
                                 {status === 'success' && (
                                     <p className="text-gym-orange text-center">
-                                        Message sent! We'll get back to you within 24 hours.
+                                        Message sent! We&apos;ll get back to you within 24 hours.
                                     </p>
                                 )}
                             </form>
@@ -171,7 +171,7 @@ export default function ContactPage() {
                                     </h3>
                                     <p className="text-gym-light-gray">
                                         We aim to respond to all inquiries within 24 hours during business days.
-                                        For urgent matters, please mention "URGENT" in your subject line.
+                                        For urgent matters, please mention &quot;URGENT&quot; in your subject line.
                                     </p>
                                 </div>
                             </div>

@@ -26,7 +26,7 @@ export default function TermsPage() {
                             <section>
                                 <h2 className="font-display text-3xl text-gym-white mb-4">1. Acceptance of Terms</h2>
                                 <p className="leading-relaxed">
-                                    By accessing or using PulseFit AI ("the Service"), you agree to be bound by these Terms of Service.
+                                    By accessing or using PulseFit AI (&quot;the Service&quot;), you agree to be bound by these Terms of Service.
                                     If you do not agree to these terms, do not use the Service.
                                 </p>
                             </section>
@@ -102,7 +102,7 @@ export default function TermsPage() {
 
                                 <h3 className="font-display text-xl text-gym-white mb-3 mt-6">6.3 Refunds</h3>
                                 <p className="leading-relaxed">
-                                    We offer a 30-day money-back guarantee. If you're not satisfied within the first 30 days of your
+                                    We offer a 30-day money-back guarantee. If you&apos;re not satisfied within the first 30 days of your
                                     initial subscription, contact us for a full refund.
                                 </p>
                             </section>

@@ -85,7 +85,7 @@ export default function PressPage() {
                                 <p className="text-gym-light-gray leading-relaxed">
                                     PulseFit AI was founded by a team of engineers and product builders who were frustrated
                                     with the state of fitness apps—either too generic, too complex, or built for influencers
-                                    instead of real people. We set out to build an AI coach that's intelligent, sustainable,
+                                    instead of real people. We set out to build an AI coach that&apos;s intelligent, sustainable,
                                     and actually useful for everyday gym-goers.
                                 </p>
                             </div>

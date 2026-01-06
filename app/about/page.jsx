@@ -53,7 +53,7 @@ export default function AboutPage() {
                             <div className="p-8 bg-gym-dark border-l-4 border-gym-orange">
                                 <h3 className="font-display text-2xl text-gym-white mb-3">Too Generic</h3>
                                 <p className="text-gym-light-gray leading-relaxed">
-                                    Most fitness apps offer cookie-cutter programs that don't adapt to your individual needs,
+                                    Most fitness apps offer cookie-cutter programs that don&apos;t adapt to your individual needs,
                                     progress, or recovery capacity.
                                 </p>
                             </div>

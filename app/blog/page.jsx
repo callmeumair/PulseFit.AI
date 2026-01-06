@@ -69,7 +69,7 @@ export default function BlogPage() {
                                     </button>
                                 </div>
                                 {status === 'success' && (
-                                    <p className="mt-4 text-gym-orange">Thanks! We'll notify you when we publish.</p>
+                                    <p className="mt-4 text-gym-orange">Thanks! We&apos;ll notify you when we publish.</p>
                                 )}
                             </form>
                         </div>

@@ -76,7 +76,7 @@ export default function AnalyticsPage() {
                         </h2>
                         <p className="text-xl text-gym-light-gray leading-relaxed">
                             Get clear, actionable summaries of your training. Visual trend lines show you exactly
-                            where you're improving and where you need to focus.
+                            where you&apos;re improving and where you need to focus.
                         </p>
                     </div>
                 </Container>
@@ -107,7 +107,7 @@ export default function AnalyticsPage() {
                             <div className="p-8 bg-gym-dark border-l-4 border-gym-orange">
                                 <h3 className="font-display text-2xl text-gym-white mb-3">No Data Walls</h3>
                                 <p className="text-gym-light-gray leading-relaxed">
-                                    We don't overwhelm you with every possible metric.
+                                    We don&apos;t overwhelm you with every possible metric.
                                     Just the ones that actually drive results.
                                 </p>
                             </div>

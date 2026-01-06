@@ -138,7 +138,7 @@ export default function AICoachPage() {
                             <div className="p-8 bg-gym-charcoal border-l-4 border-gym-orange">
                                 <h3 className="font-display text-2xl text-gym-white mb-3">No Toxic Grind Culture</h3>
                                 <p className="text-gym-light-gray leading-relaxed">
-                                    No "no pain, no gain" nonsense. No guilt trips. No toxic hustle mentality.
+                                    No &quot;no pain, no gain&quot; nonsense. No guilt trips. No toxic hustle mentality.
                                     Just intelligent coaching that respects your recovery and life outside the gym.
                                 </p>
                             </div>

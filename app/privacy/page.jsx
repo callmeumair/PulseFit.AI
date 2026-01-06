@@ -26,7 +26,7 @@ export default function PrivacyPage() {
                             <section>
                                 <h2 className="font-display text-3xl text-gym-white mb-4">1. Introduction</h2>
                                 <p className="leading-relaxed">
-                                    PulseFit AI ("we," "our," or "us") is committed to protecting your privacy.
+                                    PulseFit AI (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;) is committed to protecting your privacy.
                                     This Privacy Policy explains how we collect, use, disclose, and safeguard your information
                                     when you use our fitness coaching application and services.
                                 </p>
@@ -115,7 +115,7 @@ export default function PrivacyPage() {
                             </section>
 
                             <section>
-                                <h2 className="font-display text-3xl text-gym-white mb-4">8. Children's Privacy</h2>
+                                <h2 className="font-display text-3xl text-gym-white mb-4">8. Children&apos;s Privacy</h2>
                                 <p className="leading-relaxed">
                                     PulseFit AI is not intended for users under 18 years of age. We do not knowingly collect
                                     data from children. If you believe we have collected data from a child, please contact us immediately.

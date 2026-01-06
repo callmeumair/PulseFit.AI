@@ -68,7 +68,7 @@ export default function CareersPage() {
                                 Interested in Future Opportunities?
                             </h3>
                             <p className="text-gym-light-gray mb-8">
-                                Leave your email and we'll reach out when we start hiring.
+                                Leave your email and we&apos;ll reach out when we start hiring.
                             </p>
                             <form onSubmit={handleSubmit} className="max-w-md mx-auto">
                                 <div className="flex gap-2">
@@ -88,7 +88,7 @@ export default function CareersPage() {
                                     </button>
                                 </div>
                                 {status === 'success' && (
-                                    <p className="mt-4 text-gym-orange">Thanks! We'll be in touch when we're hiring.</p>
+                                    <p className="mt-4 text-gym-orange">Thanks! We&apos;ll be in touch when we&apos;re hiring.</p>
                                 )}
                             </form>
                         </div>
