@@ -1,4 +1,5 @@
 import { Inter, Bebas_Neue } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const inter = Inter({
@@ -85,7 +86,10 @@ export const viewport = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en" className={`${inter.variable} ${bebasNeue.variable}`}>
-            <body className="font-body">{children}</body>
+            <body className="font-body">
+                {children}
+                <Analytics />
+            </body>
         </html>
     )
 }
