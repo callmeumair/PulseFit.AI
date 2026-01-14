@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion'
 import Section from '../ui/Section'
 import Container from '../ui/Container'
+import ResponsiveVideo from '../ui/ResponsiveVideo'
 
 export default function SmartWorkouts() {
     const workoutTypes = [
@@ -86,15 +87,13 @@ export default function SmartWorkouts() {
                                     {/* Video background for STRENGTH card only */}
                                     {workout.hasVideo && (
                                         <>
-                                            <video
-                                                autoPlay
-                                                muted
-                                                loop
-                                                playsInline
-                                                className="absolute inset-0 w-full h-full object-cover"
-                                            >
-                                                <source src="/assets/images/videos/14505122_3840_2160_25fps.mp4" type="video/mp4" />
-                                            </video>
+                                            <div className="absolute inset-0">
+                                                <ResponsiveVideo
+                                                    src="/assets/images/videos/14505122_3840_2160_25fps.mp4"
+                                                    className="w-full h-full"
+                                                    overlay={false}
+                                                />
+                                            </div>
                                             {/* Heavy dark overlay */}
                                             <div className="absolute inset-0 bg-gym-dark/85" />
                                         </>

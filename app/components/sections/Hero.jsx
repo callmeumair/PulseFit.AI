@@ -1,22 +1,19 @@
 'use client'
 import { motion } from 'framer-motion'
-import Button from '../ui/Button'
 import Container from '../ui/Container'
+import ResponsiveVideo from '../ui/ResponsiveVideo'
+import WaitlistForm from '../../../components/WaitlistForm'
 
 export default function Hero() {
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gym-black">
             {/* Video Background */}
             <div className="absolute inset-0 overflow-hidden">
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="absolute inset-0 w-full h-full object-cover scale-105"
-                >
-                    <source src="/assets/images/videos/13749263_3840_2160_24fps.mp4" type="video/mp4" />
-                </video>
+                <ResponsiveVideo
+                    src="/assets/images/videos/13749263_3840_2160_24fps.mp4"
+                    className="absolute inset-0 w-full h-full"
+                    overlay={false}
+                />
 
                 {/* Dark gradient overlay for legibility */}
                 <div className="absolute inset-0 bg-gradient-to-b from-gym-black/70 via-gym-black/60 to-gym-black/80" />
@@ -82,14 +79,13 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.8 }}
-                        className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+                        className="flex justify-center items-center"
                     >
-                        <Button variant="primary">
-                            Start Training Now
-                        </Button>
-                        <Button variant="secondary">
-                            See How It Works
-                        </Button>
+                        <WaitlistForm
+                            source="hero_cta"
+                            placeholder="Your email address"
+                            buttonText="Join Early Access"
+                        />
                     </motion.div>
 
                     <motion.div
@@ -98,26 +94,10 @@ export default function Hero() {
                         transition={{ duration: 1, delay: 1.2 }}
                         className="mt-16 text-gym-gray text-sm uppercase tracking-wider"
                     >
-                        No equipment required • Cancel anytime • Results guaranteed
+                        Join the waitlist • Be the first to train • Limited early access
                     </motion.div>
                 </div>
             </Container>
-
-            {/* Scroll indicator */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 1.5 }}
-                className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
-            >
-                <motion.div
-                    animate={{ y: [0, 10, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="w-6 h-10 border-2 border-gym-steel rounded-full flex items-start justify-center p-2"
-                >
-                    <div className="w-1 h-2 bg-gym-orange rounded-full" />
-                </motion.div>
-            </motion.div>
         </section>
     )
 }

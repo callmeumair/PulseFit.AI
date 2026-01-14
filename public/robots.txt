@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://pulsefit.ai/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 0
+
+# Disallow admin/private areas (add when needed)
+# Disallow: /admin/
+# Disallow: /api/

@@ -1,7 +1,29 @@
+import Link from 'next/link'
 import Container from '../ui/Container'
 
 export default function Footer() {
     const currentYear = new Date().getFullYear()
+
+    const productLinks = [
+        { name: 'Features', href: '/features' },
+        { name: 'Pricing', href: '/pricing' },
+        { name: 'AI Coach', href: '/ai-coach' },
+        { name: 'Analytics', href: '/analytics' }
+    ]
+
+    const companyLinks = [
+        { name: 'About', href: '/about' },
+        { name: 'Blog', href: '/blog' },
+        { name: 'Careers', href: '/careers' },
+        { name: 'Press', href: '/press' }
+    ]
+
+    const supportLinks = [
+        { name: 'Help Center', href: '/help' },
+        { name: 'Contact', href: '/contact' },
+        { name: 'Privacy', href: '/privacy' },
+        { name: 'Terms', href: '/terms' }
+    ]
 
     return (
         <footer className="bg-gym-charcoal py-12 border-t border-gym-steel">
@@ -9,49 +31,51 @@ export default function Footer() {
                 <div className="grid md:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
                     <div className="md:col-span-1">
-                        <div className="font-display text-3xl text-gym-white mb-4">
+                        <Link href="/" className="font-display text-3xl text-gym-white mb-4 inline-block">
                             PULSE<span className="text-gym-orange">FIT</span>
-                        </div>
+                        </Link>
                         <p className="text-sm text-gym-light-gray">
-                            AI-powered fitness coaching for serious athletes.
+                            AI-powered fitness coaching for real gym-goers.
                         </p>
                     </div>
 
-                    {/* Links */}
+                    {/* Product Links */}
                     <div>
                         <h4 className="font-bold text-gym-white text-sm uppercase tracking-wider mb-4">Product</h4>
                         <ul className="space-y-2">
-                            {['Features', 'Pricing', 'AI Coach', 'Analytics'].map((item) => (
-                                <li key={item}>
-                                    <a href="#" className="text-gym-light-gray hover:text-gym-orange transition-colors text-sm">
-                                        {item}
-                                    </a>
+                            {productLinks.map((link) => (
+                                <li key={link.name}>
+                                    <Link href={link.href} className="text-gym-light-gray hover:text-gym-orange transition-colors text-sm">
+                                        {link.name}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
+                    {/* Company Links */}
                     <div>
                         <h4 className="font-bold text-gym-white text-sm uppercase tracking-wider mb-4">Company</h4>
                         <ul className="space-y-2">
-                            {['About', 'Blog', 'Careers', 'Press'].map((item) => (
-                                <li key={item}>
-                                    <a href="#" className="text-gym-light-gray hover:text-gym-orange transition-colors text-sm">
-                                        {item}
-                                    </a>
+                            {companyLinks.map((link) => (
+                                <li key={link.name}>
+                                    <Link href={link.href} className="text-gym-light-gray hover:text-gym-orange transition-colors text-sm">
+                                        {link.name}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
+                    {/* Support Links */}
                     <div>
                         <h4 className="font-bold text-gym-white text-sm uppercase tracking-wider mb-4">Support</h4>
                         <ul className="space-y-2">
-                            {['Help Center', 'Contact', 'Privacy', 'Terms'].map((item) => (
-                                <li key={item}>
-                                    <a href="#" className="text-gym-light-gray hover:text-gym-orange transition-colors text-sm">
-                                        {item}
-                                    </a>
+                            {supportLinks.map((link) => (
+                                <li key={link.name}>
+                                    <Link href={link.href} className="text-gym-light-gray hover:text-gym-orange transition-colors text-sm">
+                                        {link.name}
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -64,15 +88,12 @@ export default function Footer() {
                         © {currentYear} PulseFit AI. All rights reserved.
                     </p>
                     <div className="flex gap-6">
-                        {['Twitter', 'Instagram', 'YouTube'].map((social) => (
-                            <a
-                                key={social}
-                                href="#"
-                                className="text-gym-gray hover:text-gym-orange transition-colors text-sm uppercase tracking-wider"
-                            >
-                                {social}
-                            </a>
-                        ))}
+                        <span className="text-gym-gray text-sm uppercase tracking-wider">
+                            Twitter: Coming Soon
+                        </span>
+                        <span className="text-gym-gray text-sm uppercase tracking-wider">
+                            Instagram: Coming Soon
+                        </span>
                     </div>
                 </div>
             </Container>
